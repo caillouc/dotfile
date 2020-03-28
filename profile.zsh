@@ -19,7 +19,6 @@ alias path='echo $PATH'                         # Display the path variable
 alias v='vim'                                   # Vim command 
 alias c='clear'                                 # Clear the terminal
 alias o='open'                                  # open command  
-alias eject='diskutil umount SALT'              # command to eject SALT flash drive
 alias updatedb='sudo /usr/libexec/locate.updatedb'      # udatedb for locate command 
 alias sprofile="source $HOME/.zshrc"                    # Source this file
 
