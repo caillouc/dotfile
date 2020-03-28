@@ -1,4 +1,3 @@
-source ./path.zsh
 source ./own_command.zsh
 
 # zsh constant
@@ -15,9 +14,7 @@ alias safari='open -a Safari'                   # Open safari
 alias messages='open -a Messages'               # Open messages
 alias f='open -a Finder ./'                     # Open the current directory in finder
 alias la='ls -la'                               # Better version of ls
-alias profile="vim $PROFILE_PATH"               # Edit this file with vim
 alias zshrc="vim $HOME/.zshrc"                  # Edit .zsshrc file
-alias cprofile="code $PROFILE_PATH"             # Edit this file with vscode 
 alias path='echo $PATH'                         # Display the path variable 	
 alias v='vim'                                   # Vim command 
 alias c='clear'                                 # Clear the terminal
@@ -90,12 +87,7 @@ extract () {
 
 # shortcut git 
 gcp () { git add -A && git commit -m "$@" && git push; }
-gcpd () { 
-	DIR="`pwd`" &&
-	builtin cd $DOTFILE_PATH &&
-	gcp "$@" && 
-	builtin cd $DIR;
-}
+
 alias status='git status'
 alias branch='git branch'
 alias grh='git reset --hard'

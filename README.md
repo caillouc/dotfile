@@ -4,12 +4,7 @@
 
 Template for a mac os zshrc file. 
 
-You can create the file `path.zsh` in wich you will include constant corresponding to the path of all you files. For example :
-```bash 
-PROFILE_PATH="$HOME/Dowloads/profile.zsh"
-```
-
-You can also add your own command in `own_command.zsh`
+You can add your own command in `own_command.zsh`
 
 To use this file add this line to your  `~/.zshrc` file
 ```bash 
