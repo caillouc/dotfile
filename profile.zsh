@@ -1,4 +1,4 @@
-source ./own_command.zsh
+source ~/caillou/privateDotfile/own_command.zsh
 
 # zsh constant
 export BASH_SILENCE_DEPRECATION_WARNING=1
