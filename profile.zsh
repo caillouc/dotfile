@@ -24,7 +24,7 @@ alias sprofile="source $HOME/.zshrc"                    # Source this file
 
 sp () {
 	{ 
-		mv "$@" ~/.Trash > /dev/null 2>&1 ;
+		yes | mv "$@" ~/.Trash > /dev/null 2>&1 ;
 	} || {
 		mv "$@" "_$@" && sp "_$@" ;
 	}
