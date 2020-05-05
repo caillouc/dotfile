@@ -44,6 +44,13 @@ gpdf  () {
 # display or not the hidden file in finder 
 alias hidefile='defaults write com.apple.finder AppleShowAllFiles NO && killall Finder'
 alias showfile='defaults write com.apple.finder AppleShowAllFiles YES && killall Finder'	
+# quit way to take some note 
+note () {
+	DIR="`pwd`"
+	builtin cd ~/Desktop
+	vim note.txt
+	builtin cd $DIR
+}  
 
 # now cd execute ls builtin when arrive in destinaion and add shortcut
 cd () {
