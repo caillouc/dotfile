@@ -3,7 +3,7 @@ source ~/caillou/prog/privateDotfile/own_command.zsh
 # zsh constant
 export BASH_SILENCE_DEPRECATION_WARNING=1
 ZSH_THEME="nice"
-ENABLE_CORRECTION="true"
+ENABLE_CORRECTION="false"
 COMPLETION_WAITING_DOTS="true"   
 
 # shortcut 
