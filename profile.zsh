@@ -30,17 +30,6 @@ sp () {
 	}
 }
 
-# pdf generator from md file using pandoc 
-gpdf  () {
-	EXTENSION="`echo $1| cut -d'.' -f 2`"
-	FILE_NAME="`echo $1| cut -d'.' -f 1`"
-	if [ $EXTENSION = "md" ]; then 
-		pandoc "$1" -o "$FILE_NAME.pdf"
-	else 
-		echo 'Manvaise extension ... required .md and not .'$EXTENSION''
-	fi
-}
-
 # display or not the hidden file in finder 
 alias hidefile='defaults write com.apple.finder AppleShowAllFiles NO && killall Finder'
 alias showfile='defaults write com.apple.finder AppleShowAllFiles YES && killall Finder'	
@@ -115,5 +104,6 @@ plugins=(
 	osx
 	autojump
 	sudo
+	zsh-syntax-highlighting
 )
 # can add git plugin
