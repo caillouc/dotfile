@@ -104,6 +104,5 @@ plugins=(
 	osx
 	autojump
 	sudo
-	zsh-syntax-highlighting
 )
-# can add git plugin
+# can add git plugin zsh-syntax-highlighting
