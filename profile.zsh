@@ -7,6 +7,7 @@ ENABLE_CORRECTION="false"
 COMPLETION_WAITING_DOTS="true"   
 
 # shortcut 
+alias please='sudo'                             # Be polite with your computer
 alias py='python3'                              # Open a python shell
 alias rf='rf -rf'                               # Shortcut for delete folder
 alias off='sudo shutdown -h now'                # Turn off the computer 
