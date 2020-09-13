@@ -50,20 +50,31 @@ cd () {
 	esac
 }
 
+# cd shortcut 
+alias cd..='cd ../'                         # Go back 1 directory level(for fast typers)
+alias ..='cd ../'                           # Go back 1 directory level
+alias ...='cd ../../'                       # Go back 2 directory levels
+alias .3='cd ../../../'                     # Go back 3 directory levels
+alias .4='cd ../../../../'                  # Go back 4 directory levels
+alias .5='cd ../../../../../'               # Go back 5 directory levels
+alias .6='cd ../../../../../../'            # Go back 6 directory levels
+
 # easy ls with grep command 
 lg () {
-	ls | grep $1
+	la | grep $1
 }
 
 # mv command unsing autojump 
 [[ -s $(brew --prefix)/etc/profile.d/autojump.sh ]] && . $(brew --prefix)/etc/profile.d/autojump.sh
-mv () {	
-	if [ -d "$2" ]; then
-		/bin/mv $1 $2
+jmv () {	
+	FILE=${@: -2}
+	DEST=${@: -1}
+	if [ -d "$DEST" ]; then
+		mv $FILE $DEST
 	else 
-		DEST="`autojump $2`"
-		if [ ! "$DEST" = "." ]; then 
-			/bin/mv $1 $DEST
+		NEWDEST="`autojump ${@: -1}`"
+		if [ ! "$NEWDEST" = "." ]; then 
+			mv $1 $NEWDEST
 		fi
 	fi
 }
