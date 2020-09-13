@@ -56,25 +56,17 @@ lg () {
 }
 
 # mv command unsing autojump 
+[[ -s $(brew --prefix)/etc/profile.d/autojump.sh ]] && . $(brew --prefix)/etc/profile.d/autojump.sh
 mv () {	
 	if [ -d "$2" ]; then
 		/bin/mv $1 $2
 	else 
 		DEST="`autojump $2`"
-		if [ ! $DEST = "." ]; then 
+		if [ ! "$DEST" = "." ]; then 
 			/bin/mv $1 $DEST
 		fi
 	fi
 }
-
-# cd shortcut 
-alias cd..='cd ../'                         # Go back 1 directory level(for fast typers)
-alias ..='cd ../'                           # Go back 1 directory level
-alias ...='cd ../../'                       # Go back 2 directory levels
-alias .3='cd ../../../'                     # Go back 3 directory levels
-alias .4='cd ../../../../'                  # Go back 4 directory levels
-alias .5='cd ../../../../../'               # Go back 5 directory levels
-alias .6='cd ../../../../../../'            # Go back 6 directory levels
 
 # extract method
 extract () {
@@ -124,3 +116,4 @@ plugins=(
 	sudo
 )
 # can add git plugin zsh-syntax-highlighting
+
