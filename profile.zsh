@@ -50,6 +50,23 @@ cd () {
 	esac
 }
 
+# easy ls with grep command 
+lg () {
+	ls | grep $1
+}
+
+# mv command unsing autojump 
+mv () {	
+	if [ -d "$2" ]; then
+		/bin/mv $1 $2
+	else 
+		DEST="`autojump $2`"
+		if [ ! $DEST = "." ]; then 
+			/bin/mv $1 $DEST
+		fi
+	fi
+}
+
 # cd shortcut 
 alias cd..='cd ../'                         # Go back 1 directory level(for fast typers)
 alias ..='cd ../'                           # Go back 1 directory level
