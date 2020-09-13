@@ -11,13 +11,6 @@ To use this file add this line to your  `~/.zshrc` file
 source ~/PATH/TO/FILE/profile.zsh
 ```
 
-To use `gpdf ()` command you need to install pandoc, this can be done with this command if homebrew is install :
-```bash 
-brew install pandoc
-```
-
-If homebrew is not install see this [link](https://brew.sh)
-
 ## Zsh theme
 
 zsh theme similar to default bash theme
