@@ -23,6 +23,7 @@ alias o='open'                                  # open command
 alias updatedb='sudo /usr/libexec/locate.updatedb'      # udatedb for locate command 
 alias sprofile="source $HOME/.zshrc"                    # Source this file
 
+# Move to trash a file 
 sp () {
 	{ 
 		yes | mv "$@" ~/.Trash > /dev/null 2>&1 ;
@@ -34,13 +35,9 @@ sp () {
 # display or not the hidden file in finder 
 alias hidefile='defaults write com.apple.finder AppleShowAllFiles NO && killall Finder'
 alias showfile='defaults write com.apple.finder AppleShowAllFiles YES && killall Finder'	
+
 # quit way to take some note 
-note () {
-	DIR="`pwd`"
-	builtin cd ~/Desktop
-	vim note.txt
-	builtin cd $DIR
-}  
+alias note="vim ~/Desktop/note.txt"
 
 # now cd execute ls builtin when arrive in destinaion and add shortcut
 cd () {
@@ -99,6 +96,19 @@ extract () {
 	else
 		echo "'$1' is not a valid file"
 	fi
+}
+
+# markdown shortcut 
+mkd () {
+	touch "$1.md"
+	DATE="`date "+%A %d %B"`"
+	echo "---\n    title: $1\n    author: Pierre Colson\n    date: $DATE\n"
+}
+
+gpdf () {
+	filename="${1%.*}"
+	command="pandoc -f markdown+tex_math_single_backslash -o $filename.pdf --toc --toc-depth=2 --highlight-style=tango --natbib --pdf-engine=pdflatex"
+	eval $command
 }
 
 # shortcut git 
