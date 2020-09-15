@@ -102,12 +102,12 @@ extract () {
 mkd () {
 	touch "$1.md"
 	DATE="`date "+%A %d %B"`"
-	echo "---\n    title: $1\n    author: Pierre Colson\n    date: $DATE\n"
+	echo "---\ntitle: $1\nauthor: Pierre Colson\ndate: $DATE\n---" > "$1.md"
 }
 
 gpdf () {
 	filename="${1%.*}"
-	command="pandoc -f markdown+tex_math_single_backslash -o $filename.pdf --toc --toc-depth=2 --highlight-style=tango --natbib --pdf-engine=pdflatex"
+	command="pandoc $1 -f markdown+tex_math_single_backslash -o $filename.pdf --toc --toc-depth=2 --highlight-style=tango --natbib --pdf-engine=pdflatex"
 	eval $command
 }
 
