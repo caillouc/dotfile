@@ -65,8 +65,10 @@ lg () {
 [[ -s $(brew --prefix)/etc/profile.d/autojump.sh ]] && . $(brew --prefix)/etc/profile.d/autojump.sh
 jmv () {	
 	FILE=${@: -2}
+	FILE="`echo $FILE | head -n1 | cut -d " " -f1`"
 	DEST=${@: -1}
 	if [ -d "$DEST" ]; then
+
 		mv $FILE $DEST
 	else 
 		NEWDEST="`autojump ${@: -1}`"
