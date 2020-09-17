@@ -109,6 +109,7 @@ gpdf () {
 	filename="${1%.*}"
 	command="pandoc $1 -f markdown+tex_math_single_backslash -o $filename.pdf --toc --toc-depth=2 --highlight-style=tango --natbib --pdf-engine=pdflatex"
 	eval $command
+	open "$filename.pdf"
 }
 
 # shortcut git 
