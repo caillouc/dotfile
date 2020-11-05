@@ -19,7 +19,8 @@ alias zshrc="vim $HOME/.zshrc"                  # Edit .zsshrc file
 alias path='echo $PATH'                         # Display the path variable 	
 alias v='vim'                                   # Vim command 
 alias c='clear'                                 # Clear the terminal
-alias o='open'                                  # open command  
+alias o='open'                                  # Open command  
+alias aj='autojump'                             # Because autojump is too long
 alias updatedb='sudo /usr/libexec/locate.updatedb'      # udatedb for locate command 
 alias sprofile="source $HOME/.zshrc"                    # Source this file
 
@@ -64,16 +65,19 @@ lg () {
 # mv command unsing autojump 
 [[ -s $(brew --prefix)/etc/profile.d/autojump.sh ]] && . $(brew --prefix)/etc/profile.d/autojump.sh
 jmv () {	
-	FILE=${@: -2}
-	FILE="`echo $FILE | head -n1 | cut -d " " -f1`"
+	#FILE=${@: -2}
+	#FILE="`echo $FILE | head -n1 | cut -d " " -f1`"
 	DEST=${@: -1}
+	FILE=( "$@" )
+	unset "FILE[${#array[@]}-1]"
 	if [ -d "$DEST" ]; then
-
-		mv $FILE $DEST
+		mv -f $FILE $DEST
+		cd $DEST
 	else 
-		NEWDEST="`autojump ${@: -1}`"
+		NEWDEST="`autojump $DEST`"
 		if [ ! "$NEWDEST" = "." ]; then 
-			mv $1 $NEWDEST
+			mv -f $FILE $NEWDEST
+			cd $NEWDEST
 		fi
 	fi
 }
@@ -105,6 +109,7 @@ mkd () {
 	touch "$1.md"
 	DATE="`date "+%A %d %B"`"
 	echo "---\ntitle: $1\nauthor: Pierre Colson\ndate: $DATE\n---" > "$1.md"
+	code "$1.md"
 }
 
 gpdf () {

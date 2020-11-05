@@ -6,6 +6,7 @@ set number
 set relativenumber
 
 set tabstop=4
+set autoindent
 
 " function that use python to generate a random value between 1 and 2
 function! Random() 
