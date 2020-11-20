@@ -57,6 +57,11 @@ alias .4='cd ../../../../'                  # Go back 4 directory levels
 alias .5='cd ../../../../../'               # Go back 5 directory levels
 alias .6='cd ../../../../../../'            # Go back 6 directory levels
 
+# easy ps aux with grep command
+pg (){
+	ps aux | grep $1
+}
+
 # easy ls with grep command 
 lg () {
 	la | grep $1
