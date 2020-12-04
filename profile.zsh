@@ -114,7 +114,7 @@ mkd () {
 	touch "$1.md"
 	DATE="`date "+%A %d %B"`"
 	echo "---\ntitle: $1\nauthor: Pierre Colson\ndate: $DATE\n---" > "$1.md"
-	code "$1.md"
+	vim "$1.md"
 }
 
 gpdf () {
@@ -128,7 +128,7 @@ gpdf () {
 gcp () { git add -A && git commit -m "$@" && git push; }
 
 alias status='git status'
-alias branch='git branch'
+alias branch='git branch -r'
 alias grh='git reset --hard'
 
 # color for the terminal 
