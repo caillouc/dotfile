@@ -14,7 +14,7 @@ alias off='sudo shutdown -h now'                # Turn off the computer
 alias safari='open -a Safari'                   # Open safari
 alias messages='open -a Messages'               # Open messages
 alias f='open -a Finder ./'                     # Open the current directory in finder
-alias la='ls -la'                               # Better version of ls
+alias la='/bin/ls -la'                               # Better version of ls
 alias zshrc="vim $HOME/.zshrc"                  # Edit .zsshrc file
 alias path='echo $PATH'                         # Display the path variable 	
 alias v='vim'                                   # Vim command 
@@ -62,12 +62,12 @@ pg (){
 	ps aux | grep $1
 }
 
-# easy ls with grep command 
+# easy ls with grep command
 lg () {
 	WORD=${@: -1}
 	DEST=( "$@" )
 	unset "DEST[${#array[@]}-1]"
-	la $DEST | grep $WORD
+	ls $DEST | grep $WORD
 }
 
 # mv command unsing autojump 
@@ -84,6 +84,11 @@ jmv () {
 	else 
 		NEWDEST="`autojump $DEST`"
 		if [ ! "$NEWDEST" = "." ]; then 
+			if [ -t 1 ]; then  # if stdout is a terminal, use colors
+                echo -e "\\033[31mmv -f ${FILE} ${NEWDEST}\\033[0m"
+        	else
+                echo -e "mv -f ${FILE} ${NEWDEST}"
+			fi
 			mv -f $FILE $NEWDEST
 			cd $NEWDEST
 		fi
@@ -92,7 +97,7 @@ jmv () {
 
 # ls command using autojump
 ls () {
-	DESTINATION=${@: -1}
+	DESTINATION=$1
 	if [ $# -eq 0 ]; then
 		/bin/ls
 	elif [ -d "$DESTINATION" ]; then
