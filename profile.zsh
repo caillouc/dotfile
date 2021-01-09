@@ -64,7 +64,10 @@ pg (){
 
 # easy ls with grep command 
 lg () {
-	la | grep $1
+	WORD=${@: -1}
+	DEST=( "$@" )
+	unset "DEST[${#array[@]}-1]"
+	la $DEST | grep $WORD
 }
 
 # mv command unsing autojump 
@@ -84,6 +87,26 @@ jmv () {
 			mv -f $FILE $NEWDEST
 			cd $NEWDEST
 		fi
+	fi
+}
+
+# ls command using autojump
+ls () {
+	DESTINATION=${@: -1}
+	if [ $# -eq 0 ]; then
+		/bin/ls
+	elif [ -d "$DESTINATION" ]; then
+		/bin/ls $DESTINATION
+	else 
+		NEWDESTINATION="`autojump $DESTINATION`"
+		if [ ! "$NEWDESTINATION" = "." ]; then 
+			if [ -t 1 ]; then  # if stdout is a terminal, use colors
+                echo -e "\\033[31mls ${NEWDESTINATION}\\033[0m"
+        	else
+                echo -e "ls ${NEWDESTINATION}"
+			fi
+			/bin/ls $NEWDESTINATION
+		fi 
 	fi
 }
 
