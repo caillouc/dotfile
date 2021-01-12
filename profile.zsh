@@ -228,3 +228,5 @@ decode(){
 		python3 $ENCODER_PATH/encoder.py decode "$DIR/$1"
 	fi
 }
+
+neofetch
