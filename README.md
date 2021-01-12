@@ -2,12 +2,12 @@
 
 ## Zshrc 
 
-Template for a mac os zshrc file. 
+Template for a mac os zshrc file.  (most of it can also be used on linux)
 
 You can add your own command in `own_command.zsh`
 
 To use this file add this line to your  `~/.zshrc` file
-```bash 
+```shell 
 source ~/PATH/TO/FILE/profile.zsh
 ```
 
@@ -15,10 +15,13 @@ source ~/PATH/TO/FILE/profile.zsh
 
 zsh theme similar to default bash theme
 
-Add the file to `~/.oh-my-zsh/custom/themes` then add this line to your `~/.zshrc` (this line is already include in `profile.zsh`)
+To use the theme add this line to your `~/.zshrc` file
+
 
 ```bash 
 ZSH_THEME="nice"
+```shell
+source PATH/TO/FILE/nice.zsh-theme
 ```
 
 ## Vimrc 
@@ -27,7 +30,7 @@ Vimrc file (randomly choose one theme between two vim theme I like)
 
 Add this line to your  `~/.vimrc` file
 
-```bash 
+```shell 
 source ~/PATH/TO/FILE/vimrc.vim
 ```
 
