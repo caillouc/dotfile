@@ -13,3 +13,5 @@ set shiftwidth=4
 colorscheme default
 
 autocmd FileType zsh setlocal commentstring=#\ %s
+
+nnoremap <Space> @
