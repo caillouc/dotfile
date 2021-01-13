@@ -1,5 +1,3 @@
-# add "source PATH/TO/THIS/FILE" in ~/.oh-my-zsh/custom/themes/name_of_your_theme.zsh-theme
-
 setopt prompt_subst
 
 export CLICOLOR=1
