@@ -10,7 +10,7 @@ ENABLE_CORRECTION="false"
 COMPLETION_WAITING_DOTS="true"   
 
 # Theme for the terminal
-source $DOTFILE_PATH/nice.zsh-theme
+s""ource $DOTFILE_PATH/nice.zsh-theme
 
 # shortcut 
 alias please='sudo'                             # Be polite with your computer
@@ -159,10 +159,17 @@ mkd () {
 }
 
 gpdf () {
-	filename="${1%.*}"
-	command="pandoc $1 -f markdown+tex_math_single_backslash -o $filename.pdf --toc --toc-depth=2 --highlight-style=tango --natbib --pdf-engine=pdflatex"
-	eval $command
-	open "$filename.pdf"
+    if [ $1 = "-no-toc" ] ; then 
+		filename="${2%%.*}"
+		command="pandoc $2 -f markdown+tex_math_single_backslash -o $filename.pdf --highlight-style=tango --natbib --pdf-engine=pdflatex"
+		eval $command
+		open "$filename.pdf"
+	else 
+		filename="${1%.*}"
+		command="pandoc $1 -f markdown+tex_math_single_backslash -o $filename.pdf --toc --toc-depth=3 --highlight-style=tango --natbib --pdf-engine=pdflatex"
+		eval $command
+		open "$filename.pdf"
+	fi
 }
 
 # shortcut git 
