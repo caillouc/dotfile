@@ -10,7 +10,7 @@ ENABLE_CORRECTION="false"
 COMPLETION_WAITING_DOTS="true"   
 
 # Theme for the terminal
-s""ource $DOTFILE_PATH/nice.zsh-theme
+source $DOTFILE_PATH/nice.zsh-theme
 
 # shortcut 
 alias please='sudo'                             # Be polite with your computer
@@ -181,8 +181,9 @@ alias grh='git reset --hard'
 alias poussin='git pull'
 
 # set defautl version of java
-#export JAVA_HOME="`/usr/libexec/java_home -v 1.8`"  use for sbt
-export JAVA_HOME="/Library/Java/JavaVirtualMachines/jdk1.8.0_241.jdk/Contents/Home"	# use for javafx
+# export JAVA_HOME="`/usr/libexec/java_home -v 1.8`" #  use for sbt
+# export JAVA_HOME="/Library/Java/JavaVirtualMachines/jdk1.8.0_241.jdk/Contents/Home"	# use for javafx
+export JAVA_HOME=/Library/Java/JavaVirtualMachines/adoptopenjdk-11.jdk/Contents/Home
 export PATH="$JAVA_HOME/bin:$PATH"
 
 # flutter
@@ -232,8 +233,12 @@ decode(){
 	if [ -z "$1" ]; then
 		echo "invalid argument"
 	else
-		python3 $ENCODER_PATH/encoder.py decode "$DIR/$1"
+		python3 $ENCODER_PATH/encoder.py decode "$1"
 	fi
 }
+
+# make search up and down work, so partially type and hit up/down to find relevant stuff
+bindkey '^[[A' up-line-or-search
+bindkey '^[[B' down-line-or-search
 
 neofetch
