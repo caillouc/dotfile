@@ -12,10 +12,12 @@ COMPLETION_WAITING_DOTS="true"
 # Theme for the terminal
 source $DOTFILE_PATH/nice.zsh-theme
 
+[[ -s $(brew --prefix)/etc/profile.d/autojump.sh ]] && . $(brew --prefix)/etc/profile.d/autojump.sh
 # autojump commands 
 source $JUMP_CMD_PATH/cmds.sh
 
 # shortcut 
+alias ls='lj'                                   # Use lj by default instead of ls (https://github.com/caillouc/jump-commands)
 alias vim='vim -p'                              # Use -p option with vim by default
 alias please='sudo'                             # Be polite with your computer
 alias py='python3'                              # Open a python shell
@@ -127,7 +129,7 @@ mkd () {
 }
 
 gpdf () {
-    if [ $1 = "-no-toc" ] ; then 
+	if [ $1 = "-no-toc" ] ; then 
 		filename="${2%%.*}"
 		command="pandoc $2 -f markdown+tex_math_single_backslash -o $filename.pdf --highlight-style=tango --natbib --pdf-engine=pdflatex && open $filename.pdf"
 		eval $command
