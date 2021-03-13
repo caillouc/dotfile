@@ -12,7 +12,11 @@ COMPLETION_WAITING_DOTS="true"
 # Theme for the terminal
 source $DOTFILE_PATH/nice.zsh-theme
 
+# autojump commands 
+source $JUMP_CMD_PATH/cmds.sh
+
 # shortcut 
+alias vim='vim -p'                              # Use -p option with vim by default
 alias please='sudo'                             # Be polite with your computer
 alias py='python3'                              # Open a python shell
 alias rf='rf -rf'                               # Shortcut for delete folder
@@ -23,10 +27,11 @@ alias f='open -a Finder ./'                     # Open the current directory in 
 alias la='/bin/ls -lia'                         # Better version of ls
 alias zshrc="vim $HOME/.zshrc"                  # Edit .zsshrc file
 alias path='echo $PATH'                         # Display the path variable 	
-alias v='vim'                                   # Vim command 
+alias vf='vim -p *'                             # Open all file in the current dir in vim
 alias c='cd && clear && neofetch'               # Clear the terminal and run neofetch
 alias o='open'                                  # Open command  
 alias aj='autojump'                             # Because autojump is too long
+alias vimrc="vim $DOTFILE_PATH/vimrc.vim"       # Edit vimrc file
 alias profile="vim $PROFILE_PATH"               # Edit profile.zsh file
 alias cprofile="code $PROFILE_PATH"             # Edit profile file with vscode
 alias ide='sbt launchIDE'                       # shortcut for sbt
@@ -89,51 +94,6 @@ lag () {
 	DEST=( "$@" )
 	unset "DEST[${#array[@]}-1]"
 	la $DEST | grep $WORD
-}
-
-# mv command unsing autojump 
-[[ -s $(brew --prefix)/etc/profile.d/autojump.sh ]] && . $(brew --prefix)/etc/profile.d/autojump.sh
-jmv () {	
-	#FILE=${@: -2}
-	#FILE="`echo $FILE | head -n1 | cut -d " " -f1`"
-	DEST=${@: -1}
-	FILE=( "$@" )
-	unset "FILE[${#array[@]}-1]"
-	if [ -d "$DEST" ]; then
-		mv -f $FILE $DEST
-		cd $DEST
-	else 
-		NEWDEST="`autojump $DEST`"
-		if [ ! "$NEWDEST" = "." ]; then 
-			if [ -t 1 ]; then  # if stdout is a terminal, use colors
-                echo -e "\\033[31mmv -f ${FILE} ${NEWDEST}\\033[0m"
-        	else
-                echo -e "mv -f ${FILE} ${NEWDEST}"
-			fi
-			mv -f $FILE $NEWDEST
-			cd $NEWDEST
-		fi
-	fi
-}
-
-# ls command using autojump
-ls () {
-	DESTINATION=$1
-	if [ $# -eq 0 ]; then
-		/bin/ls
-	elif [ -d "$DESTINATION" ]; then
-		/bin/ls $DESTINATION
-	else 
-		NEWDESTINATION="`autojump $DESTINATION`"
-		if [ ! "$NEWDESTINATION" = "." ]; then 
-			if [ -t 1 ]; then  # if stdout is a terminal, use colors
-                echo -e "\\033[31mls ${NEWDESTINATION}\\033[0m"
-        	else
-                echo -e "ls ${NEWDESTINATION}"
-			fi
-			/bin/ls $NEWDESTINATION
-		fi 
-	fi
 }
 
 # extract method
@@ -248,3 +208,4 @@ bindkey '^[[A' up-line-or-search
 bindkey '^[[B' down-line-or-search
 
 neofetch
+
