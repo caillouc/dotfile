@@ -10,14 +10,16 @@ set autoindent
 
 set shiftwidth=4
 
-colorscheme default
+packadd! onedark.vim
+colorscheme onedark
 
 autocmd FileType zsh setlocal commentstring=#\ %s
 autocmd FileType python setlocal commentstring=#\ %s
+autocmd FIleTYpe vim setlocal commentstring=\"\ %s
 
 nnoremap <Space> @
 
 let @b='a {^M}<80>ýaO'
 let @f='a\frac{}{}hhha'
 let @o='oo'
-let @u='a_{}ha'
+" let @u='a_{}ha'
