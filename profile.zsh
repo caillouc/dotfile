@@ -20,7 +20,7 @@ alias off='sudo shutdown -h now'                # Turn off the computer
 alias safari='open -a Safari'                   # Open safari
 alias messages='open -a Messages'               # Open messages
 alias f='open -a Finder ./'                     # Open the current directory in finder
-alias la='/bin/ls -la'                          # Better version of ls
+alias la='/bin/ls -lia'                         # Better version of ls
 alias zshrc="vim $HOME/.zshrc"                  # Edit .zsshrc file
 alias path='echo $PATH'                         # Display the path variable 	
 alias v='vim'                                   # Vim command 
@@ -81,6 +81,14 @@ lg () {
 	DEST=( "$@" )
 	unset "DEST[${#array[@]}-1]"
 	ls $DEST | grep $WORD
+}
+
+# easy ls -lia with grep command
+lag () {
+	WORD=${@: -1}
+	DEST=( "$@" )
+	unset "DEST[${#array[@]}-1]"
+	la $DEST | grep $WORD
 }
 
 # mv command unsing autojump 
@@ -161,14 +169,12 @@ mkd () {
 gpdf () {
     if [ $1 = "-no-toc" ] ; then 
 		filename="${2%%.*}"
-		command="pandoc $2 -f markdown+tex_math_single_backslash -o $filename.pdf --highlight-style=tango --natbib --pdf-engine=pdflatex"
+		command="pandoc $2 -f markdown+tex_math_single_backslash -o $filename.pdf --highlight-style=tango --natbib --pdf-engine=pdflatex && open $filename.pdf"
 		eval $command
-		open "$filename.pdf"
 	else 
 		filename="${1%.*}"
-		command="pandoc $1 -f markdown+tex_math_single_backslash -o $filename.pdf --toc --toc-depth=3 --highlight-style=tango --natbib --pdf-engine=pdflatex"
+		command="pandoc $1 -f markdown+tex_math_single_backslash -o $filename.pdf --toc --toc-depth=3 --highlight-style=tango --natbib --pdf-engine=pdflatex && open $filename.pdf"
 		eval $command
-		open "$filename.pdf"
 	fi
 }
 
@@ -182,7 +188,7 @@ alias poussin='git pull'
 
 # set defautl version of java
 # export JAVA_HOME="`/usr/libexec/java_home -v 1.8`" #  use for sbt
-# export JAVA_HOME="/Library/Java/JavaVirtualMachines/jdk1.8.0_241.jdk/Contents/Home"	# use for javafx
+# export JAVA_HOME="/Library/Java/JavaVirtualMachines/jdk1.8.0_241.jdk/Contents/Home"	# use for javafx
 export JAVA_HOME=/Library/Java/JavaVirtualMachines/adoptopenjdk-11.jdk/Contents/Home
 export PATH="$JAVA_HOME/bin:$PATH"
 
