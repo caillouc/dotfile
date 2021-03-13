@@ -16,3 +16,8 @@ autocmd FileType zsh setlocal commentstring=#\ %s
 autocmd FileType python setlocal commentstring=#\ %s
 
 nnoremap <Space> @
+
+let @b='a {^M}<80>ýaO'
+let @f='a\frac{}{}hhha'
+let @o='oo'
+let @u='a_{}ha'
