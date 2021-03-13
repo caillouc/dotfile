@@ -1,6 +1,5 @@
 " Plugins
 packadd commentary
-" packadd Tabmerge
 
 " enable the relative number on the left of each line
 set number
