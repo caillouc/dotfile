@@ -26,7 +26,7 @@ alias off='sudo shutdown -h now'                # Turn off the computer
 alias safari='open -a Safari'                   # Open safari
 alias messages='open -a Messages'               # Open messages
 alias f='open -a Finder ./'                     # Open the current directory in finder
-alias la='/bin/ls -lia'                         # Better version of ls
+alias la='ls -lia'                         # Better version of ls
 alias zshrc="vim $HOME/.zshrc"                  # Edit .zsshrc file
 alias path='echo $PATH'                         # Display the path variable 	
 alias vf='vim -p *'                             # Open all file in the current dir in vim
@@ -208,6 +208,10 @@ decode(){
 # make search up and down work, so partially type and hit up/down to find relevant stuff
 bindkey '^[[A' up-line-or-search
 bindkey '^[[B' down-line-or-search
+
+# Troupe variable 
+# TROUPE="/Users/pierrecolson/Troupe/node_modules/.bin/patch-package"
+TROUPE="/Users/pierrecolson/Troupe/"
 
 neofetch
 

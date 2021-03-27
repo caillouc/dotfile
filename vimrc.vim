@@ -1,5 +1,6 @@
 " Plugins
 packadd commentary
+" plugin tabmerge in .vim/plugin
 
 " enable the relative number on the left of each line
 set number

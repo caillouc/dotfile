@@ -18,8 +18,6 @@ zsh theme similar to default bash theme
 To use the theme add this line to your `~/.zshrc` file
 
 
-```bash 
-ZSH_THEME="nice"
 ```shell
 source PATH/TO/FILE/nice.zsh-theme
 ```
