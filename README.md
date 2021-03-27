@@ -4,8 +4,6 @@
 
 Template for a mac os zshrc file.  (most of it can also be used on linux)
 
-You can add your own command in `own_command.zsh`
-
 To use this file add this line to your  `~/.zshrc` file
 ```shell 
 source ~/PATH/TO/FILE/profile.zsh
