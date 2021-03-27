@@ -24,7 +24,7 @@ source PATH/TO/FILE/nice.zsh-theme
 
 ## Vimrc 
 
-Vimrc file (randomly choose one theme between two vim theme I like)
+Vimrc file
 
 Add this line to your  `~/.vimrc` file
 
