@@ -1,44 +1,33 @@
-source ~/caillou/prog/privateDotfile/path.zsh
-source ~/caillou/prog/privateDotfile/own_command.zsh
+source /home/pierre/Documents/prog/zsh_file/own_command.zsh
+source /home/pierre/Documents/prog/zsh_file/path.zsh
 
-source $ZSH_PLUGIN_PATH/git.zsh
 autoload -U colors && colors
+source $ZSH_PLUGIN_PATH/git.zsh
 
 # zsh constant
-export BASH_SILENCE_DEPRECATION_WARNING=1
 ENABLE_CORRECTION="false"
 COMPLETION_WAITING_DOTS="true"   
 
 # Theme for the terminal
 source $DOTFILE_PATH/nice.zsh-theme
 
-[[ -s $(brew --prefix)/etc/profile.d/autojump.sh ]] && . $(brew --prefix)/etc/profile.d/autojump.sh
-# autojump commands 
+. /usr/share/autojump/autojump.sh
 source $JUMP_CMD_PATH/cmds.sh
 
 # shortcut 
-alias ls='lj'                                   # Use lj by default instead of ls (https://github.com/caillouc/jump-commands)
+alias ls='ls --color'                           # Use lj by default instead of ls (https://github.com/caillouc/jump-commands)
 alias vim='vim -p'                              # Use -p option with vim by default
 alias please='sudo'                             # Be polite with your computer
 alias py='python3'                              # Open a python shell
-alias rf='rf -rf'                               # Shortcut for delete folder
-alias off='sudo shutdown -h now'                # Turn off the computer 
-alias safari='open -a Safari'                   # Open safari
-alias messages='open -a Messages'               # Open messages
-alias f='open -a Finder ./'                     # Open the current directory in finder
 alias la='ls -lia'                              # Better version of ls
 alias zshrc="vim $HOME/.zshrc"                  # Edit .zsshrc file
 alias path='echo $PATH'                         # Display the path variable 	
-alias vf='vim -p *'                             # Open all file in the current dir in vim
 alias c='cd && clear && neofetch'               # Clear the terminal and run neofetch
-alias o='open'                                  # Open command  
 alias aj='autojump'                             # Because autojump is too long
 alias vimrc="vim $DOTFILE_PATH/vimrc.vim"       # Edit vimrc file
-alias profile="vim $PROFILE_PATH"               # Edit profile.zsh file
-alias cprofile="code $PROFILE_PATH"             # Edit profile file with vscode
-alias ide='sbt launchIDE'                       # shortcut for sbt
-alias updatedb='sudo /usr/libexec/locate.updatedb'      # udatedb for locate command 
-alias sprofile="source $HOME/.zshrc"                    # Source this file
+alias profile="vim $DOTFILE_PATH/profile.zsh"   # Edit profile.zsh file
+alias sprofile="source $HOME/.zshrc"            # Source this file
+alias vpn="please openvpn $VPN_PATH/ubuntuOnlyVpn.ovpn"    # Connect to private vpn"
 
 # Move to trash a file 
 sp () {
@@ -49,12 +38,8 @@ sp () {
 	}
 }
 
-# display or not the hidden file in finder 
-alias hidefile='defaults write com.apple.finder AppleShowAllFiles NO && killall Finder'
-alias showfile='defaults write com.apple.finder AppleShowAllFiles YES && killall Finder'	
-
 # quit way to take some note 
-alias note="vim ~/Desktop/note.txt"
+alias note="vim ~/Desktop/note.md"
 
 # now cd execute ls builtin when arrive in destinaion and add shortcut
 cd () {
@@ -148,44 +133,14 @@ alias branch='git branch -r'
 alias grh='git reset --hard'
 alias poussin='git pull'
 
-# set defautl version of java
-# export JAVA_HOME="`/usr/libexec/java_home -v 1.8`" #  use for sbt
-# export JAVA_HOME="/Library/Java/JavaVirtualMachines/jdk1.8.0_241.jdk/Contents/Home"	# use for javafx
-export JAVA_HOME=/Library/Java/JavaVirtualMachines/adoptopenjdk-11.jdk/Contents/Home
-export PATH="$JAVA_HOME/bin:$PATH"
-
-# flutter
-export PATH="$PATH:/Users/pierrecolson/flutter/bin"
-
 # zsh plugin 
 source $ZSH_PLUGIN_PATH/please.plugin.zsh
 source $ZSH_PLUGIN_PATH/zsh-autosuggestions/zsh-autosuggestions.zsh
 source $ZSH_PLUGIN_PATH/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source $ZSH_PLUGIN_PATH/zsh-you-should-use/you-should-use.plugin.zsh
 
-# generate QRCode
-qrcode () {
-	java -jar "$QRCODE_JAR_PATH" "$@" ;
-}
-
 # password manager shortcut
-# was supposed to source the correct file
-# modified version of https://github.com/caillouc/terminalPasswordManager
-p (){
-	DIR="`pwd`"
-	builtin cd $PASSWORD_MANAGER_PATH
-	git checkout perso > /dev/null 2>&1
-	case $1 in
-		"add") python3 passw.py add "$2"         ;;
-		"get") python3 passw.py get "$2"         ;;
-		"see") python3 passw.py see "$2"         ;;
-		"delete") python3 passw.py delete "$2"   ;;
-		"edit") python3 passw.py edit "$2"       ;;
-		*) echo "Unvalid argument (add, get, see, delete or edit)"           ;;
-	esac
-	git checkout master > /dev/null 2>&1
-	builtin cd $DIR
-}
+source $PASSWORD_MANAGER_PATH/p_command
 
 # file encoder shortcut
 # see on https://github.com/caillouc/fileEncoder
@@ -209,9 +164,11 @@ decode(){
 bindkey '^[[A' up-line-or-search
 bindkey '^[[B' down-line-or-search
 
-# Troupe variable 
-# TROUPE="/Users/pierrecolson/Troupe/node_modules/.bin/patch-package"
-TROUPE="/Users/pierrecolson/Troupe/"
+export FUNCNEST=1000
+
+alias telegram="$HOME/Documents/app/Telegram/Telegram &"
+alias pi='ssh pi@10.8.0.1'
+alias iconf="vim $HOME/.config/i3/config"
 
 neofetch
 

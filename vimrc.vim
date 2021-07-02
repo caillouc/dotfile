@@ -19,6 +19,8 @@ colorscheme onedark
 
 " Commentary options
 autocmd FileType zsh setlocal commentstring=#\ %s
+autocmd FileType conf setlocal commentstring=#\ %s
+autocmd FileType sh setlocal commentstring=#\ %s
 autocmd FileType python setlocal commentstring=#\ %s
 autocmd FIleTYpe vim setlocal commentstring=\"\ %s
 
