@@ -35,8 +35,8 @@ exec --no-startup-id nm-applet
 
 # Use pactl to adjust volume in PulseAudio.
 set $refresh_i3status killall -SIGUSR1 i3status
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10% && $refresh_i3status
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10% && $refresh_i3status
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5% && $refresh_i3status
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -2% && $refresh_i3status
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
 bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
 
@@ -147,6 +147,7 @@ assign [class="Firefox"] $ws2
 assign [class="TelegramDesktop"] $ws8
 # These one does not work ... 
 assign [class="Spotify"] $ws9
+assign [class="spotify"] $ws9
 
 # Reload the configuration file
 bindsym $mod+Shift+c reload
@@ -218,7 +219,7 @@ bindsym $mod+Shift+p exec --no-startup-id /home/pierre/.config/rofi/bin/applet_p
 exec i3-sensible-terminal
 
 # Set wallpaper 
-exec_always feh --bg-scale $HOME/Pictures/wallpaper.jpg
+exec_always feh --bg-scale $HOME/Pictures/wallpaper.png
 
 # Set display setting (needed to be change with new display) 
 exec xrandr --output HDMI-1 --primary --mode 2560x1440--pos 0x0 --rotate normal --output DP-1 --off --output DP-2 --off --output DP-3 --off
