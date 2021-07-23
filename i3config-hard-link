@@ -109,11 +109,11 @@ bindsym $mod+q focus parent
 # We use variables to avoid repeating the names in multiple places.
 set $ws1 "1: Terminal "
 set $ws2 "2: Firefox "
-set $ws3 "3"
+set $ws3 "3: VSCode "
 set $ws4 "4"
 set $ws5 "5"
 set $ws6 "6"
-set $ws7 "7"
+set $ws7 "7: Mail "
 set $ws8 "8: Chat "
 set $ws9 "9: Spotify "
 set $ws10 "10: VPN "
@@ -145,6 +145,8 @@ bindsym $mod+Shift+agrave move container to workspace number $ws10
 # Set to application to open on specific workspace
 assign [class="Firefox"] $ws2
 assign [class="TelegramDesktop"] $ws8
+assign [class="Code"] $ws3
+assign [class="Mail"] $ws7
 # These one does not work ... 
 assign [class="Spotify"] $ws9
 assign [class="spotify"] $ws9
