@@ -27,7 +27,7 @@ set $urgent-bg-color     #E53935
 
 # xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
 # screen before suspend. Use loginctl lock-session to lock your screen.
-exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock-fancy --nofork
+# exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock-fancy --nofork
 
 # NetworkManager is the most popular way to manage wireless networks on Linux,
 # and nm-applet is a desktop environment-independent system tray GUI for it.
@@ -100,7 +100,7 @@ bindsym $mod+Shift+f floating toggle
 bindsym $mod+f focus mode_toggle
 
 # Focus the parent container
-bindsym $mod+q focus parent
+# bindsym $mod+q focus parent
 
 # Focus the child container
 # bindsym $mod+d focus child
@@ -113,10 +113,10 @@ set $ws3 "3: VSCode "
 set $ws4 "4"
 set $ws5 "5"
 set $ws6 "6"
-set $ws7 "7: Mail "
+set $ws7 "7"
 set $ws8 "8: Chat "
 set $ws9 "9: Spotify "
-set $ws10 "10: VPN "
+set $ws10 "10: Mail "
 
 # switch to workspace
 bindsym $mod+ampersand workspace number $ws1
@@ -145,11 +145,10 @@ bindsym $mod+Shift+agrave move container to workspace number $ws10
 # Set to application to open on specific workspace
 assign [class="Firefox"] $ws2
 assign [class="TelegramDesktop"] $ws8
+assign [class="discord"] $ws8
 assign [class="Code"] $ws3
-assign [class="Thunderbird"] $ws7
-# These one does not work ... 
-assign [class="Spotify"] $ws9
-assign [class="spotify"] $ws9
+assign [class="Thunderbird"] $ws10
+for_window [class="Spotify"] move to workspace $ws9
 
 # Reload the configuration file
 bindsym $mod+Shift+c reload
@@ -225,6 +224,11 @@ exec_always feh --bg-scale $HOME/Pictures/wallpaper.png
 
 # Set display setting (needed to be change with new display) 
 exec xrandr --output HDMI-1 --primary --mode 2560x1440--pos 0x0 --rotate normal --output DP-1 --off --output DP-2 --off --output DP-3 --off
+
+# disable screan saver 
+exec --no-startup-id xset s off
+exec --no-startup-id xset -dpms
+# exec --no-startup-id xset s noblank
 
 # Run the start srcipt
 exec /home/pierre/Documents/prog/start.sh

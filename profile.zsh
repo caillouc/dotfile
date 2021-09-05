@@ -27,7 +27,6 @@ alias aj='autojump'                             # Because autojump is too long
 alias vimrc="vim $DOTFILE_PATH/vimrc.vim"       # Edit vimrc file
 alias profile="vim $DOTFILE_PATH/profile.zsh"   # Edit profile.zsh file
 alias sprofile="source $HOME/.zshrc"            # Source this file
-alias vpn="please openvpn $VPN_PATH/ubuntuOnlyVpn.ovpn"    # Connect to private vpn"
 
 # Move to trash a file 
 sp () {
@@ -166,8 +165,7 @@ bindkey '^[[B' down-line-or-search
 
 export FUNCNEST=1000
 
-alias telegram="$HOME/Documents/app/Telegram/Telegram &"
-alias pi='ssh pi@10.8.0.1'
+alias pi='ssh pi@192.168.1.30'
 alias iconf="vim $HOME/.config/i3/config"
 
 neofetch
