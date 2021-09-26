@@ -110,10 +110,10 @@ bindsym $mod+f focus mode_toggle
 set $ws1 "1: Terminal "
 set $ws2 "2: Firefox "
 set $ws3 "3: VSCode "
-set $ws4 "4"
-set $ws5 "5"
-set $ws6 "6"
-set $ws7 "7"
+set $ws4 "4: Workspace"
+set $ws5 "5: Workspace"
+set $ws6 "6: Workspace"
+set $ws7 "7: Workspace"
 set $ws8 "8: Chat "
 set $ws9 "9: Spotify "
 set $ws10 "10: Mail "
@@ -214,7 +214,7 @@ bindsym $mod+x exec firefox
 
 # Lock the pc 
 bindsym $mod+p exec i3lock-fancy
-bindsym $mod+Shift+p exec --no-startup-id /home/pierre/.config/rofi/bin/applet_powermenu
+# bindsym $mod+Shift+p exec --no-startup-id /home/pierre/.config/rofi/bin/applet_powermenu
 
 # Open terminal on startup 
 exec i3-sensible-terminal

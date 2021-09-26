@@ -15,7 +15,7 @@ source $DOTFILE_PATH/nice.zsh-theme
 source $JUMP_CMD_PATH/cmds.sh
 
 # shortcut 
-alias ls='ls --color'                           # Use lj by default instead of ls (https://github.com/caillouc/jump-commands)
+alias ls='lj --color'                           # Use lj by default instead of ls (https://github.com/caillouc/jump-commands)
 alias vim='vim -p'                              # Use -p option with vim by default
 alias please='sudo'                             # Be polite with your computer
 alias py='python3'                              # Open a python shell
@@ -115,11 +115,11 @@ mkd () {
 gpdf () {
 	if [ $1 = "-no-toc" ] ; then 
 		filename="${2%%.*}"
-		command="pandoc $2 -f markdown+tex_math_single_backslash -o $filename.pdf --highlight-style=tango --natbib --pdf-engine=pdflatex && open $filename.pdf"
+		command="pandoc $2 -f markdown+tex_math_single_backslash -o $filename.pdf --highlight-style=tango --natbib --pdf-engine=pdflatex && open $filename.pdf &"
 		eval $command
 	else 
 		filename="${1%.*}"
-		command="pandoc $1 -f markdown+tex_math_single_backslash -o $filename.pdf --toc --toc-depth=3 --highlight-style=tango --natbib --pdf-engine=pdflatex && open $filename.pdf"
+		command="pandoc $1 -f markdown+tex_math_single_backslash -o $filename.pdf --toc --toc-depth=3 --highlight-style=tango --natbib --pdf-engine=pdflatex && open $filename.pdf &"
 		eval $command
 	fi
 }
@@ -127,8 +127,6 @@ gpdf () {
 # shortcut git 
 gcp () { git add -A && git commit -m "$@" && git push; }
 
-alias status='git status'
-alias branch='git branch -r'
 alias grh='git reset --hard'
 alias poussin='git pull'
 

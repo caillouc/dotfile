@@ -11,11 +11,20 @@ set tabstop=4
 set autoindent
 
 set shiftwidth=4
+set noshowmode
 
 " Colors 
 syntax on 
+let g:one_allow_italics = 1
+let g:onedark_terminal_italics = 1
 packadd! onedark.vim
 colorscheme onedark
+
+set laststatus=2
+let g:lightline = {
+  \ 'colorscheme': 'onedark',
+  \ }
+packadd lightline.vim
 
 " Commentary options
 autocmd FileType zsh setlocal commentstring=#\ %s
