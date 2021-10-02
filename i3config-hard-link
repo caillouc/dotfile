@@ -23,7 +23,7 @@ set $bg-color 	         #262626
 set $inactive-bg-color   #262626
 set $text-color          #ffffff
 set $inactive-text-color #676E7D
-set $urgent-bg-color     #E53935
+set $urgent-bg-color     #C01C28
 
 # xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
 # screen before suspend. Use loginctl lock-session to lock your screen.
@@ -109,7 +109,7 @@ bindsym $mod+f focus mode_toggle
 # We use variables to avoid repeating the names in multiple places.
 set $ws1 "1: Terminal "
 set $ws2 "2: Firefox "
-set $ws3 "3: VSCode "
+set $ws3 "3: Editor "
 set $ws4 "4: Workspace"
 set $ws5 "5: Workspace"
 set $ws6 "6: Workspace"
