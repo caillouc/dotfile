@@ -15,11 +15,12 @@ source $DOTFILE_PATH/nice.zsh-theme
 source $JUMP_CMD_PATH/cmds.sh
 
 # shortcut 
-alias ls='lj --color'                           # Use lj by default instead of ls (https://github.com/caillouc/jump-commands)
+# alias ls='lj --color'                           # Use lj by default instead of ls (https://github.com/caillouc/jump-commands)
+alias ls='ls --color'                           # Make ls colorfull
 alias vim='vim -p'                              # Use -p option with vim by default
 alias please='sudo'                             # Be polite with your computer
 alias py='python3'                              # Open a python shell
-alias la='ls -lia'                              # Better version of ls
+alias la='ls -liah'                             # Better version of ls
 alias zshrc="vim $HOME/.zshrc"                  # Edit .zsshrc file
 alias path='echo $PATH'                         # Display the path variable 	
 alias c='cd && clear && neofetch'               # Clear the terminal and run neofetch
