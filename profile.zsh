@@ -116,11 +116,11 @@ mkd () {
 gpdf () {
 	if [ $1 = "-no-toc" ] ; then 
 		filename="${2%%.*}"
-		command="pandoc $2 -f markdown+tex_math_single_backslash -o $filename.pdf --highlight-style=tango --natbib --pdf-engine=pdflatex && open $filename.pdf &"
+		command="pandoc $2 -f markdown+tex_math_single_backslash -o $filename.pdf --highlight-style=tango --natbib --pdf-engine=pdflatex --standalone && open $filename.pdf &"
 		eval $command
 	else 
 		filename="${1%.*}"
-		command="pandoc $1 -f markdown+tex_math_single_backslash -o $filename.pdf --toc --toc-depth=3 --highlight-style=tango --natbib --pdf-engine=pdflatex && open $filename.pdf &"
+		command="pandoc $1 -f markdown+tex_math_single_backslash -o $filename.pdf --toc --toc-depth=3 --highlight-style=tango --natbib --pdf-engine=pdflatex --standalone && open $filename.pdf &"
 		eval $command
 	fi
 }
