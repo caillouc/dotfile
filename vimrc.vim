@@ -1,7 +1,6 @@
 " Plugins
 packadd commentary
-packadd sleuth
-" plugin tabmerge in .vim/plugin
+" packadd sleuth
 
 " enable the relative number on the left of each line
 set number
@@ -9,8 +8,8 @@ set relativenumber
 
 " tab gestion 
 set autoindent
-" set tabstop=4
-" set shiftwidth=4
+set tabstop=4
+set shiftwidth=4
 
 set noshowmode
 
@@ -18,13 +17,17 @@ set noshowmode
 syntax on 
 let g:one_allow_italics = 1
 let g:onedark_terminal_italics = 1
+
+let g:polyglot_disabled = ['sensible']
+packadd! vim-polyglot
+
 packadd! onedark.vim
 colorscheme onedark
 
 set laststatus=2
 let g:lightline = {
-  \ 'colorscheme': 'onedark',
-  \ }
+			\ 'colorscheme': 'onedark',
+			\ }
 packadd lightline.vim
 
 " Commentary options
@@ -47,7 +50,7 @@ nmap <silent> <c-h> :wincmd h<CR>
 nmap <silent> <c-l> :wincmd l<CR>
 
 " macros
-let @b='a {}ýaO'
+let @b='a {}O'
 let @f='a\frac{}{}hhha'
 let @o='oo'
-
+let @g='gg=G``'
