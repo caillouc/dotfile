@@ -232,3 +232,13 @@ exec --no-startup-id xset -dpms
 
 # Run the start srcipt
 exec /home/pierre/Documents/prog/start.sh
+
+# Remove i3 title bar
+new_window pixel
+
+# Remove border while using gaps
+for_window [class=".*"] border pixel 0
+
+# TOGGLE GAPS
+bindsym $mod+g gaps inner current set 20; exec picom
+bindsym $mod+Shift+g gaps inner all set 0; exec killall picom
