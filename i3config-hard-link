@@ -223,7 +223,7 @@ exec i3-sensible-terminal
 exec_always feh --bg-scale $HOME/Pictures/wallpaper.png
 
 # Set display setting (needed to be change with new display) 
-exec xrandr --output HDMI-1 --primary --mode 2560x1440--pos 0x0 --rotate normal --output DP-1 --off --output DP-2 --off --output DP-3 --off
+exec xrandr --output DP-0 --primary --mode 2560x1440 --pos 0x0 --rotate normal
 
 # disable screan saver 
 exec --no-startup-id xset s off
