@@ -15,19 +15,20 @@ set noshowmode
 
 " Colors 
 syntax on 
-let g:one_allow_italics = 1
-let g:onedark_terminal_italics = 1
+set termguicolors
+set background=dark
+let g:gruvbox_material_palette = 'material'
+let g:gruvbox_material_background = 'medium'
+let g:gruvbox_material_statusline_style = 'default'
+let g:gruvbox_material_enable_italic = 1
+let g:gruvbox_material_enable_bold = 1
+packadd! gruvbox-material
+colorscheme gruvbox-material
 
-let g:polyglot_disabled = ['sensible']
-packadd! vim-polyglot
-
-packadd! onedark.vim
-colorscheme onedark
+let g:lightline = {}
+let g:lightline.colorscheme = 'gruvbox_material'
 
 set laststatus=2
-let g:lightline = {
-			\ 'colorscheme': 'onedark',
-			\ }
 packadd lightline.vim
 
 " Commentary options
@@ -36,6 +37,7 @@ autocmd FileType conf setlocal commentstring=#\ %s
 autocmd FileType sh setlocal commentstring=#\ %s
 autocmd FileType python setlocal commentstring=#\ %s
 autocmd FIleTYpe vim setlocal commentstring=\"\ %s
+autocmd FIleTYpe c setlocal commentstring=\/\/\ %s
 
 " split vindow option 
 set splitright " new vertical splits are on the right

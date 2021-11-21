@@ -29,6 +29,12 @@ alias vimrc="vim $DOTFILE_PATH/vimrc.vim"       # Edit vimrc file
 alias profile="vim $DOTFILE_PATH/profile.zsh"   # Edit profile.zsh file
 alias sprofile="source $HOME/.zshrc"            # Source this file
 
+bindkey -v
+
+br ()  {
+	xrandr --output DP-0 --brightness $1
+}
+
 # Move to trash a file 
 sp () {
 	{ 
