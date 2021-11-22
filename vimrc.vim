@@ -20,6 +20,7 @@ set background=dark
 let g:gruvbox_material_palette = 'material'
 let g:gruvbox_material_background = 'medium'
 let g:gruvbox_material_statusline_style = 'default'
+" let g:gruvbox_material_disable_italic_comment = 1
 let g:gruvbox_material_enable_italic = 1
 let g:gruvbox_material_enable_bold = 1
 packadd! gruvbox-material
@@ -51,8 +52,21 @@ nmap <silent> <c-j> :wincmd j<CR>
 nmap <silent> <c-h> :wincmd h<CR>
 nmap <silent> <c-l> :wincmd l<CR>
 
+let mapleader = ","
+
+" Indent whole file while preserving cursor location with <Leader>g
+nnoremap <Leader>g m'gg=G`'
+
+" Add a semicolon to the current line without moving the cursor with <Leader>;
+nnoremap <Leader>; m'A;<ESC>`'
+
+" Source vimrc with <Leader>vc
+nnoremap <Leader>vc :source ~/.vimrc<CR>:echo "Reloaded .vimrc"<CR>
+
+nnoremap <Leader>s :%s/\<<C-r><C-w>\>//g<Left><Left>
+
 " macros
 let @b='a {}O'
 let @f='a\frac{}{}hhha'
 let @o='oo'
-let @g='gg=G``'
+" let @g='gg=G``'
