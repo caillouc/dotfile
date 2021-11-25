@@ -44,7 +44,7 @@ sp () {
 	}
 }
 
-# quit way to take some note 
+# quick way to take some note 
 alias note="vim ~/Desktop/note.md"
 
 # now cd execute ls builtin when arrive in destinaion and add shortcut
