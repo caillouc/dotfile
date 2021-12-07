@@ -15,7 +15,7 @@ source $DOTFILE_PATH/nice.zsh-theme
 source $JUMP_CMD_PATH/cmds.sh
 
 # shortcut 
-# alias ls='lj --color'                           # Use lj by default instead of ls (https://github.com/caillouc/jump-commands)
+# alias ls='lj --color'                         # Use lj by default instead of ls (https://github.com/caillouc/jump-commands)
 alias ls='ls --color'                           # Make ls colorfull
 alias vim='vim -p'                              # Use -p option with vim by default
 alias please='sudo'                             # Be polite with your computer
@@ -28,14 +28,18 @@ alias aj='autojump'                             # Because autojump is too long
 alias vimrc="vim $DOTFILE_PATH/vimrc.vim"       # Edit vimrc file
 alias profile="vim $DOTFILE_PATH/profile.zsh"   # Edit profile.zsh file
 alias sprofile="source $HOME/.zshrc"            # Source this file
+alias jd="j drive"                              # shortcut that jump to the base directory of my drive (gitdrive)
+alias iconf="vim $HOME/.config/i3/config"       # Quickly edit i3 config file
 
-bindkey -v
+# enable vim in terminal command
+# bindkey -v
 
+# change the britness of the screnn (should be moved at the windows manager level)
 br ()  {
 	xrandr --output DP-0 --brightness $1
 }
 
-# Move to trash a file 
+# Move to trash a file or a directory
 sp () {
 	{ 
 		yes | mv "$@" ~/.Trash > /dev/null 2>&1 ;
@@ -93,6 +97,7 @@ lag () {
 extract () {
 	if [ -f $1 ] ; then
 		case $1 in
+			*.tar.xz)    tar xf $1      ;;
 			*.tar.bz2)   tar xjf $1     ;;
 			*.tar.gz)    tar xzf $1     ;;
 			*.bz2)       bunzip2 $1     ;;
@@ -119,6 +124,7 @@ mkd () {
 	vim "$1.md"
 }
 
+# generate a pdf from a markdown file
 gpdf () {
 	if [ $1 = "-no-toc" ] ; then 
 		filename="${2%%.*}"
@@ -133,7 +139,6 @@ gpdf () {
 
 # shortcut git 
 gcp () { git add -A && git commit -m "$@" && git push; }
-
 alias grh='git reset --hard'
 alias poussin='git pull'
 
@@ -170,8 +175,6 @@ bindkey '^[[B' down-line-or-search
 
 export FUNCNEST=1000
 
-alias pi='ssh pi@192.168.1.30'
-alias iconf="vim $HOME/.config/i3/config"
-
+# Because it's cool
 neofetch
 

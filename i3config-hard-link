@@ -23,7 +23,7 @@ set $bg-color 	         #262626
 set $inactive-bg-color   #262626
 set $text-color          #ffffff
 set $inactive-text-color #676E7D
-set $urgent-bg-color     #C01C28
+set $urgent-bg-color     #CC241D
 
 # xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
 # screen before suspend. Use loginctl lock-session to lock your screen.
