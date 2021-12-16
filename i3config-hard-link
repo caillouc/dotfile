@@ -226,8 +226,8 @@ exec_always feh --bg-scale $HOME/Pictures/wallpaper.png
 exec xrandr --output DP-0 --primary --mode 2560x1440 --pos 0x0 --rotate normal
 
 # disable screan saver 
-exec --no-startup-id xset s off
-exec --no-startup-id xset -dpms
+# exec --no-startup-id xset s off
+# exec --no-startup-id xset -dpms
 # exec --no-startup-id xset s noblank
 
 # Run the start srcipt
@@ -236,8 +236,13 @@ exec /home/pierre/Documents/prog/start.sh
 # Remove i3 title bar
 new_window pixel
 
-# smart_gaps on
+smart_gaps on
 # gaps inner 10
+
+bindsym $mod+g gaps inner current set 10
+bindsym $mod+shift+g gaps inner current set 0
+
+
 
 # Remove border while using gaps
 # for_window [class=".*"] border pixel 0
