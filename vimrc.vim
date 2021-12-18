@@ -1,6 +1,6 @@
 " Plugins
 packadd commentary
-packadd sleuth
+" packadd sleuth
 
 " enable the relative number on the left of each line
 set number
@@ -46,6 +46,9 @@ autocmd FIleTYpe java setlocal commentstring=\/\/\ %s
 " File association
 autocmd BufRead,BufNewFile *.sage set filetype=python
 
+" File specific config 
+autocmd BufRead,BufNewFile *.md setlocal textwidth=100
+
 " remap crtl R to U
 nnoremap U <C-r>
 
@@ -72,22 +75,23 @@ let termheight = 15
 execute "set termwinsize =" . termheight . "*0"
 
 " Execute a command in term
-command -nargs=+ -complete=file TermOpenHidden call term_start("<args>", {"hidden":1, "term_finish":"open", "term_opencmd":"botright 15split \| buffer %d"})
-" command -nargs=+ -complete=file TermOpen call term_start("<args>")
+" command -nargs=+ -complete=file TermOpenHidden call term_start("<args>", {"hidden":1, "term_finish":"open", "term_opencmd":"botright 15split \| buffer %d"})
 command -nargs=+ -complete=file TermOpen botright terminal <args>
-nnoremap <Leader>T :TermOpenHidden 
+" nnoremap <Leader>T :TermOpenHidden 
 nnoremap <Leader>t :TermOpen 
 
 " Automatically execute the file depending on his type
 autocmd FileType c nnoremap <Leader>e :TermOpen make <CR>
 autocmd FileType python nnoremap <Leader>e :TermOpen python3 % <CR>
+autocmd FileType markdown nnoremap <Leader>e :TermOpen /home/pierre/Documents/prog/dotfile/gpdf.sh % <CR>
+autocmd FileType markdown nnoremap <Leader>E :TermOpen /home/pierre/Documents/prog/dotfile/gpdf.sh -no-toc % <CR>
 
 " Restore a hidden term buffer
-function! RestoreTerm()
-    let buf = filter(map(getbufinfo(), 'v:val.bufnr'), 'getbufvar(v:val, "&buftype") is# "terminal"')
-    execute "15sp | buffer " . buf[0]
-endfunction
-nnoremap <Leader>rt :call RestoreTerm()<CR>
+" function! RestoreTerm()
+"     let buf = filter(map(getbufinfo(), 'v:val.bufnr'), 'getbufvar(v:val, "&buftype") is# "terminal"')
+"     execute "15sp | buffer " . buf[0]
+" endfunction
+" nnoremap <Leader>rt :call RestoreTerm()<CR>
 
 tnoremap : <C-w>:
 
