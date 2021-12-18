@@ -242,7 +242,8 @@ smart_gaps on
 bindsym $mod+g gaps inner current set 10
 bindsym $mod+shift+g gaps inner current set 0
 
-
+bindsym $mod+b exec xrandr --output DP-0 --brightness 0.75
+bindsym $mod+shift+b exec xrandr --output DP-0 --brightness 1
 
 # Remove border while using gaps
 # for_window [class=".*"] border pixel 0

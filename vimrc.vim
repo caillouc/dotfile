@@ -73,9 +73,14 @@ execute "set termwinsize =" . termheight . "*0"
 
 " Execute a command in term
 command -nargs=+ -complete=file TermOpenHidden call term_start("<args>", {"hidden":1, "term_finish":"open", "term_opencmd":"botright 15split \| buffer %d"})
-command -nargs=+ -complete=file TermOpen call term_start("<args>", {"term_finish":"open", "term_opencmd":"botright 15split \| buffer %d"})
+" command -nargs=+ -complete=file TermOpen call term_start("<args>")
+command -nargs=+ -complete=file TermOpen botright terminal <args>
 nnoremap <Leader>T :TermOpenHidden 
 nnoremap <Leader>t :TermOpen 
+
+" Automatically execute the file depending on his type
+autocmd FileType c nnoremap <Leader>e :TermOpen make <CR>
+autocmd FileType python nnoremap <Leader>e :TermOpen python3 % <CR>
 
 " Restore a hidden term buffer
 function! RestoreTerm()
@@ -156,6 +161,7 @@ nmap <silent> gr :call CocAction('jumpReferences') <CR>
 
 " Highlight the symbol and its references when holding the cursor.
 autocmd CursorHold * silent call CocActionAsync('highlight')
+nnoremap <leader>h :call CocActionAsync('highlight') <CR>
 
 command! -nargs=0 Format :call CocAction('format')
 " Formatting selected code.

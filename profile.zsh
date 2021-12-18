@@ -34,11 +34,6 @@ alias iconf="vim $HOME/.config/i3/config"       # Quickly edit i3 config file
 # enable vim in terminal command
 # bindkey -v
 
-# change the britness of the screnn (should be moved at the windows manager level)
-br ()  {
-	xrandr --output DP-0 --brightness $1
-}
-
 # Move to trash a file or a directory
 sp () {
 	{ 
