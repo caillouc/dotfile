@@ -109,7 +109,7 @@ bindsym $mod+f focus mode_toggle
 # We use variables to avoid repeating the names in multiple places.
 set $ws1 "1: Terminal "
 set $ws2 "2: Firefox "
-set $ws3 "3: Editor "
+set $ws3 "3: Vim "
 set $ws4 "4: Workspace"
 set $ws5 "5: Workspace"
 set $ws6 "6: Workspace"
