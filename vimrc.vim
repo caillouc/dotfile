@@ -22,8 +22,8 @@ set background=dark
 let g:gruvbox_material_palette = 'material'
 let g:gruvbox_material_background = 'medium'
 let g:gruvbox_material_statusline_style = 'default'
-" let g:gruvbox_material_disable_italic_comment = 1
-let g:gruvbox_material_enable_italic = 1
+let g:gruvbox_material_disable_italic_comment = 1
+let g:gruvbox_material_enable_italic = 0
 let g:gruvbox_material_enable_bold = 1
 packadd! gruvbox-material
 colorscheme gruvbox-material
@@ -39,15 +39,19 @@ autocmd FileType zsh setlocal commentstring=#\ %s
 autocmd FileType conf setlocal commentstring=#\ %s
 autocmd FileType sh setlocal commentstring=#\ %s
 autocmd FileType python setlocal commentstring=#\ %s
-autocmd FIleTYpe vim setlocal commentstring=\"\ %s
-autocmd FIleTYpe c setlocal commentstring=\/\/\ %s
-autocmd FIleTYpe java setlocal commentstring=\/\/\ %s
+autocmd FIleType vim setlocal commentstring=\"\ %s
+autocmd FIleType c setlocal commentstring=\/\/\ %s
+autocmd FIleType java setlocal commentstring=\/\/\ %s
+autocmd FIleType tex setlocal commentstring=%\ %s
 
 " File association
 autocmd BufRead,BufNewFile *.sage set filetype=python
+autocmd BufRead,BufNewFile *.cu set filetype=c
 
 " File specific config 
-autocmd BufRead,BufNewFile *.md setlocal textwidth=100
+autocmd FileType markdown setlocal textwidth=100
+autocmd FileType markdown setlocal tabstop=2 shiftwidth=2 expandtab
+autocmd FileType markdown nnoremap <Leader>a :CocCommand markdownlint.fixAll <CR>
 
 " remap crtl R to U
 nnoremap U <C-r>
@@ -68,16 +72,21 @@ tmap <silent> <c-j> :wincmd j<CR>
 tmap <silent> <c-h> :wincmd h<CR>
 tmap <silent> <c-l> :wincmd l<CR>
 
+" Use System Clipboard
+nnoremap <Leader>c "*yy
+nnoremap <Leader>C "*p
 
-" Terminal option
-" Set term size
+" Terminal size option
 let termheight = 15
-execute "set termwinsize =" . termheight . "*0"
+let termwidth = 147
+" let termwidth = 227
+execute "set termwinsize =" . termheight . "x" . termwidth 
+
+" Terminal remap
+tnoremap : <C-w>:
 
 " Execute a command in term
-" command -nargs=+ -complete=file TermOpenHidden call term_start("<args>", {"hidden":1, "term_finish":"open", "term_opencmd":"botright 15split \| buffer %d"})
 command -nargs=+ -complete=file TermOpen botright terminal <args>
-" nnoremap <Leader>T :TermOpenHidden 
 nnoremap <Leader>t :TermOpen 
 
 " Automatically execute the file depending on his type
@@ -85,15 +94,6 @@ autocmd FileType c nnoremap <Leader>e :TermOpen make <CR>
 autocmd FileType python nnoremap <Leader>e :TermOpen python3 % <CR>
 autocmd FileType markdown nnoremap <Leader>e :TermOpen /home/pierre/Documents/prog/dotfile/gpdf.sh % <CR>
 autocmd FileType markdown nnoremap <Leader>E :TermOpen /home/pierre/Documents/prog/dotfile/gpdf.sh -no-toc % <CR>
-
-" Restore a hidden term buffer
-" function! RestoreTerm()
-"     let buf = filter(map(getbufinfo(), 'v:val.bufnr'), 'getbufvar(v:val, "&buftype") is# "terminal"')
-"     execute "15sp | buffer " . buf[0]
-" endfunction
-" nnoremap <Leader>rt :call RestoreTerm()<CR>
-
-tnoremap : <C-w>:
 
 " Resize a split windows
 nnoremap <Leader>p :res +10<CR>
@@ -175,10 +175,3 @@ nmap <leader>f :Format <CR>
 
 " Add `:OR` command for organize imports of the current buffer.
 command! -nargs=0 OR   :call     CocActionAsync('runCommand', 'editor.action.organizeImport')
-
-nnoremap <silent><nowait> <leader>a  :<C-u>CocList diagnostics<cr>
-
-" function! CocCurrentFunction()
-"     return get(b:, 'coc_current_function', '')
-" endfunction
-
