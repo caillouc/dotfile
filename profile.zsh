@@ -1,5 +1,9 @@
-source /home/pierre/Documents/prog/zsh_file/own_command.zsh
-source /home/pierre/Documents/prog/zsh_file/path.zsh
+# Linux 
+# source /home/pierre/Documents/prog/zsh_file/own_command.zsh
+# source /home/pierre/Documents/prog/zsh_file/path.zsh
+# Mac os 
+source ~/Documents/prog/privateDotfile/path.zsh
+source ~/Documents/prog/privateDotfile/own_command.zsh
 
 autoload -U colors && colors
 source $ZSH_PLUGIN_PATH/git.zsh
@@ -11,12 +15,11 @@ COMPLETION_WAITING_DOTS="true"
 # Theme for the terminal
 source $DOTFILE_PATH/nice.zsh-theme
 
-. /usr/share/autojump/autojump.sh
+# . /usr/share/autojump/autojump.sh
 source $JUMP_CMD_PATH/cmds.sh
 
 # shortcut 
 # alias ls='lj --color'                         # Use lj by default instead of ls (https://github.com/caillouc/jump-commands)
-alias ls='ls --color'                           # Make ls colorfull
 alias vim='vim -p'                              # Use -p option with vim by default
 alias please='sudo'                             # Be polite with your computer
 alias py='python3'                              # Open a python shell
@@ -56,16 +59,6 @@ cd () {
 
 # cd shortcut 
 alias cd..='cd ../'                         # Go back 1 directory level(for fast typers)
-alias ..='cd ../'                           # Go back 1 directory level
-alias ...='cd ../../'                       # Go back 2 directory levels
-alias .3='cd ../../../'                     # Go back 3 directory levels
-alias 3.='cd ../../../'                     # Go back 3 directory levels
-alias .4='cd ../../../../'                  # Go back 4 directory levels
-alias 4.='cd ../../../../'                  # Go back 4 directory levels
-alias .5='cd ../../../../../'               # Go back 5 directory levels
-alias 5.='cd ../../../../../'               # Go back 5 directory levels
-alias 6.='cd ../../../../../../'            # Go back 6 directory levels
-alias .6='cd ../../../../../../'            # Go back 6 directory levels
 
 # easy ps aux with grep command
 pg (){
@@ -123,17 +116,6 @@ mkd () {
 gpdf () {
 	$DOTFILE_PATH/gpdf.sh $@
 }
-# gpdf () {
-# 	if [ $1 = "-no-toc" ] ; then 
-# 		filename="${2%%.*}"
-# 		command="pandoc $2 -f markdown+tex_math_single_backslash -V geometry:margin=2.5cm -o $filename.pdf --highlight-style=tango --natbib --pdf-engine=pdflatex --standalone && open $filename.pdf &"
-# 		eval $command
-# 	else 
-# 		filename="${1%.*}"
-# 		command="pandoc $1 -f markdown+tex_math_single_backslash -V geometry:margin=2.5cm -o $filename.pdf --toc --toc-depth=3 --highlight-style=tango --natbib --pdf-engine=pdflatex --standalone && open $filename.pdf &"
-# 		eval $command
-# 	fi
-# }
 
 # shortcut git 
 gcp () { git add -A && git commit -m "$@" && git push; }
@@ -175,4 +157,3 @@ export FUNCNEST=1000
 
 # Because it's cool
 neofetch
-
