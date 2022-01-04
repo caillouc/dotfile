@@ -1,9 +1,6 @@
-# Linux 
-# source /home/pierre/Documents/prog/zsh_file/own_command.zsh
-# source /home/pierre/Documents/prog/zsh_file/path.zsh
 # Mac os 
-source ~/Documents/prog/privateDotfile/path.zsh
-source ~/Documents/prog/privateDotfile/own_command.zsh
+# source ~/Documents/prog/privateDotfile/path.zsh
+# source ~/Documents/prog/privateDotfile/own_command.zsh
 
 autoload -U colors && colors
 source $ZSH_PLUGIN_PATH/git.zsh
@@ -15,11 +12,11 @@ COMPLETION_WAITING_DOTS="true"
 # Theme for the terminal
 source $DOTFILE_PATH/nice.zsh-theme
 
-# . /usr/share/autojump/autojump.sh
 source $JUMP_CMD_PATH/cmds.sh
 
 # shortcut 
 # alias ls='lj --color'                         # Use lj by default instead of ls (https://github.com/caillouc/jump-commands)
+alias ls='ls --color'
 alias vim='vim -p'                              # Use -p option with vim by default
 alias please='sudo'                             # Be polite with your computer
 alias py='python3'                              # Open a python shell
