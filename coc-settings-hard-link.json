@@ -1,7 +1,8 @@
 {
 	"coc.preferences.jumpCommand": "tab drop",
 	"markdownlint.config": {
-		"line_length": false
+		"line_length": false,
+		"single-title": false
 	},
 	"clangd.path": "~/.config/coc/extensions/coc-clangd-data/install/13.0.0/clangd_13.0.0/bin/clangd"
 }
