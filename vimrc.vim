@@ -62,8 +62,13 @@ tmap <silent> <c-h> :wincmd h<CR>
 tmap <silent> <c-l> :wincmd l<CR>
 
 " Use System Clipboard
-nnoremap <Leader>c "*yy
-nnoremap <Leader>C "*p
+if has('macunix')
+	nnoremap <Leader>c "*yy
+	nnoremap <Leader>C "*p
+else 
+	nnoremap <Leader>c "+yy
+	nnoremap <Leader>C "+p
+endif
 
 " Resize a split windows
 nnoremap <Leader>p :res +10<CR>
