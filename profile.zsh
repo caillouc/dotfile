@@ -105,7 +105,7 @@ extract () {
 mkd () {
 	touch "$1.md"
 	DATE="`date "+%A %d %B"`"
-	echo "---\ntitle: $1\nauthor: Pierre Colson\ndate: $DATE\n---" > "$1.md"
+	echo "---\ntitle: $1\nauthor: Pierre Colson\ndate: $DATE\noutput: pdf_document\n---" > "$1.md"
 	vim "$1.md"
 }
 
