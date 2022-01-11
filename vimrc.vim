@@ -70,12 +70,6 @@ else
 	nnoremap <Leader>C "+p
 endif
 
-" Resize a split windows
-nnoremap <Leader>p :res +10<CR>
-nnoremap <Leader>m :res -10<CR>
-tnoremap <Leader>p <C-w>:res +10<CR>
-tnoremap <Leader>m <C-w>:res -10<CR>
-
 " Move the windows (split) to a tab
 nnoremap <Leader>n <C-w>T
 tnoremap <Leader>n <C-w>T
