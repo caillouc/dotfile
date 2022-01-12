@@ -83,6 +83,9 @@ nnoremap <Leader>vc :source ~/.vimrc<CR>:echo "Reloaded .vimrc"<CR>
 " Replace inner word in the entire file 
 nnoremap <Leader>s :%s/\<<C-r><C-w>\>//g<Left><Left> 
 
+" Remove all single trailing space of a file
+nnoremap <Leader>a m':%s/\S\zs\s$//g<CR>`'
+
 
 
 
@@ -154,9 +157,7 @@ function! MarkdownConfig()
 	setlocal textwidth=80
 	setlocal tabstop=2 shiftwidth=2 expandtab
 	setlocal comments=    " to avoid some conflict while formating a list 
-	setlocal conceallevel=0
-	nnoremap <Leader>a :CocCommand markdownlint.fixAll <CR>
-	syntax clear markdownCodeBlock " fix a conflict between codeBlock and list element 
+	syntax clear markdownCodeBlock " fix a conflict between codeBlock and list element
 endfunction
 autocmd FileType markdown call MarkdownConfig()
 
@@ -182,13 +183,7 @@ nnoremap <Leader>t :TermOpen
 "   ---   Make for each FileType   ---   "
 autocmd FileType c nnoremap <Leader>e :TermOpen make <CR>
 autocmd FileType python nnoremap <Leader>e :TermOpen python3 % <CR>
-if has('macunix')
-	autocmd FileType markdown nnoremap <Leader>e :TermOpen /Users/pierrecolson/Documents/prog/dotfile/gpdf.sh % <CR>
-	autocmd FileType markdown nnoremap <Leader>E :TermOpen /Users/pierrecolson/Documents/prog/dotfile/gpdf.sh -no-toc % <CR>
-else
-	autocmd FileType markdown nnoremap <Leader>e :TermOpen /home/pierre/Documents/prog/dotfile/gpdf.sh % <CR>
-	autocmd FileType markdown nnoremap <Leader>E :TermOpen /home/pierre/Documents/prog/dotfile/gpdf.sh -no-toc % <CR>
-endif
+autocmd FileType markdown nnoremap <Leader>e :TermOpen pandoc % -o %:r.pdf <CR>
 
 
 

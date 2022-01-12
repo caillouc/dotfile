@@ -105,7 +105,19 @@ extract () {
 mkd () {
 	touch "$1.md"
 	DATE="`date "+%A %d %B"`"
-	echo "---\ntitle: $1\nauthor: Pierre Colson\ndate: $DATE\noutput: pdf_document\n---" > "$1.md"
+	echo "---\ntitle: $1\
+	\nauthor: Pierre Colson\
+	\ndate: $DATE\
+	\noutput: pdf_document\
+	\noutput: pdf_document
+  	\ngeometry:\
+  	\n- margin=2cm\
+  	\nhighlight-style: tango\
+  	\npdf-engine: pdflatex\
+  	\ntoc:\
+ 	\n- toc-depth=3\
+ 	\nstandalone: true\
+	\n---" > "$1.md"
 	vim "$1.md"
 }
 
