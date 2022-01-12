@@ -121,11 +121,6 @@ mkd () {
 	vim "$1.md"
 }
 
-# generate a pdf from a markdown file
-gpdf () {
-	$DOTFILE_PATH/gpdf.sh $@
-}
-
 # shortcut git 
 gcp () { git add -A && git commit -m "$@" && git push; }
 alias grh='git reset --hard'

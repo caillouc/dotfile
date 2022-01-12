@@ -1,6 +1,7 @@
 # generate a pdf from a markdown file
 # uses pandoc and pdflatex
 # open the pdf once compiled (need the `open` command)
+# not maintained anymore but should still work 
 
 if [ $1 = "-no-toc" ] ; then 
 	filename="${2%%.*}"

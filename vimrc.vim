@@ -142,7 +142,8 @@ function! MathHighlight()
     " Block math. Look for "$$[anything]$$"
     syn region math start=/\$\$/ end=/\$\$/
     " inline math. Look for "$[not $][anything]$"
-    syn match math_block '\$[^$].\{-}\$'
+    " syn match math_block '\$[^$].\{-}\$'
+    syn region math_block start=/\$[^$]/ end=/\$/
 
     " Fenced code blocks, used in GitHub Flavored Markdown (GFM)
     syn region highlight_block start='```' end='```'
