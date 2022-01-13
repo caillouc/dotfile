@@ -117,6 +117,7 @@ mkd () {
   	\ntoc:\
  	\n- toc-depth=3\
  	\nstandalone: true\
+	\nlinkcolor: blue\
 	\n---" > "$1.md"
 	vim "$1.md"
 }
