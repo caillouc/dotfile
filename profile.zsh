@@ -104,7 +104,7 @@ extract () {
 # markdown shortcut 
 mkd () {
 	touch "$1.md"
-	DATE="`date "+%A %d %B"`"
+	DATE="`date "+%A %d %B %Y"`"
 	echo "---\ntitle: $1\
 	\nauthor: Pierre Colson\
 	\ndate: $DATE\
