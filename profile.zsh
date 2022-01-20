@@ -109,7 +109,6 @@ mkd () {
 	\nauthor: Pierre Colson\
 	\ndate: $DATE\
 	\noutput: pdf_document\
-	\noutput: pdf_document
   	\ngeometry:\
   	\n- margin=2cm\
   	\nhighlight-style: tango\
