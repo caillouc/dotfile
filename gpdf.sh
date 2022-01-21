@@ -1,6 +1,5 @@
 # generate a pdf from a markdown file
 # uses pandoc and pdflatex
-# open the pdf once compiled (need the `open` command)
 
 if [ $1 = "-no-toc" ] ; then 
 	filename="${2%%.*}"
@@ -12,10 +11,9 @@ if [ $1 = "-no-toc" ] ; then
 		--standalone \
 		-o $filename.pdf"
 	eval $command
-	open "$filename.pdf"
 else 
 	filename="${1%.*}"
-	command="pandoc $2 \
+	command="pandoc $1 \
 		-V geometry:margin=2.5cm \
 		-V linkcolor:blue \
 		--toc \
@@ -25,5 +23,4 @@ else
 		--standalone \
 		-o $filename.pdf"
 	eval $command 
-	open "$filename.pdf"
 fi

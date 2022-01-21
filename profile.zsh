@@ -116,7 +116,7 @@ mkd () {
 
 # generate pdf from markwon
 gpdf () {
-	$DOTFILE_PATH/gpdf.sh $@ 
+	$DOTFILE_PATH/gpdf.sh "$@" 
 }
 
 # shortcut git 
