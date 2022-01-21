@@ -123,6 +123,7 @@ autocmd FileType vim setlocal commentstring=\"\ %s
 autocmd FileType c setlocal commentstring=\/\/\ %s
 autocmd FileType java setlocal commentstring=\/\/\ %s
 autocmd FileType tex setlocal commentstring=%\ %s
+autocmd FileType yaml setlocal commentstring=#\ %s
 
 
 
@@ -184,7 +185,13 @@ nnoremap <Leader>t :TermOpen
 "   ---   Make for each FileType   ---   "
 autocmd FileType c nnoremap <Leader>e :TermOpen make <CR>
 autocmd FileType python nnoremap <Leader>e :TermOpen python3 % <CR>
-autocmd FileType markdown nnoremap <Leader>e :TermOpen pandoc % -o %:r.pdf <CR>
+if has('macunix')
+	autocmd FileType markdown nnoremap <Leader>e :TermOpen /Users/pierrecolson/Documents/prog/dotfile/gpdf.sh % <CR>
+	autocmd FileType markdown nnoremap <Leader>E :TermOpen /Users/pierrecolson/Documents/prog/dotfile/gpdf.sh -no-toc % <CR>
+else
+	autocmd FileType markdown nnoremap <Leader>e :TermOpen /home/pierre/Documents/prog/dotfile/gpdf.sh % <CR>
+	autocmd FileType markdown nnoremap <Leader>E :TermOpen /home/pierre/Documents/prog/dotfile/gpdf.sh -no-toc % <CR>
+endif
 
 
 
