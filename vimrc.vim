@@ -15,6 +15,9 @@ set relativenumber
 set autoindent
 set tabstop=4
 set shiftwidth=4
+set list
+set listchars=tab:>-
+
 
 " Formatting gestion
 set formatlistpat=^\\s*                     " Optional leading whitespace
@@ -157,7 +160,7 @@ endfunction
 function! MarkdownConfig()
 	call MathHighlight()
 	setlocal textwidth=80
-	setlocal tabstop=2 shiftwidth=2 expandtab
+	" setlocal tabstop=2 shiftwidth=2 expandtab
 	setlocal comments=    " to avoid some conflict while formating a list 
 	syntax clear markdownCodeBlock " fix a conflict between codeBlock and list element
 endfunction
