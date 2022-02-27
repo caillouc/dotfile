@@ -117,7 +117,7 @@ gpdf () {
 # shortcut git 
 gcp () { git add -A && git commit -m "$@" && git push; }
 alias grh='git reset --hard'
-alias poussin='git pull'
+alias poussin='git pull --rebase'
 
 # zsh plugin 
 source $ZSH_PLUGIN_PATH/please.plugin.zsh
