@@ -195,6 +195,7 @@ else
 	autocmd FileType markdown nnoremap <Leader>e :TermOpen /home/pierre/Documents/prog/dotfile/gpdf.sh % <CR>
 	autocmd FileType markdown nnoremap <Leader>E :TermOpen /home/pierre/Documents/prog/dotfile/gpdf.sh -no-toc % <CR>
 endif
+autocmd FileType scala setlocal tabstop=2 shiftwidth=2 expandtab
 
 
 
