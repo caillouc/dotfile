@@ -146,6 +146,7 @@ bindsym $mod+Shift+agrave move container to workspace number $ws10
 assign [class="Firefox"] $ws2
 assign [class="TelegramDesktop"] $ws8
 assign [class="discord"] $ws8
+assign [class="slack"] $ws8
 assign [class="Code"] $ws3
 assign [class="Thunderbird"] $ws10
 for_window [class="Spotify"] move to workspace $ws9
