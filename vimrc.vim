@@ -41,6 +41,10 @@ set noshowmode
 set splitright " new vertical splits are on the right
 set splitbelow " new horizontal splits are on the bottom
 
+" Italic for mac os
+" let &t_ZH="\e[3m"
+" let &t_ZR="\e[23m"
+
 
 
 

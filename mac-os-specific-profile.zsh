@@ -12,4 +12,5 @@ alias f='open -a Finder ./'                     # Open the current directory in 
 export JAVA_HOME=/Library/Java/JavaVirtualMachines/adoptopenjdk-11.jdk/Contents/Home
 export PATH="$JAVA_HOME/bin:$PATH"
 
-export TERM=xterm-256color-italic
+# export TERM=xterm-256color-italic
+export TERM=xterm-256color
