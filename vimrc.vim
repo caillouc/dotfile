@@ -52,7 +52,8 @@ nnoremap U <C-r>
 tnoremap : <C-w>:
 nnoremap <Leader>o o<Esc>o
 nnoremap <Leader>f a\frac{}{}<Esc>hhi
-nnoremap <Leader>b a{<CR><BS>}<Esc>O
+" nnoremap <Leader>b a{<CR><BS>}<Esc>O
+nnoremap <Leader>b a{<CR>}<Esc>O<Tab>
 
 " Use ctrl-[hjkl] to select the active split!
 nmap <silent> <c-k> :wincmd k<CR>
@@ -125,6 +126,7 @@ autocmd FileType python setlocal commentstring=#\ %s
 autocmd FileType vim setlocal commentstring=\"\ %s
 autocmd FileType c setlocal commentstring=\/\/\ %s
 autocmd FileType java setlocal commentstring=\/\/\ %s
+autocmd FileType scala setlocal commentstring=\/\/\ %s
 autocmd FileType tex setlocal commentstring=%\ %s
 autocmd FileType yaml setlocal commentstring=#\ %s
 
@@ -140,7 +142,8 @@ autocmd BufRead,BufNewFile *.cu set filetype=c
 
 
 
-"   ---   Markdown config   ---   "
+"   ---   Fyle type config   ---   "
+" Markdown
 function! MathHighlight()
     "" Define certain regions
     " Block math. Look for "$$[anything]$$"
@@ -166,6 +169,13 @@ function! MarkdownConfig()
 endfunction
 autocmd FileType markdown call MarkdownConfig()
 
+" Scala
+autocmd FileType scala setlocal tabstop=2 shiftwidth=2 expandtab
+
+" l3
+autocmd BufRead,BufNewFile *.l3 set filetype=l3
+autocmd FileType l3 setlocal tabstop=4 shiftwidth=4 expandtab
+
 
 
 
@@ -188,6 +198,8 @@ nnoremap <Leader>t :TermOpen
 "   ---   Make for each FileType   ---   "
 autocmd FileType c nnoremap <Leader>e :TermOpen make <CR>
 autocmd FileType python nnoremap <Leader>e :TermOpen python3 % <CR>
+autocmd FileType scala nnoremap <Leader>e :TermOpen ./bin/sbt compile <CR>
+autocmd FileType scala nnoremap <Leader>E :TermOpen ./bin/sbt test <CR>
 if has('macunix')
 	autocmd FileType markdown nnoremap <Leader>e :TermOpen /Users/pierrecolson/Documents/prog/dotfile/gpdf.sh % <CR>
 	autocmd FileType markdown nnoremap <Leader>E :TermOpen /Users/pierrecolson/Documents/prog/dotfile/gpdf.sh -no-toc % <CR>
@@ -195,7 +207,6 @@ else
 	autocmd FileType markdown nnoremap <Leader>e :TermOpen /home/pierre/Documents/prog/dotfile/gpdf.sh % <CR>
 	autocmd FileType markdown nnoremap <Leader>E :TermOpen /home/pierre/Documents/prog/dotfile/gpdf.sh -no-toc % <CR>
 endif
-autocmd FileType scala setlocal tabstop=2 shiftwidth=2 expandtab
 
 
 
