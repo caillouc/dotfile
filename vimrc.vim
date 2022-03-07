@@ -180,6 +180,8 @@ autocmd FileType scala setlocal tabstop=2 shiftwidth=2 expandtab
 autocmd BufRead,BufNewFile *.l3 set filetype=l3
 autocmd FileType l3 setlocal tabstop=4 shiftwidth=4 expandtab
 
+" C 
+autocmd FileType c setlocal tabstop=2 shiftwidth=2 expandtab
 
 
 
@@ -188,7 +190,7 @@ autocmd FileType l3 setlocal tabstop=4 shiftwidth=4 expandtab
 " Terminal size option
 let termheight = 15
 " let termwidth = 147 " size of mac display 
-let termwidth = 227 " size of lg display
+let termwidth = 177 " size of lg display
 execute "set termwinsize =" . termheight . "x" . termwidth 
 
 " Execute a command in term
