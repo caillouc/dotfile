@@ -17,6 +17,10 @@ set tabstop=4
 set shiftwidth=4
 set list
 set listchars=tab:>-
+nnoremap <Tab> >>_
+nnoremap <S-Tab> <<_
+vnoremap <Tab> >
+vnoremap <S-Tab> <
 
 
 " Formatting gestion
