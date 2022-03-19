@@ -36,6 +36,7 @@ set formatlistpat+=^\\s*[-–+o*•]\\s\\+      " Bullet points
 set formatoptions+=tcqn
 
 set noshowmode
+set textwidth=80
 
 " split vindow option 
 set splitright " new vertical splits are on the right
@@ -89,7 +90,11 @@ nnoremap <Leader>; m'A;<ESC>`'
 nnoremap <Leader>vc :source ~/.vimrc<CR>:echo "Reloaded .vimrc"<CR>
 
 " Replace inner word in the entire file 
-nnoremap <Leader>s :%s/\<<C-r><C-w>\>//g<Left><Left> 
+nnoremap <Leader>s :%s/\<<C-r><C-w>\>//g<Left><Left>
+
+" Replace inner word in the entire file 
+nnoremap <Leader>S :s/\<<C-r><C-w>\>//g<Left><Left>
+
 
 " Remove all single trailing space of a file
 nnoremap <Leader>a m':%s/\S\zs\s$//g<CR>`'
@@ -166,7 +171,7 @@ function! MathHighlight()
 endfunction
 function! MarkdownConfig()
 	call MathHighlight()
-	setlocal textwidth=80
+	" setlocal textwidth=80
 	" setlocal tabstop=2 shiftwidth=2 expandtab
 	setlocal comments=    " to avoid some conflict while formating a list 
 	syntax clear markdownCodeBlock " fix a conflict between codeBlock and list element
