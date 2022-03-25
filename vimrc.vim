@@ -142,6 +142,7 @@ autocmd FileType java setlocal commentstring=\/\/\ %s
 autocmd FileType scala setlocal commentstring=\/\/\ %s
 autocmd FileType tex setlocal commentstring=%\ %s
 autocmd FileType yaml setlocal commentstring=#\ %s
+autocmd FileType l3 setlocal commentstring=;;\ %s
 
 
 
