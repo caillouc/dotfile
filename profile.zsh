@@ -36,7 +36,7 @@ alias iconf="vim $HOME/.config/i3/config"       # Quickly edit i3 config file
 
 # Move to trash a file or a directory
 sp () {
-	mv "$@" ~/.Trash 
+	mv --backup=numbered "$@" ~/.Trash 
 }
 
 # quick way to take some note 

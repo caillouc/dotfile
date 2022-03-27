@@ -10,6 +10,7 @@ packadd commentary
 " Enable the relative number on the left of each line
 set number
 set relativenumber
+set tabpagemax=100
 
 " tab gestion 
 set autoindent
@@ -21,7 +22,7 @@ nnoremap <Tab> >>_
 nnoremap <S-Tab> <<_
 vnoremap <Tab> >
 vnoremap <S-Tab> <
-
+autocmd FileType scala,c,xml,l3  setlocal tabstop=2 shiftwidth=2 expandtab
 
 " Formatting gestion
 set formatlistpat=^\\s*                     " Optional leading whitespace
@@ -182,15 +183,6 @@ function! MarkdownConfig()
 endfunction
 autocmd FileType markdown call MarkdownConfig()
 
-" Scala
-autocmd FileType scala setlocal tabstop=2 shiftwidth=2 expandtab
-
-" l3
-autocmd BufRead,BufNewFile *.l3 set filetype=l3
-autocmd FileType l3 setlocal tabstop=4 shiftwidth=4 expandtab
-
-" C 
-autocmd FileType c setlocal tabstop=2 shiftwidth=2 expandtab
 
 
 
@@ -215,6 +207,7 @@ autocmd FileType c nnoremap <Leader>e :TermOpen make <CR>
 autocmd FileType python nnoremap <Leader>e :TermOpen python3 % <CR>
 autocmd FileType scala nnoremap <Leader>e :TermOpen ./bin/sbt compile <CR>
 autocmd FileType scala nnoremap <Leader>E :TermOpen ./bin/sbt test <CR>
+autocmd FileType java nnoremap <Leader>e :TermOpen mvn package <CR>
 if has('macunix')
 	autocmd FileType markdown nnoremap <Leader>e :TermOpen /Users/pierrecolson/Documents/prog/dotfile/gpdf.sh % <CR>
 	autocmd FileType markdown nnoremap <Leader>E :TermOpen /Users/pierrecolson/Documents/prog/dotfile/gpdf.sh -no-toc % <CR>
