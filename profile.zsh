@@ -1,7 +1,3 @@
-# Mac os 
-# source ~/Documents/prog/privateDotfile/path.zsh
-# source ~/Documents/prog/privateDotfile/own_command.zsh
-
 autoload -U colors && colors
 source $ZSH_PLUGIN_PATH/git.zsh
 

@@ -41,7 +41,7 @@ set formatlistpat+=^\\s*[-–+o*•]\\s\\+      " Bullet points
 set formatoptions+=tcqn
 
 set noshowmode
-set textwidth=80
+" set textwidth=80
 
 " split vindow option 
 set splitright " new vertical splits are on the right
@@ -78,10 +78,11 @@ tmap <silent> <c-l> :wincmd l<CR>
 " Use System Clipboard
 if has('macunix')
 	nnoremap <Leader>c "*yy
-	nnoremap <Leader>C "*p
+	nnoremap <Leader>v "*p
 else 
 	nnoremap <Leader>c "+yy
-	nnoremap <Leader>C "+p
+	vnoremap <Leader>c "+y
+	nnoremap <Leader>v "+p
 endif
 
 " Move the windows (split) to a tab
@@ -91,8 +92,8 @@ tnoremap <Leader>n <C-w>T
 " Add a semicolon to the current line without moving the cursor with <Leader>;
 nnoremap <Leader>; m'A;<ESC>`'
 
-" Source vimrc with <Leader>vc
-nnoremap <Leader>vc :source ~/.vimrc<CR>:echo "Reloaded .vimrc"<CR>
+" Source vimrc with <Leader>r
+nnoremap <Leader>r :source ~/.vimrc<CR>:echo "Reloaded .vimrc"<CR>
 
 " Replace inner word in the entire file 
 nnoremap <Leader>s :%s/\<<C-r><C-w>\>//g<Left><Left>
@@ -177,7 +178,7 @@ function! MathHighlight()
 endfunction
 function! MarkdownConfig()
 	call MathHighlight()
-	" setlocal textwidth=80
+	setlocal textwidth=80
 	" setlocal tabstop=2 shiftwidth=2 expandtab
 	setlocal comments=    " to avoid some conflict while formating a list 
 	syntax clear markdownCodeBlock " fix a conflict between codeBlock and list element
