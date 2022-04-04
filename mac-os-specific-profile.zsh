@@ -9,7 +9,7 @@ alias f='open -a Finder ./'                     # Open the current directory in 
 # set defautl version of java
 # export JAVA_HOME="`/usr/libexec/java_home -v 1.8`" #  use for sbt
 # export JAVA_HOME="/Library/Java/JavaVirtualMachines/jdk1.8.0_241.jdk/Contents/Home"	# use for javafx
-export JAVA_HOME=/Library/Java/JavaVirtualMachines/adoptopenjdk-11.jdk/Contents/Home
+export JAVA_HOME=/Library/Java/JavaVirtualMachines/temurin-17.jdk/Contents/Home
 export PATH="$JAVA_HOME/bin:$PATH"
 
 # export TERM=xterm-256color-italic
