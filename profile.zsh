@@ -119,6 +119,7 @@ source $ZSH_PLUGIN_PATH/zsh-you-should-use/you-should-use.plugin.zsh
 
 # password manager shortcut
 source $PASSWORD_MANAGER_PATH/p_command
+export PASSWORD_STORE_DIR="$DRIVE_PATH/.password-store"
 
 # file encoder shortcut
 # see on https://github.com/caillouc/fileEncoder
