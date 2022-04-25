@@ -6,18 +6,25 @@ export LS_COLORS='rs=0:di=00;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;
 
 autoload -Uz vcs_info
 zstyle ':vcs_info:*' actionformats \
-    '(%b)'
+    '%b|%a'
 zstyle ':vcs_info:*' formats       \
-    '(%b*%a)'
+    '%b'
 zstyle ':vcs_info:(sv[nk]|bzr):*' branchformat '%b'
 
 zstyle ':vcs_info:*' enable git cvs svn
+
+# Show character if changes are pending
+git_status() {
+  if current_git_status=$(git status | grep 'added to commit' 2> /dev/null); then
+    echo "*"
+  fi
+}
 
 # or use pre_cmd, see man zshcontrib
 vcs_info_wrapper() {
   vcs_info
   if [ -n "$vcs_info_msg_0_" ]; then
-    echo "%{$fg[red]%}${vcs_info_msg_0_}%{$reset_color%}$del"
+    echo "%{$fg[red]%}(${vcs_info_msg_0_}$(git_status))%{$reset_color%}$del"
   fi
 }
 
