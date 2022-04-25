@@ -146,7 +146,7 @@ bindsym $mod+Shift+agrave move container to workspace number $ws10
 assign [class="Firefox"] $ws2
 assign [class="TelegramDesktop"] $ws8
 assign [class="discord"] $ws8
-assign [class="slack"] $ws8
+assign [class="Slack"] $ws8
 assign [class="Code"] $ws3
 assign [class="Thunderbird"] $ws10
 for_window [class="Spotify"] move to workspace $ws9
@@ -222,6 +222,8 @@ exec i3-sensible-terminal
 
 # Set wallpaper 
 exec_always feh --bg-scale $HOME/Pictures/wallpaper.png
+# exec_always feh --bg-scale $HOME/Pictures/wallpaper2.jpg
+
 
 # Set display setting (needed to be change with new display) 
 exec xrandr --output DP-0 --primary --mode 2560x1440 --pos 0x0 --rotate normal
@@ -243,7 +245,7 @@ smart_gaps on
 bindsym $mod+g gaps inner current set 10
 bindsym $mod+shift+g gaps inner current set 0
 
-bindsym $mod+b exec xrandr --output DP-0 --brightness 0.75
+bindsym $mod+b exec xrandr --output DP-0 --brightness 0.65
 bindsym $mod+shift+b exec xrandr --output DP-0 --brightness 1
 
 # Remove border while using gaps
