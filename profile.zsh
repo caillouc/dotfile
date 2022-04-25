@@ -120,24 +120,6 @@ source $ZSH_PLUGIN_PATH/zsh-you-should-use/you-should-use.plugin.zsh
 # source $PASSWORD_MANAGER_PATH/p_command
 export PASSWORD_STORE_DIR="$DRIVE_PATH/.password-store"
 
-# file encoder shortcut
-# see on https://github.com/caillouc/fileEncoder
-encode(){
-	if [ -z "$1" ]; then
-		echo "invalid argument"
-	else
-		python3 $ENCODER_PATH/encoder.py encode $1
-	fi
-}
-
-decode(){
-	if [ -z "$1" ]; then
-		echo "invalid argument"
-	else
-		python3 $ENCODER_PATH/encoder.py decode "$1"
-	fi
-}
-
 # make search up and down work, so partially type and hit up/down to find relevant stuff
 bindkey '^[[A' up-line-or-search
 bindkey '^[[B' down-line-or-search
