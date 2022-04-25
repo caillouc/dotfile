@@ -1,5 +1,4 @@
 autoload -U colors && colors
-source $ZSH_PLUGIN_PATH/git.zsh
 
 # zsh constant
 ENABLE_CORRECTION="false"
