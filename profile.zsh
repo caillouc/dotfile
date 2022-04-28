@@ -119,6 +119,7 @@ source $ZSH_PLUGIN_PATH/zsh-you-should-use/you-should-use.plugin.zsh
 # password manager shortcut
 # source $PASSWORD_MANAGER_PATH/p_command
 export PASSWORD_STORE_DIR="$DRIVE_PATH/.password-store"
+export PASSWORD_STORE_ENABLE_EXTENSIONS=true
 
 # make search up and down work, so partially type and hit up/down to find relevant stuff
 bindkey '^[[A' up-line-or-search
