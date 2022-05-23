@@ -22,7 +22,7 @@ nnoremap <Tab> >>_
 nnoremap <S-Tab> <<_
 vnoremap <Tab> >
 vnoremap <S-Tab> <
-autocmd FileType scala,c,xml,l3  setlocal tabstop=2 shiftwidth=2 expandtab
+autocmd FileType scala,c,xml,l3,markdown  setlocal tabstop=2 shiftwidth=2 expandtab
 
 " Formatting gestion
 set formatlistpat=^\\s*                     " Optional leading whitespace
@@ -145,6 +145,8 @@ autocmd FileType scala setlocal commentstring=\/\/\ %s
 autocmd FileType tex setlocal commentstring=%\ %s
 autocmd FileType yaml setlocal commentstring=#\ %s
 autocmd FileType l3 setlocal commentstring=;;\ %s
+autocmd FileType make setlocal commentstring=#\ %s
+autocmd FileType vhdl setlocal commentstring=--\ %s
 
 
 
@@ -205,7 +207,7 @@ nnoremap <Leader>t :TermOpen
 
 
 "   ---   Make for each FileType   ---   "
-autocmd FileType c nnoremap <Leader>e :TermOpen make <CR>
+autocmd FileType c,make nnoremap <Leader>e :TermOpen make <CR>
 autocmd FileType python nnoremap <Leader>e :TermOpen python3 % <CR>
 autocmd FileType scala nnoremap <Leader>e :TermOpen ./bin/sbt compile <CR>
 autocmd FileType scala nnoremap <Leader>E :TermOpen ./bin/sbt test <CR>

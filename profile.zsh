@@ -122,10 +122,13 @@ export PASSWORD_STORE_DIR="$DRIVE_PATH/.password-store"
 export PASSWORD_STORE_ENABLE_EXTENSIONS=true
 
 # make search up and down work, so partially type and hit up/down to find relevant stuff
-bindkey '^[[A' up-line-or-search
-bindkey '^[[B' down-line-or-search
+# TODO find a solution
 
 export FUNCNEST=1000
 
 # Because it's cool
 neofetch
+
+# To remove once lab4 is done in soft sec
+export AFL_I_DONT_CARE_ABOUT_MISSING_CRASHES=1
+# echo schedutil | tee cpu*/cpufreq/scaling_governor
