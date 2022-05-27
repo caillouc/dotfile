@@ -11,6 +11,14 @@ if [ $1 = "-no-toc" ] ; then
 		--standalone \
 		-o $filename.pdf"
 	eval $command
+elif [ $1 = "-html" ] ; then 
+	filename="${2%%.*}"
+	command="pandoc $2 \
+		-V linkcolor:blue \
+		--highlight-style=tango \
+		--standalone \
+		-o $filename.html"
+	eval $command
 else 
 	filename="${1%.*}"
 	command="pandoc $1 \
