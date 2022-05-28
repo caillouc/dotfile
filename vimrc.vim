@@ -1,5 +1,6 @@
 "   ---   Plugins   ---   "
 packadd commentary
+packadd surround
 " packadd sleuth
 
 
@@ -215,6 +216,7 @@ autocmd FileType java nnoremap <Leader>e :TermOpen mvn package <CR>
 if has('macunix')
 	autocmd FileType markdown nnoremap <Leader>e :TermOpen /Users/pierrecolson/Documents/prog/dotfile/gpdf.sh % <CR>
 	autocmd FileType markdown nnoremap <Leader>E :TermOpen /Users/pierrecolson/Documents/prog/dotfile/gpdf.sh -no-toc % <CR>
+	autocmd FileType markdown nnoremap <Leader>h :TermOpen /Users/pierrecolson/Documents/prog/dotfile/gpdf.sh -html % <CR>
 else
 	autocmd FileType markdown nnoremap <Leader>e :TermOpen /home/pierre/Documents/prog/dotfile/gpdf.sh % <CR>
 	autocmd FileType markdown nnoremap <Leader>E :TermOpen /home/pierre/Documents/prog/dotfile/gpdf.sh -no-toc % <CR>
