@@ -111,6 +111,7 @@ alias grh='git reset --hard'
 alias poussin='git pull --rebase'
 
 # zsh plugin 
+export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#928374"
 source $ZSH_PLUGIN_PATH/please.plugin.zsh
 source $ZSH_PLUGIN_PATH/zsh-autosuggestions/zsh-autosuggestions.zsh
 source $ZSH_PLUGIN_PATH/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
@@ -122,13 +123,14 @@ export PASSWORD_STORE_DIR="$DRIVE_PATH/.password-store"
 export PASSWORD_STORE_ENABLE_EXTENSIONS=true
 
 # make search up and down work, so partially type and hit up/down to find relevant stuff
-# TODO find a solution
+autoload -U up-line-or-beginning-search
+autoload -U down-line-or-beginning-search
+zle -N up-line-or-beginning-search
+zle -N down-line-or-beginning-search
+bindkey "^[OA" up-line-or-beginning-search # Up
+bindkey "^[OB" down-line-or-beginning-search # Down
 
 export FUNCNEST=1000
 
 # Because it's cool
 neofetch
-
-# To remove once lab4 is done in soft sec
-export AFL_I_DONT_CARE_ABOUT_MISSING_CRASHES=1
-# echo schedutil | tee cpu*/cpufreq/scaling_governor
