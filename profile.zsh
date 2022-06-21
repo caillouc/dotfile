@@ -1,4 +1,5 @@
 autoload -U colors && colors
+autoload -U compinit; compinit
 
 # zsh constant
 ENABLE_CORRECTION="false"
