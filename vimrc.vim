@@ -1,6 +1,7 @@
 "   ---   Plugins   ---   "
 packadd commentary
-packadd surround
+packadd nvim-treesitter
+" packadd surround
 " packadd sleuth
 
 
@@ -12,6 +13,7 @@ packadd surround
 set number
 set relativenumber
 set tabpagemax=100
+set nofoldenable
 
 " tab gestion 
 set autoindent
@@ -193,14 +195,8 @@ autocmd FileType markdown call MarkdownConfig()
 
 
 "   ---   Terminal option   ---   "
-" Terminal size option
-let termheight = 15
-" let termwidth = 147 " size of mac display 
-let termwidth = 177 " size of lg display
-execute "set termwinsize =" . termheight . "x" . termwidth 
-
 " Execute a command in term
-command -nargs=+ -complete=file TermOpen botright terminal <args>
+command -nargs=+ -complete=file TermOpen split | resize 15 | terminal <args>
 nnoremap <Leader>t :TermOpen 
 
 
@@ -220,6 +216,7 @@ if has('macunix')
 else
 	autocmd FileType markdown nnoremap <Leader>e :TermOpen /home/pierre/Documents/prog/dotfile/gpdf.sh % <CR>
 	autocmd FileType markdown nnoremap <Leader>E :TermOpen /home/pierre/Documents/prog/dotfile/gpdf.sh -no-toc % <CR>
+	autocmd FileType markdown nnoremap <Leader>h :TermOpen /home/pierre/Documents/prog/dotfile/gpdf.sh -html % <CR>
 endif
 
 
@@ -268,8 +265,8 @@ nmap <silent> gi :call CocAction('jumpImplementation') <CR>
 nmap <silent> gr :call CocAction('jumpReferences') <CR>
 
 " Highlight the symbol and its references when holding the cursor.
-autocmd CursorHold * silent call CocActionAsync('highlight')
-nnoremap <leader>h :call CocActionAsync('highlight') <CR>
+" autocmd CursorHold * silent call CocActionAsync('highlight')
+" nnoremap <leader>h :call CocActionAsync('highlight') <CR>
 
 command! -nargs=0 Format :call CocAction('format')
 " Formatting selected code.
@@ -282,3 +279,28 @@ command! -nargs=0 OR   :call     CocActionAsync('runCommand', 'editor.action.org
 
 " Shortcut to list and manage extensions
 nnoremap <leader>l :CocList extensions <CR>
+
+
+
+
+
+"   ---   Treesitter config   ---   "
+lua << EOF
+require'nvim-treesitter.configs'.setup {
+  -- A list of parser names, or "all"
+  ensure_installed = { "c", "java", "python" },
+
+  -- Install parsers synchronously (only applied to `ensure_installed`)
+  sync_install = false,
+
+  highlight = {
+    -- `false` will disable the whole extension
+    enable = true,
+    -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
+    -- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
+    -- Using this option may slow down your editor, and you may see some duplicate highlights.
+	-- Instead of true it can also be a list of languages
+    additional_vim_regex_highlighting = false,
+  },
+}
+EOF
