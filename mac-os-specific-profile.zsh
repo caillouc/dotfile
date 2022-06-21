@@ -16,5 +16,5 @@ export PATH="$JAVA_HOME/bin:$PATH"
 export TERM=xterm-256color
 
 sp () {
-	mv  "$@" ~/.Trash 
+	mv -f "$@" ~/.Trash 
 }

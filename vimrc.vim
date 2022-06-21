@@ -115,7 +115,7 @@ nnoremap <Leader>a m':%s/\S\zs\s$//g<CR>`'
 "   ---   Colors   ---   "
 " Theme
 syntax on 
-set termguicolors
+" set termguicolors
 set background=dark
 let g:gruvbox_material_palette = 'material'
 let g:gruvbox_material_background = 'medium'
@@ -288,7 +288,7 @@ nnoremap <leader>l :CocList extensions <CR>
 lua << EOF
 require'nvim-treesitter.configs'.setup {
   -- A list of parser names, or "all"
-  ensure_installed = { "c", "java", "python" },
+  ensure_installed = { "c", "java", "python", "vim" },
 
   -- Install parsers synchronously (only applied to `ensure_installed`)
   sync_install = false,
