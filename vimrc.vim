@@ -1,7 +1,7 @@
 "   ---   Plugins   ---   "
 packadd commentary
 packadd nvim-treesitter
-" packadd surround
+packadd vim-surround
 " packadd sleuth
 
 
@@ -27,24 +27,7 @@ vnoremap <Tab> >
 vnoremap <S-Tab> <
 autocmd FileType scala,c,xml,l3,markdown  setlocal tabstop=2 shiftwidth=2 expandtab
 
-" Formatting gestion
-set formatlistpat=^\\s*                     " Optional leading whitespace
-set formatlistpat+=[                        " Start character class
-set formatlistpat+=\\[({]\\?                " |  Optionally match opening punctuation
-set formatlistpat+=\\(                      " |  Start group
-set formatlistpat+=[0-9]\\+                 " |  |  Numbers
-set formatlistpat+=\\\|                     " |  |  or
-set formatlistpat+=/[^a-zA-Z][a-zA-Z]/\\+   " |  |  Unique Letters
-set formatlistpat+=\\)                      " |  End group
-set formatlistpat+=[\\]:.)}                 " |  Closing punctuation
-set formatlistpat+=]                        " End character class
-set formatlistpat+=\\s\\+                   " One or more spaces
-set formatlistpat+=\\\|                     " or
-set formatlistpat+=^\\s*[-–+o*•]\\s\\+      " Bullet points
-set formatoptions+=tcqn
-
 set noshowmode
-" set textwidth=80
 
 " split vindow option 
 set splitright " new vertical splits are on the right
@@ -115,7 +98,7 @@ nnoremap <Leader>a m':%s/\S\zs\s$//g<CR>`'
 "   ---   Colors   ---   "
 " Theme
 syntax on 
-" set termguicolors
+set termguicolors
 set background=dark
 let g:gruvbox_material_palette = 'material'
 let g:gruvbox_material_background = 'medium'
@@ -184,9 +167,25 @@ endfunction
 function! MarkdownConfig()
 	call MathHighlight()
 	setlocal textwidth=80
-	" setlocal tabstop=2 shiftwidth=2 expandtab
-	setlocal comments=    " to avoid some conflict while formating a list 
+	setlocal comments=             " to avoid some conflict while formating a list 
 	syntax clear markdownCodeBlock " fix a conflict between codeBlock and list element
+
+	" Formatting gestion
+	set formatlistpat=^\\s*                     " Optional leading whitespace
+	set formatlistpat+=[                        " Start character class
+	set formatlistpat+=\\[({]\\?                " |  Optionally match opening punctuation
+	set formatlistpat+=\\(                      " |  Start group
+	set formatlistpat+=[0-9]\\+                 " |  |  Numbers
+	set formatlistpat+=\\\|                     " |  |  or
+	set formatlistpat+=/[^a-zA-Z][a-zA-Z]/\\+   " |  |  Unique Letters
+	set formatlistpat+=\\)                      " |  End group
+	set formatlistpat+=[\\]:.)}                 " |  Closing punctuation
+	set formatlistpat+=]                        " End character class
+	set formatlistpat+=\\s\\+                   " One or more spaces
+	set formatlistpat+=\\\|                     " or
+	set formatlistpat+=^\\s*[-–+o*•]\\s\\+      " Bullet points
+	set formatoptions-=jrol
+	set formatoptions+=tcqn
 endfunction
 autocmd FileType markdown call MarkdownConfig()
 

@@ -13,19 +13,19 @@ source $JUMP_CMD_PATH/cmds.sh
 # shortcut 
 # alias ls='lj --color'                         # Use lj by default instead of ls (https://github.com/caillouc/jump-commands)
 alias ls='ls --color'
-alias vim='nvim -p'                              # Use -p option with vim by default
+alias vim='nvim -p'                             # Use -p option with vim by default
 alias please='sudo'                             # Be polite with your computer
 alias py='python3'                              # Open a python shell
 alias la='ls -liah'                             # Better version of ls
-alias zshrc="vim $HOME/.zshrc"                  # Edit .zsshrc file
+alias zshrc="nvim $HOME/.zshrc"                 # Edit .zsshrc file
 alias path='echo $PATH'                         # Display the path variable 	
 alias c='cd && clear && neofetch'               # Clear the terminal and run neofetch
 alias aj='autojump'                             # Because autojump is too long
-alias vimrc="vim $DOTFILE_PATH/vimrc.vim"       # Edit vimrc file
-alias profile="vim $DOTFILE_PATH/profile.zsh"   # Edit profile.zsh file
+alias vimrc="nvim $DOTFILE_PATH/vimrc.vim"      # Edit vimrc file
+alias profile="nvim $DOTFILE_PATH/profile.zsh"  # Edit profile.zsh file
 alias sprofile="source $HOME/.zshrc"            # Source this file
 alias jd="j drive"                              # shortcut that jump to the base directory of my drive (gitdrive)
-alias iconf="vim $HOME/.config/i3/config"       # Quickly edit i3 config file
+alias iconf="nvim $HOME/.config/i3/config"      # Quickly edit i3 config file
 
 # enable vim in terminal command
 # bindkey -v
@@ -36,7 +36,7 @@ sp () {
 }
 
 # quick way to take some note 
-alias note="vim ~/Desktop/note.md"
+alias note="nvim ~/Desktop/note.md"
 
 # now cd execute ls builtin when arrive in destinaion and add shortcut
 cd () {
@@ -98,7 +98,7 @@ mkd () {
 	touch "$1.md"
 	DATE="`date "+%A %d %B %Y"`"
 	echo "---\ntitle: $1\nauthor: Pierre Colson\ndate: $DATE\n---" > "$1.md"
-	vim "$1.md"
+	nvim "$1.md"
 }
 
 # generate pdf from markwon
