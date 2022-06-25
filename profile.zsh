@@ -27,6 +27,8 @@ alias sprofile="source $HOME/.zshrc"            # Source this file
 alias jd="j drive"                              # shortcut that jump to the base directory of my drive (gitdrive)
 alias iconf="nvim $HOME/.config/i3/config"      # Quickly edit i3 config file
 
+export EDITOR="/usr/bin/nvim"
+
 # enable vim in terminal command
 # bindkey -v
 

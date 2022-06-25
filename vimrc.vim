@@ -47,7 +47,7 @@ nnoremap , @
 nnoremap U <C-r>
 tnoremap : <C-w>:
 nnoremap <Leader>o o<Esc>o
-nnoremap <Leader>f a\frac{}{}<Esc>hhi
+" nnoremap <Leader>f a\frac{}{}<Esc>hhi
 " nnoremap <Leader>b a{<CR><BS>}<Esc>O
 nnoremap <Leader>b a{<CR>}<Esc>O<Tab>
 
