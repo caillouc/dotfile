@@ -64,6 +64,7 @@ tmap <silent> <c-l> :wincmd l<CR>
 " Use System Clipboard
 if has('macunix')
 	nnoremap <Leader>c "*yy
+	vnoremap <Leader>c "*y
 	nnoremap <Leader>v "*p
 else 
 	nnoremap <Leader>c "+yy
@@ -98,7 +99,7 @@ nnoremap <Leader>a m':%s/\S\zs\s$//g<CR>`'
 "   ---   Colors   ---   "
 " Theme
 syntax on 
-set termguicolors
+" set termguicolors
 set background=dark
 let g:gruvbox_material_palette = 'material'
 let g:gruvbox_material_background = 'medium'

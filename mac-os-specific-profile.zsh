@@ -15,6 +15,11 @@ export PATH="$JAVA_HOME/bin:$PATH"
 # export TERM=xterm-256color-italic
 export TERM=xterm-256color
 
+export EDITOR="/usr/local/bin/nvim"
+
+# Export path for flutter
+export PATH="$PATH:$PROG_PATH/flutter/bin"
+
 sp () {
 	mv -f "$@" ~/.Trash 
 }
