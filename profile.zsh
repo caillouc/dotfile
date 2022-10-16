@@ -34,7 +34,7 @@ export EDITOR="/usr/bin/nvim"
 
 # Move to trash a file or a directory
 sp () {
-	mv --backup=numbered "$@" ~/.Trash 
+	mv --backup=numbered -f "$@" ~/.Trash 
 }
 
 # quick way to take some note 

@@ -14,6 +14,7 @@ set number
 set relativenumber
 set tabpagemax=100
 set nofoldenable
+set directory=.
 
 " tab gestion 
 set autoindent
@@ -49,7 +50,8 @@ tnoremap : <C-w>:
 nnoremap <Leader>o o<Esc>o
 " nnoremap <Leader>f a\frac{}{}<Esc>hhi
 " nnoremap <Leader>b a{<CR><BS>}<Esc>O
-nnoremap <Leader>b a{<CR>}<Esc>O<Tab>
+" nnoremap <Leader>b a{<CR>}<Esc>O<Tab>
+nnoremap <Leader>b a{<CR>}<Esc>O
 
 " Use ctrl-[hjkl] to select the active split!
 nmap <silent> <c-k> :wincmd k<CR>
@@ -189,6 +191,7 @@ function! MarkdownConfig()
 	set formatoptions+=tcqn
 endfunction
 autocmd FileType markdown call MarkdownConfig()
+autocmd FileType c setlocal formatoptions-=cro
 
 
 
