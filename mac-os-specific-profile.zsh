@@ -6,7 +6,7 @@ alias hidefile='defaults write com.apple.finder AppleShowAllFiles NO && killall 
 alias showfile='defaults write com.apple.finder AppleShowAllFiles YES && killall Finder'	
 alias f='open -a Finder ./'                     # Open the current directory in finder
 
-export EDITOR="/usr/local/bin/nvim"
+export EDITOR="/opt/homebrew/bin/nvim"
 
 sp () {
 	mv -f "$@" ~/.Trash 
