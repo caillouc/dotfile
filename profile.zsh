@@ -11,7 +11,6 @@ source $DOTFILE_PATH/nice.zsh-theme
 source $JUMP_CMD_PATH/cmds.sh
 
 # shortcut 
-# alias ls='lj --color'                         # Use lj by default instead of ls (https://github.com/caillouc/jump-commands)
 alias ls='ls --color'
 alias vim='nvim -p'                             # Use -p option with vim by default
 alias please='sudo'                             # Be polite with your computer
@@ -114,14 +113,12 @@ alias grh='git reset --hard'
 alias poussin='git pull --rebase'
 
 # zsh plugin 
-export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#928374"
+# export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#928374"
 source $ZSH_PLUGIN_PATH/please.plugin.zsh
 source $ZSH_PLUGIN_PATH/zsh-autosuggestions/zsh-autosuggestions.zsh
 source $ZSH_PLUGIN_PATH/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source $ZSH_PLUGIN_PATH/zsh-you-should-use/you-should-use.plugin.zsh
 
 # password manager shortcut
-# source $PASSWORD_MANAGER_PATH/p_command
 export PASSWORD_STORE_DIR="$DRIVE_PATH/.password-store"
 export PASSWORD_STORE_ENABLE_EXTENSIONS=true
 
@@ -132,8 +129,6 @@ zle -N up-line-or-beginning-search
 zle -N down-line-or-beginning-search
 bindkey "^[OA" up-line-or-beginning-search # Up
 bindkey "^[OB" down-line-or-beginning-search # Down
-
-export FUNCNEST=1000
 
 # Because it's cool
 neofetch
