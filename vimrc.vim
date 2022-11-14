@@ -5,7 +5,6 @@ packadd coc.nvim
 
 
 
-
 "   ---   General   ---   "
 " Enable the relative number on the left of each line
 set number
@@ -19,13 +18,14 @@ nnoremap ; :
 set autoindent
 set tabstop=4
 set shiftwidth=4
-set list
-set listchars=tab:>-
+set list lcs=tab:>\ 
+
 nnoremap <Tab> >>_
 nnoremap <S-Tab> <<_
-vnoremap <Tab> >
-vnoremap <S-Tab> <
-autocmd FileType scala,c,xml,l3,markdown  setlocal tabstop=2 shiftwidth=2 expandtab
+xnoremap <Tab> >
+xnoremap <S-Tab> <
+autocmd FileType scala,c,xml,l3,markdown,cpp  setlocal tabstop=2 shiftwidth=2 expandtab
+autocmd BufRead,BufNewFile *.gtm,*.dtm,*.stm setlocal tabstop=4 shiftwidth=4 expandtab
 
 set noshowmode
 
@@ -65,11 +65,11 @@ tmap <silent> <c-l> :wincmd l<CR>
 " Use System Clipboard
 if has('macunix')
 	nnoremap <Leader>c "*yy
-	vnoremap <Leader>c "*y
+	xnoremap <Leader>c "*y
 	nnoremap <Leader>v "*p
 else 
 	nnoremap <Leader>c "+yy
-	vnoremap <Leader>c "+y
+	xnoremap <Leader>c "+y
 	nnoremap <Leader>v "+p
 endif
 
@@ -85,6 +85,8 @@ nnoremap <Leader>r :source ~/.vimrc<CR>:echo "Reloaded .vimrc"<CR>
 
 " Replace inner word in the entire file 
 nnoremap <Leader>s :%s/\<<C-r><C-w>\>//g<Left><Left>
+vnoremap <Leader>s :s///g<Left><Left>
+vnoremap // y/\V<C-R>=escape(@",'/\')<CR><CR>
 
 
 " Remove all single trailing space of a file
@@ -132,6 +134,7 @@ autocmd FileType yaml setlocal commentstring=#\ %s
 autocmd FileType l3 setlocal commentstring=;;\ %s
 autocmd FileType make setlocal commentstring=#\ %s
 autocmd FileType vhdl setlocal commentstring=--\ %s
+autocmd FileType ocaml setlocal commentstring=\/\/\ %s
 
 
 
@@ -196,6 +199,8 @@ autocmd FileType c setlocal formatoptions-=cro
 "   ---   Terminal option   ---   "
 " Execute a command in term
 command -nargs=+ -complete=file TermOpen split | resize 15 | terminal <args>
+autocmd TermOpen * startinsert
+tnoremap <ESC> <C-\><C-N>
 nnoremap <Leader>t :TermOpen 
 
 
@@ -282,9 +287,6 @@ command! -nargs=0 Format :call CocAction('format')
 " xmap <leader>f  <Plug>(coc-format-selected)
 nmap <leader>G  <Plug>(coc-format-selected)
 nmap <leader>g :Format <CR>
-
-" Add `:OR` command for organize imports of the current buffer.
-command! -nargs=0 OR   :call     CocActionAsync('runCommand', 'editor.action.organizeImport')
 
 " Shortcut to list and manage extensions
 nnoremap <leader>l :CocList extensions <CR>
