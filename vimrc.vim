@@ -25,6 +25,7 @@ nnoremap <S-Tab> <<_
 xnoremap <Tab> >
 xnoremap <S-Tab> <
 autocmd FileType scala,c,xml,l3,markdown,cpp  setlocal tabstop=2 shiftwidth=2 expandtab
+autocmd FileType rust  setlocal tabstop=4 shiftwidth=4 expandtab
 autocmd BufRead,BufNewFile *.gtm,*.dtm,*.stm setlocal tabstop=4 shiftwidth=4 expandtab
 
 set noshowmode
@@ -37,6 +38,10 @@ set splitbelow " new horizontal splits are on the bottom
 " let &t_ZH="\e[3m"
 " let &t_ZR="\e[23m"
 
+command Note :tabe ~/Desktop/note.md
+
+autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
+
 
 
 
@@ -47,9 +52,6 @@ nnoremap , @
 nnoremap U <C-r>
 tnoremap : <C-w>:
 nnoremap <Leader>o o<Esc>o
-" nnoremap <Leader>f a\frac{}{}<Esc>hhi
-" nnoremap <Leader>b a{<CR><BS>}<Esc>O
-" nnoremap <Leader>b a{<CR>}<Esc>O<Tab>
 nnoremap <Leader>b a{<CR>}<Esc>O
 
 " Use ctrl-[hjkl] to select the active split!
@@ -88,9 +90,13 @@ nnoremap <Leader>s :%s/\<<C-r><C-w>\>//g<Left><Left>
 vnoremap <Leader>s :s///g<Left><Left>
 vnoremap // y/\V<C-R>=escape(@",'/\')<CR><CR>
 
-
 " Remove all single trailing space of a file
 nnoremap <Leader>a m':%s/\S\zs\s$//g<CR>`'
+
+" Copilot
+imap <silent><script><expr> <C-J> copilot#Accept("\<CR>")
+imap <C-P> <Plug>(copilot-suggest)
+let g:copilot_no_tab_map = v:true
 
 
 
@@ -135,6 +141,7 @@ autocmd FileType l3 setlocal commentstring=;;\ %s
 autocmd FileType make setlocal commentstring=#\ %s
 autocmd FileType vhdl setlocal commentstring=--\ %s
 autocmd FileType ocaml setlocal commentstring=\/\/\ %s
+autocmd FileType rust setlocal commentstring=\/\/\ %s
 
 
 
@@ -190,7 +197,6 @@ function! MarkdownConfig()
 	set formatoptions+=tcqn
 endfunction
 autocmd FileType markdown call MarkdownConfig()
-autocmd FileType c setlocal formatoptions-=cro
 
 
 
@@ -212,6 +218,7 @@ autocmd FileType c,make nnoremap <Leader>e :TermOpen make <CR>
 autocmd FileType scala nnoremap <Leader>e :TermOpen ./bin/sbt compile <CR>
 autocmd FileType scala nnoremap <Leader>E :TermOpen ./bin/sbt test <CR>
 autocmd FileType java nnoremap <Leader>e :TermOpen mvn package <CR>
+autocmd FileType rust nnoremap <Leader>e :TermOpen cargo run <CR>
 function! PythonMake()
 	if winheight(0) + &cmdheight + 1 != &lines
 		" There is a horizontal split window so I close it 
@@ -284,9 +291,8 @@ nmap <silent> gr :call CocAction('jumpReferences') <CR>
 
 command! -nargs=0 Format :call CocAction('format')
 " Formatting selected code.
-" xmap <leader>f  <Plug>(coc-format-selected)
-nmap <leader>G  <Plug>(coc-format-selected)
-nmap <leader>g :Format <CR>
+nmap <leader>F  <Plug>(coc-format-selected)
+nmap <leader>f :Format <CR>
 
 " Shortcut to list and manage extensions
 nnoremap <leader>l :CocList extensions <CR>
