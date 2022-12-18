@@ -1,5 +1,7 @@
 "   ---   Plugins   ---   "
 packadd vim-commentary
+packadd vim-surround
+packadd copilot.vim
 packadd coc.nvim
 
 
@@ -33,10 +35,6 @@ set noshowmode
 " split vindow option 
 set splitright " new vertical splits are on the right
 set splitbelow " new horizontal splits are on the bottom
-
-" Italic for mac os
-" let &t_ZH="\e[3m"
-" let &t_ZR="\e[23m"
 
 command Note :tabe ~/Desktop/note.md
 
@@ -105,20 +103,85 @@ let g:copilot_no_tab_map = v:true
 "   ---   Colors   ---   "
 " Theme
 syntax on 
-" set termguicolors
+set termguicolors
 set background=dark
-let g:gruvbox_material_palette = 'material'
-let g:gruvbox_material_background = 'medium'
-let g:gruvbox_material_statusline_style = 'default'
 let g:gruvbox_material_disable_italic_comment = 1
 let g:gruvbox_material_enable_italic = 0
 let g:gruvbox_material_enable_bold = 1
+
+let g:everforest_enable_italic = 1
+let g:everforest_disable_italic_comment = 1
+let g:everforest_enable_bold = 1
+
+let g:edge_enable_italic = 1
+let g:edge_disable_italic_comment = 1
+let g:edge_enable_bold = 1
+
+let g:sonokai_enable_italic = 1
+let g:sonokai_disable_italic_comment = 1
+let g:sonokai_enable_bold = 1
+
 packadd! gruvbox-material
-colorscheme gruvbox-material
+packadd! everforest
+packadd! edge
+packadd! sonokai
+
+function! s:everforest_custom() abort
+	let l:palette = everforest#get_palette('hard', {})
+	call everforest#highlight('IncSearch', l:palette.none, l:palette.bg3, 'bold')
+	call everforest#highlight('Search', l:palette.none, l:palette.bg3, 'bold')
+	call everforest#highlight('MiniStatuslineModeReplace', l:palette.bg0, l:palette.bg3, 'bold')
+endfunction
+    
+augroup EverforestCustom
+	autocmd!
+	autocmd ColorScheme everforest call s:everforest_custom()
+augroup END
+
+function! s:gruvbox_material_custom() abort
+	let l:palette = gruvbox_material#get_palette('medium', 'material', {})
+	call gruvbox_material#highlight('IncSearch', l:palette.none, l:palette.bg3, 'bold')
+	call gruvbox_material#highlight('Search', l:palette.none, l:palette.bg3, 'bold')
+	call gruvbox_material#highlight('MiniStatuslineModeReplace', l:palette.bg0, l:palette.bg3, 'bold')
+endfunction
+    
+augroup GruvboxMaterialCustom autocmd!
+	autocmd ColorScheme gruvbox-material call s:gruvbox_material_custom()
+augroup END
+
+function! s:edge_custom() abort
+	let l:palette = edge#get_palette('aura', 0, {})
+	call edge#highlight('IncSearch', l:palette.none, l:palette.bg3, 'bold')
+	call edge#highlight('Search', l:palette.none, l:palette.bg3, 'bold')
+	call edge#highlight('MiniStatuslineModeReplace', l:palette.bg0, l:palette.bg3, 'bold')
+endfunction
+
+augroup EdgeCustom
+	autocmd!
+	autocmd ColorScheme edge call s:edge_custom()
+augroup END
+
+function! s:sonokai_custom() abort
+	let l:palette = sonokai#get_palette('atlantis', {})
+	call sonokai#highlight('IncSearch', l:palette.none, l:palette.bg3, 'bold')
+	call sonokai#highlight('Search', l:palette.none, l:palette.bg3, 'bold')
+	call sonokai#highlight('MiniStatuslineModeReplace', l:palette.bg0, l:palette.bg3, 'bold')
+endfunction
+
+augroup SonokaiCustom
+	autocmd!
+	autocmd ColorScheme sonokai call s:sonokai_custom()
+augroup END
+
+let my_colorschemes = ['gruvbox-material', 'everforest' , 'edge', 'sonokai']
+let index = rand() % (len(my_colorschemes))
+echo my_colorschemes[index]
+execute 'colorscheme' my_colorschemes[index]
+let my_lightline_colorschemes = ['gruvbox_material', 'everforest' , 'edge', 'sonokai']
 
 " Status line
 let g:lightline = {}
-let g:lightline.colorscheme = 'gruvbox_material'
+let g:lightline.colorscheme = my_lightline_colorschemes[index]
 set laststatus=2
 packadd lightline.vim
 
