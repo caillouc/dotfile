@@ -282,17 +282,7 @@ autocmd FileType scala nnoremap <Leader>e :TermOpen ./bin/sbt compile <CR>
 autocmd FileType scala nnoremap <Leader>E :TermOpen ./bin/sbt test <CR>
 autocmd FileType java nnoremap <Leader>e :TermOpen mvn package <CR>
 autocmd FileType rust nnoremap <Leader>e :TermOpen cargo run <CR>
-function! PythonMake()
-	if winheight(0) + &cmdheight + 1 != &lines
-		" There is a horizontal split window so I close it 
-		" Horizontal split are only for terminal output in my use
-		wincmd j
-		execute "normal! :q! \<CR> :TermOpen python3 % \<CR>"
-	else 
-		execute "normal! :TermOpen python3 % \<CR>"
-	endif
-endfunction
-autocmd FileType python nnoremap <Leader>e :call PythonMake()<CR>
+autocmd FileType python nnoremap <Leader>e :TermOpen python3 % <CR>
 if has('macunix')
 	autocmd FileType markdown nnoremap <Leader>e :TermOpen /Users/pierrecolson/Documents/prog/dotfile/gpdf.sh % <CR>
 	autocmd FileType markdown nnoremap <Leader>E :TermOpen /Users/pierrecolson/Documents/prog/dotfile/gpdf.sh -no-toc % <CR>
