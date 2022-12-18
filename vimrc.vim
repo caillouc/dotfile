@@ -126,11 +126,15 @@ packadd! everforest
 packadd! edge
 packadd! sonokai
 
+function! s:link_highlight() abort
+	highlight! link IncSearch Visual
+	highlight! link Search Visual
+	highlight! link Substitute Visual
+endfunction
+
 function! s:everforest_custom() abort
+	call s:link_highlight()
 	let l:palette = everforest#get_palette('hard', {})
-	call everforest#highlight('IncSearch', l:palette.none, l:palette.bg3, 'bold')
-	call everforest#highlight('Search', l:palette.none, l:palette.bg3, 'bold')
-	call everforest#highlight('MiniStatuslineModeReplace', l:palette.bg0, l:palette.bg3, 'bold')
 endfunction
     
 augroup EverforestCustom
@@ -139,10 +143,8 @@ augroup EverforestCustom
 augroup END
 
 function! s:gruvbox_material_custom() abort
+	call s:link_highlight()
 	let l:palette = gruvbox_material#get_palette('medium', 'material', {})
-	call gruvbox_material#highlight('IncSearch', l:palette.none, l:palette.bg3, 'bold')
-	call gruvbox_material#highlight('Search', l:palette.none, l:palette.bg3, 'bold')
-	call gruvbox_material#highlight('MiniStatuslineModeReplace', l:palette.bg0, l:palette.bg3, 'bold')
 endfunction
     
 augroup GruvboxMaterialCustom autocmd!
@@ -150,10 +152,8 @@ augroup GruvboxMaterialCustom autocmd!
 augroup END
 
 function! s:edge_custom() abort
+	call s:link_highlight()
 	let l:palette = edge#get_palette('aura', 0, {})
-	call edge#highlight('IncSearch', l:palette.none, l:palette.bg3, 'bold')
-	call edge#highlight('Search', l:palette.none, l:palette.bg3, 'bold')
-	call edge#highlight('MiniStatuslineModeReplace', l:palette.bg0, l:palette.bg3, 'bold')
 endfunction
 
 augroup EdgeCustom
@@ -162,10 +162,8 @@ augroup EdgeCustom
 augroup END
 
 function! s:sonokai_custom() abort
+	call s:link_highlight()
 	let l:palette = sonokai#get_palette('atlantis', {})
-	call sonokai#highlight('IncSearch', l:palette.none, l:palette.bg3, 'bold')
-	call sonokai#highlight('Search', l:palette.none, l:palette.bg3, 'bold')
-	call sonokai#highlight('MiniStatuslineModeReplace', l:palette.bg0, l:palette.bg3, 'bold')
 endfunction
 
 augroup SonokaiCustom
