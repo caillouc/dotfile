@@ -1,6 +1,6 @@
 "   ---   Plugins   ---   "
 packadd vim-commentary
-packadd vim-surround
+" packadd vim-surround
 packadd copilot.vim
 packadd coc.nvim
 
@@ -37,6 +37,7 @@ set splitright " new vertical splits are on the right
 set splitbelow " new horizontal splits are on the bottom
 
 command Note :tabe ~/Desktop/note.md
+command Vimrc :tabe ~/Documents/prog/dotfile/vimrc.vim
 
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 
@@ -53,14 +54,14 @@ nnoremap <Leader>o o<Esc>o
 nnoremap <Leader>b a{<CR>}<Esc>O
 
 " Use ctrl-[hjkl] to select the active split!
-nmap <silent> <c-k> :wincmd k<CR>
-nmap <silent> <c-j> :wincmd j<CR>
-nmap <silent> <c-h> :wincmd h<CR>
-nmap <silent> <c-l> :wincmd l<CR>
-tmap <silent> <c-k> :wincmd k<CR>
-tmap <silent> <c-j> :wincmd j<CR>
-tmap <silent> <c-h> :wincmd h<CR>
-tmap <silent> <c-l> :wincmd l<CR>
+nmap <silent> K :wincmd k<CR>
+nmap <silent> J :wincmd j<CR>
+nmap <silent> H :wincmd h<CR>
+nmap <silent> L :wincmd l<CR>
+tmap <silent> K :wincmd k<CR>
+tmap <silent> J :wincmd j<CR>
+tmap <silent> H :wincmd h<CR>
+tmap <silent> L :wincmd l<CR>
 
 " Use System Clipboard
 if has('macunix')
@@ -103,7 +104,7 @@ let g:copilot_no_tab_map = v:true
 "   ---   Colors   ---   "
 " Theme
 syntax on 
-set termguicolors
+" set termguicolors
 set background=dark
 let g:gruvbox_material_disable_italic_comment = 1
 let g:gruvbox_material_enable_italic = 0
@@ -267,28 +268,30 @@ autocmd FileType markdown call MarkdownConfig()
 " Execute a command in term
 command -nargs=+ -complete=file TermOpen split | resize 15 | terminal <args>
 autocmd TermOpen * startinsert
+command TermClose bufdo if stridx(bufname(), 'term://') >= 0 | bdelete! | endif
 tnoremap <ESC> <C-\><C-N>
-nnoremap <Leader>t :TermOpen 
+nnoremap <Leader>t :TermClose<CR> <bar> :TermOpen 
+nnoremap <Leader>T :TermClose<CR>
 
 
 
 
 
 "   ---   Make for each FileType   ---   "
-autocmd FileType c,make nnoremap <Leader>e :TermOpen make <CR>
-autocmd FileType scala nnoremap <Leader>e :TermOpen ./bin/sbt compile <CR>
-autocmd FileType scala nnoremap <Leader>E :TermOpen ./bin/sbt test <CR>
-autocmd FileType java nnoremap <Leader>e :TermOpen mvn package <CR>
-autocmd FileType rust nnoremap <Leader>e :TermOpen cargo run <CR>
-autocmd FileType python nnoremap <Leader>e :TermOpen python3 % <CR>
+autocmd FileType c,make nnoremap <Leader>e :TermClose<CR> <bar> :TermOpen make <CR>
+autocmd FileType scala nnoremap <Leader>e :TermClose<CR> <bar> :TermOpen ./bin/sbt compile <CR>
+autocmd FileType scala nnoremap <Leader>E :TermClose<CR> <bar> :TermOpen ./bin/sbt test <CR>
+autocmd FileType java nnoremap <Leader>e :TermClose<CR> <bar> :TermOpen mvn package <CR>
+autocmd FileType rust nnoremap <Leader>e :TermClose<CR> <bar> :TermOpen cargo run <CR>
+autocmd FileType python nnoremap <Leader>e :TermClose<CR> <bar> :TermOpen python3 % <CR>
 if has('macunix')
-	autocmd FileType markdown nnoremap <Leader>e :TermOpen /Users/pierrecolson/Documents/prog/dotfile/gpdf.sh % <CR>
-	autocmd FileType markdown nnoremap <Leader>E :TermOpen /Users/pierrecolson/Documents/prog/dotfile/gpdf.sh -no-toc % <CR>
-	autocmd FileType markdown nnoremap <Leader>h :TermOpen /Users/pierrecolson/Documents/prog/dotfile/gpdf.sh -html % <CR>
+	autocmd FileType markdown nnoremap <Leader>e :TermClose<CR> <bar> :TermOpen /Users/pierrecolson/Documents/prog/dotfile/gpdf.sh % <CR>
+	autocmd FileType markdown nnoremap <Leader>E :TermClose<CR> <bar> :TermOpen /Users/pierrecolson/Documents/prog/dotfile/gpdf.sh -no-toc % <CR>
+	autocmd FileType markdown nnoremap <Leader>h :TermClose<CR> <bar> :TermOpen /Users/pierrecolson/Documents/prog/dotfile/gpdf.sh -html % <CR>
 else
-	autocmd FileType markdown nnoremap <Leader>e :TermOpen /home/pierre/Documents/prog/dotfile/gpdf.sh % <CR>
-	autocmd FileType markdown nnoremap <Leader>E :TermOpen /home/pierre/Documents/prog/dotfile/gpdf.sh -no-toc % <CR>
-	autocmd FileType markdown nnoremap <Leader>h :TermOpen /home/pierre/Documents/prog/dotfile/gpdf.sh -html % <CR>
+	autocmd FileType markdown nnoremap <Leader>e :TermClose<CR> <bar> :TermOpen /home/pierre/Documents/prog/dotfile/gpdf.sh % <CR>
+	autocmd FileType markdown nnoremap <Leader>E :TermClose<CR> <bar> :TermOpen /home/pierre/Documents/prog/dotfile/gpdf.sh -no-toc % <CR>
+	autocmd FileType markdown nnoremap <Leader>h :TermClose<CR> <bar> :TermOpen /home/pierre/Documents/prog/dotfile/gpdf.sh -html % <CR>
 endif
 
 
