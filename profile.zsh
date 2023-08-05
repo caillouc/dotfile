@@ -121,6 +121,7 @@ source $ZSH_PLUGIN_PATH/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 # password manager shortcut
 export PASSWORD_STORE_DIR="$DOC_PATH/.password-store"
 export PASSWORD_STORE_ENABLE_EXTENSIONS=true
+export PASSWORD_STORE_GENERATED_LENGTH=20
 
 # make search up and down work, so partially type and hit up/down to find relevant stuff
 autoload -U up-line-or-beginning-search
