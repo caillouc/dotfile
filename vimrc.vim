@@ -1,5 +1,6 @@
 "   ---   Plugins   ---   "
 packadd vim-commentary
+packadd nvim-treesitter
 " packadd vim-surround
 packadd copilot.vim
 packadd coc.nvim
@@ -26,8 +27,8 @@ nnoremap <Tab> >>_
 nnoremap <S-Tab> <<_
 xnoremap <Tab> >
 xnoremap <S-Tab> <
-autocmd FileType scala,c,xml,l3,markdown,cpp  setlocal tabstop=2 shiftwidth=2 expandtab
-autocmd FileType rust  setlocal tabstop=4 shiftwidth=4 expandtab
+autocmd FileType scala,c,xml,l3,markdown,cpp,dart  setlocal tabstop=2 shiftwidth=2 expandtab
+autocmd FileType rust,json  setlocal tabstop=4 shiftwidth=4 expandtab
 autocmd BufRead,BufNewFile *.gtm,*.dtm,*.stm setlocal tabstop=4 shiftwidth=4 expandtab
 
 set noshowmode
@@ -40,6 +41,11 @@ command Note :tabe ~/Desktop/note.md
 command Vimrc :tabe ~/Documents/prog/dotfile/vimrc.vim
 
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
+
+" Fold option
+set foldmethod=expr
+set foldexpr=nvim_treesitter#foldexpr()
+autocmd BufReadPost,FileReadPost * normal zR
 
 
 
@@ -204,6 +210,7 @@ autocmd FileType make setlocal commentstring=#\ %s
 autocmd FileType vhdl setlocal commentstring=--\ %s
 autocmd FileType ocaml setlocal commentstring=\/\/\ %s
 autocmd FileType rust setlocal commentstring=\/\/\ %s
+autocmd FileType dart setlocal commentstring=\/\/\ %s
 
 
 
@@ -266,7 +273,7 @@ autocmd FileType markdown call MarkdownConfig()
 
 "   ---   Terminal option   ---   "
 " Execute a command in term
-command -nargs=+ -complete=file TermOpen split | resize 15 | terminal <args>
+command -nargs=+ -complete=file TermOpen split | resize 10 | terminal <args>
 autocmd TermOpen * startinsert
 command TermClose bufdo if stridx(bufname(), 'term://') >= 0 | bdelete! | endif
 tnoremap <ESC> <C-\><C-N>
@@ -358,3 +365,28 @@ nmap <leader>f :Format <CR>
 
 " Shortcut to list and manage extensions
 nnoremap <leader>l :CocList extensions <CR>
+
+
+
+
+
+"   ---   Treesitter config   ---   "
+lua << EOF
+require'nvim-treesitter.configs'.setup {
+  -- A list of parser names, or "all"
+  ensure_installed = { "dart", "vim", "python" },
+
+  -- Install parsers synchronously (only applied to `ensure_installed`)
+  sync_install = false,
+
+  highlight = {
+    -- `false` will disable the whole extension
+    enable = true,
+    -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
+    -- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
+    -- Using this option may slow down your editor, and you may see some duplicate highlights.
+	-- Instead of true it can also be a list of languages
+    additional_vim_regex_highlighting = false,
+  },
+}
+EOF
