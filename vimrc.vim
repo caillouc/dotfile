@@ -11,7 +11,7 @@ packadd coc.nvim
 "   ---   General   ---   "
 " Enable the relative number on the left of each line
 set number
-set relativenumber
+" set relativenumber
 set tabpagemax=100
 set nofoldenable
 set directory=.
@@ -37,8 +37,14 @@ set noshowmode
 set splitright " new vertical splits are on the right
 set splitbelow " new horizontal splits are on the bottom
 
+set hlsearch
+
 command Note :tabe ~/Desktop/note.md
-command Vimrc :tabe ~/Documents/prog/dotfile/vimrc.vim
+if has('macunix')
+	command Vimrc :tabe ~/Documents/dotfile/vimrc.vim
+else
+	command Vimrc :tabe ~/Documents/prog/dotfile/vimrc.vim
+endif
 
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 
@@ -58,6 +64,7 @@ nnoremap U <C-r>
 tnoremap : <C-w>:
 nnoremap <Leader>o o<Esc>o
 nnoremap <Leader>b a{<CR>}<Esc>O
+nnoremap <Leader>q gqip
 
 " Use ctrl-[hjkl] to select the active split!
 nmap <silent> K :wincmd k<CR>
@@ -292,13 +299,13 @@ autocmd FileType java nnoremap <Leader>e :TermClose<CR> <bar> :TermOpen mvn pack
 autocmd FileType rust nnoremap <Leader>e :TermClose<CR> <bar> :TermOpen cargo run <CR>
 autocmd FileType python nnoremap <Leader>e :TermClose<CR> <bar> :TermOpen python3 % <CR>
 if has('macunix')
-	autocmd FileType markdown nnoremap <Leader>e :TermClose<CR> <bar> :TermOpen /Users/pierrecolson/Documents/prog/dotfile/gpdf.sh % <CR>
-	autocmd FileType markdown nnoremap <Leader>E :TermClose<CR> <bar> :TermOpen /Users/pierrecolson/Documents/prog/dotfile/gpdf.sh -no-toc % <CR>
-	autocmd FileType markdown nnoremap <Leader>h :TermClose<CR> <bar> :TermOpen /Users/pierrecolson/Documents/prog/dotfile/gpdf.sh -html % <CR>
+	autocmd FileType markdown nnoremap <Leader>e :TermClose<CR> <bar> :TermOpen /Users/pierrecolson/Documents/dotfile/gpdf.sh % <CR>
+	autocmd FileType markdown nnoremap <Leader>E :TermClose<CR> <bar> :TermOpen /Users/pierrecolson/Documents/dotfile/gpdf.sh -no-toc % <CR>
+	autocmd FileType markdown nnoremap <Leader>h :TermClose<CR> <bar> :TermOpen /Users/pierrecolson/Documents/dotfile/gpdf.sh -html % <CR>
 else
 	autocmd FileType markdown nnoremap <Leader>e :TermClose<CR> <bar> :TermOpen /home/pierre/Documents/prog/dotfile/gpdf.sh % <CR>
 	autocmd FileType markdown nnoremap <Leader>E :TermClose<CR> <bar> :TermOpen /home/pierre/Documents/prog/dotfile/gpdf.sh -no-toc % <CR>
-	autocmd FileType markdown nnoremap <Leader>h :TermClose<CR> <bar> :TermOpen /home/pierre/Documents/prog/dotfile/gpdf.sh -html % <CR>
+	autocmd FileType markdown nnoremap <Leader>h :TermClose<CR> <bar> :TermOpen /home/pierre/Documents/progd/dotfile/gpdf.sh -html % <CR>
 endif
 
 
