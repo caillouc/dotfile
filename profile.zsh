@@ -12,7 +12,7 @@ source $JUMP_CMD_PATH/cmds.sh
 
 # shortcut 
 alias ls='ls --color'
-alias vim='nvim -p'                             # Use -p option with vim by default
+alias vim='nvim'                               # Use -p option with nvim by default
 alias please='sudo'                             # Be polite with your computer
 alias py='python3'                              # Open a python shell
 alias la='ls -liah'                             # Better version of ls
@@ -28,7 +28,7 @@ alias iconf="nvim $HOME/.config/i3/config"      # Quickly edit i3 config file
 
 export EDITOR="/usr/bin/nvim"
 
-# enable vim in terminal command
+# enable nvim in terminal command
 # bindkey -v
 
 # Move to trash a file or a directory

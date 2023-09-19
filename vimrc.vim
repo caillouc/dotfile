@@ -1,19 +1,26 @@
 "   ---   Plugins   ---   "
-packadd vim-commentary
-packadd nvim-treesitter
-" packadd vim-surround
-packadd copilot.vim
-packadd coc.nvim
+call plug#begin(stdpath('config').'/plugged')
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install', 'for': 'markdown'}
+Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-sensible'
+Plug 'sainnhe/gruvbox-material'
+Plug 'sainnhe/everforest'
+Plug 'sainnhe/sonokai'
+Plug 'sainnhe/edge'
+Plug 'itchyny/lightline.vim'
+Plug 'github/copilot.vim'
+Plug 'preservim/nerdtree'
+call plug#end()
+
 
 
 
 
 "   ---   General   ---   "
-" Enable the relative number on the left of each line
 set number
 " set relativenumber
-set tabpagemax=100
-set nofoldenable
 set directory=.
 nnoremap ; :
 
@@ -22,7 +29,6 @@ set autoindent
 set tabstop=4
 set shiftwidth=4
 set list lcs=tab:>\ 
-
 nnoremap <Tab> >>_
 nnoremap <S-Tab> <<_
 xnoremap <Tab> >
@@ -32,18 +38,13 @@ autocmd FileType rust,json  setlocal tabstop=4 shiftwidth=4 expandtab
 autocmd BufRead,BufNewFile *.gtm,*.dtm,*.stm setlocal tabstop=4 shiftwidth=4 expandtab
 
 set noshowmode
-
-" split vindow option 
-set splitright " new vertical splits are on the right
-set splitbelow " new horizontal splits are on the bottom
-
 set hlsearch
 
-command Note :tabe ~/Desktop/note.md
+command Note :edit ~/Desktop/note.md
 if has('macunix')
-	command Vimrc :tabe ~/Documents/dotfile/vimrc.vim
+	command Vimrc :edit ~/Documents/dotfile/vimrc.vim
 else
-	command Vimrc :tabe ~/Documents/prog/dotfile/vimrc.vim
+	command Vimrc :edit ~/Documents/prog/dotfile/vimrc.vim
 endif
 
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
@@ -51,7 +52,9 @@ autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 " Fold option
 set foldmethod=expr
 set foldexpr=nvim_treesitter#foldexpr()
+set nofoldenable
 autocmd BufReadPost,FileReadPost * normal zR
+
 
 
 
@@ -61,20 +64,13 @@ autocmd BufReadPost,FileReadPost * normal zR
 let mapleader = " "
 nnoremap , @
 nnoremap U <C-r>
-tnoremap : <C-w>:
 nnoremap <Leader>o o<Esc>o
-nnoremap <Leader>b a{<CR>}<Esc>O
-nnoremap <Leader>q gqip
-
-" Use ctrl-[hjkl] to select the active split!
-nmap <silent> K :wincmd k<CR>
-nmap <silent> J :wincmd j<CR>
-nmap <silent> H :wincmd h<CR>
-nmap <silent> L :wincmd l<CR>
-tmap <silent> K :wincmd k<CR>
-tmap <silent> J :wincmd j<CR>
-tmap <silent> H :wincmd h<CR>
-tmap <silent> L :wincmd l<CR>
+" Go to previous buffer
+nnoremap <Leader>b <C-6>
+" Format current paragraph
+nnoremap <Leader>g gqip
+" Show all buffers
+nnoremap <Leader>l :buffers<CR>
 
 " Use System Clipboard
 if has('macunix')
@@ -87,28 +83,74 @@ else
 	nnoremap <Leader>v "+p
 endif
 
-" Move the windows (split) to a tab
-nnoremap <Leader>n <C-w>T
-tnoremap <Leader>n <C-w>T
-
 " Add a semicolon to the current line without moving the cursor with <Leader>;
 nnoremap <Leader>; m'A;<ESC>`'
 
-" Source vimrc with <Leader>r
-nnoremap <Leader>r :source ~/.vimrc<CR>:echo "Reloaded .vimrc"<CR>
-
 " Replace inner word in the entire file 
-nnoremap <Leader>s :%s/\<<C-r><C-w>\>//g<Left><Left>
-vnoremap <Leader>s :s///g<Left><Left>
+nnoremap <Leader>r :%s/\<<C-r><C-w>\>//g<Left><Left>
+vnoremap <Leader>r :s///g<Left><Left>
 vnoremap // y/\V<C-R>=escape(@",'/\')<CR><CR>
 
 " Remove all single trailing space of a file
-nnoremap <Leader>a m':%s/\S\zs\s$//g<CR>`'
+nnoremap <Leader>A m':%s/\S\zs\s$//g<CR>`'
+
+
+
+
+
+
+"   ---   Plugin options   ---   "
+let g:plug_window = 'vertical new'
+
+" NERDTree option
+" Start NERDTree when Vim is started without file arguments.
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 0 && !exists('s:std_in') | NERDTree | endif
+" Exit Vim if NERDTree is the only window remaining in the only tab.
+autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
+" If another buffer tries to replace NERDTree, put it in the other window, and bring back NERDTree.
+autocmd BufEnter * if bufname('#') =~ 'NERD_tree_\d\+' && bufname('%') !~ 'NERD_tree_\d\+' && winnr('$') > 1 |
+    \ let buf=bufnr() | buffer# | execute "normal! \<C-W>w" | execute 'buffer'.buf | endif
+nnoremap <leader>n :NERDTreeToggle<CR>
 
 " Copilot
 imap <silent><script><expr> <C-J> copilot#Accept("\<CR>")
 imap <C-P> <Plug>(copilot-suggest)
 let g:copilot_no_tab_map = v:true
+
+
+
+
+
+"   ---   Split option   ---   "
+nnoremap <silent> <Leader>k <C-k>
+
+" Use ctrl-[hjkl] to select the active split!
+nmap <silent> K :wincmd k<CR>
+nmap <silent> J :wincmd j<CR>
+nmap <silent> H :wincmd h<CR>
+nmap <silent> L :wincmd l<CR>
+tmap <silent> K :wincmd k<CR>
+tmap <silent> J :wincmd j<CR>
+tmap <silent> H :wincmd h<CR>
+tmap <silent> L :wincmd l<CR>
+
+set splitright " new vertical splits are on the right
+set splitbelow " new horizontal splits are on the bottom
+
+nnoremap <Leader>s :vert sb 
+
+" Get back to previous split
+nnoremap <silent> <Leader>w <C-w>w<CR>
+" Swap the two split
+nnoremap <silent> <Leader>W <C-w>r<CR>
+" Resize option
+nnoremap <silent> <Leader>+ :exe "vertical resize " . (winwidth(0) * 3/2)<CR>
+nnoremap <silent> <Leader>- :exe "vertical resize " . (winwidth(0) * 2/3)<CR>
+nnoremap <silent> <Leader>= <C-w>=<CR>
+
+
+
 
 
 
@@ -134,11 +176,6 @@ let g:edge_enable_bold = 1
 let g:sonokai_enable_italic = 1
 let g:sonokai_disable_italic_comment = 1
 let g:sonokai_enable_bold = 1
-
-packadd! gruvbox-material
-packadd! everforest
-packadd! edge
-packadd! sonokai
 
 function! s:link_highlight() abort
 	highlight! link IncSearch Visual
@@ -195,7 +232,6 @@ let my_lightline_colorschemes = ['gruvbox_material', 'everforest' , 'edge', 'son
 let g:lightline = {}
 let g:lightline.colorscheme = my_lightline_colorschemes[index]
 set laststatus=2
-packadd lightline.vim
 
 
 
@@ -206,7 +242,7 @@ autocmd FileType zsh setlocal commentstring=#\ %s
 autocmd FileType conf setlocal commentstring=#\ %s
 autocmd FileType sh setlocal commentstring=#\ %s
 autocmd FileType python setlocal commentstring=#\ %s
-autocmd FileType vim setlocal commentstring=\"\ %s
+autocmd FileType nvim setlocal commentstring=\"\ %s
 autocmd FileType c setlocal commentstring=\/\/\ %s
 autocmd FileType java setlocal commentstring=\/\/\ %s
 autocmd FileType scala setlocal commentstring=\/\/\ %s
@@ -273,18 +309,21 @@ function! MarkdownConfig()
 	set formatoptions+=tcqn
 endfunction
 autocmd FileType markdown call MarkdownConfig()
+nmap <Leader>p <Plug>MarkdownPreviewToggle
 
 
 
 
 
 "   ---   Terminal option   ---   "
+tnoremap : <C-w>:
 " Execute a command in term
 command -nargs=+ -complete=file TermOpen split | resize 10 | terminal <args>
 autocmd TermOpen * startinsert
 command TermClose bufdo if stridx(bufname(), 'term://') >= 0 | bdelete! | endif
 tnoremap <ESC> <C-\><C-N>
-nnoremap <Leader>t :TermClose<CR> <bar> :TermOpen 
+" nnoremap <Leader>t :TermClose<CR> <bar> :TermOpen 
+nnoremap <Leader>t :TermOpen
 nnoremap <Leader>T :TermClose<CR>
 
 
@@ -298,15 +337,6 @@ autocmd FileType scala nnoremap <Leader>E :TermClose<CR> <bar> :TermOpen ./bin/s
 autocmd FileType java nnoremap <Leader>e :TermClose<CR> <bar> :TermOpen mvn package <CR>
 autocmd FileType rust nnoremap <Leader>e :TermClose<CR> <bar> :TermOpen cargo run <CR>
 autocmd FileType python nnoremap <Leader>e :TermClose<CR> <bar> :TermOpen python3 % <CR>
-if has('macunix')
-	autocmd FileType markdown nnoremap <Leader>e :TermClose<CR> <bar> :TermOpen /Users/pierrecolson/Documents/dotfile/gpdf.sh % <CR>
-	autocmd FileType markdown nnoremap <Leader>E :TermClose<CR> <bar> :TermOpen /Users/pierrecolson/Documents/dotfile/gpdf.sh -no-toc % <CR>
-	autocmd FileType markdown nnoremap <Leader>h :TermClose<CR> <bar> :TermOpen /Users/pierrecolson/Documents/dotfile/gpdf.sh -html % <CR>
-else
-	autocmd FileType markdown nnoremap <Leader>e :TermClose<CR> <bar> :TermOpen /home/pierre/Documents/prog/dotfile/gpdf.sh % <CR>
-	autocmd FileType markdown nnoremap <Leader>E :TermClose<CR> <bar> :TermOpen /home/pierre/Documents/prog/dotfile/gpdf.sh -no-toc % <CR>
-	autocmd FileType markdown nnoremap <Leader>h :TermClose<CR> <bar> :TermOpen /home/pierre/Documents/progd/dotfile/gpdf.sh -html % <CR>
-endif
 
 
 
@@ -346,11 +376,7 @@ inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
                               \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 
 " Use <c-space> to trigger completion.
-if has('nvim')
-  inoremap <silent><expr> <c-space> coc#refresh()
-else
-  inoremap <silent><expr> <c-@> coc#refresh()
-endif
+inoremap <silent><expr> <c-space> coc#refresh()
 
 " Navigate between diagnostics
 nmap <silent> <leader>D <Plug>(coc-diagnostic-prev)
@@ -359,7 +385,7 @@ nmap <silent> <leader>d <Plug>(coc-diagnostic-next)
 " GoTo code navigation.
 nmap <silent> gd :call CocAction('jumpDefinition') <CR>
 nmap <silent> gi :call CocAction('jumpImplementation') <CR>
-nmap <silent> gr :call CocAction('jumpReferences') <CR>
+" nmap <silent> gr :call CocAction('jumpReferences') <CR>
 
 " Highlight the symbol and its references when holding the cursor.
 " autocmd CursorHold * silent call CocActionAsync('highlight')
@@ -367,11 +393,11 @@ nmap <silent> gr :call CocAction('jumpReferences') <CR>
 
 command! -nargs=0 Format :call CocAction('format')
 " Formatting selected code.
-nmap <leader>F  <Plug>(coc-format-selected)
+vmap <leader>f  <Plug>(coc-format-selected)
 nmap <leader>f :Format <CR>
 
 " Shortcut to list and manage extensions
-nnoremap <leader>l :CocList extensions <CR>
+nnoremap <leader>L :CocList extensions <CR>
 
 
 
@@ -380,20 +406,34 @@ nnoremap <leader>l :CocList extensions <CR>
 "   ---   Treesitter config   ---   "
 lua << EOF
 require'nvim-treesitter.configs'.setup {
-  -- A list of parser names, or "all"
-  ensure_installed = { "dart", "vim", "python" },
+	-- A list of parser names, or "all"
+	ensure_installed = {"vim", "python" },
 
-  -- Install parsers synchronously (only applied to `ensure_installed`)
-  sync_install = false,
+	-- Install parsers synchronously (only applied to `ensure_installed`)
+	sync_install = false,
 
-  highlight = {
-    -- `false` will disable the whole extension
-    enable = true,
-    -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
-    -- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
-    -- Using this option may slow down your editor, and you may see some duplicate highlights.
-	-- Instead of true it can also be a list of languages
-    additional_vim_regex_highlighting = false,
-  },
+	indent = {
+		enable = true
+	},
+
+	-- incremental_selection = {
+	-- 	enable = true,
+	-- 	keymaps = {
+	-- 		init_selection = "gnn", -- set to `false` to disable one of the mappings
+	-- 		node_incremental = "grn",
+	-- 		scope_incremental = "grc",
+	-- 		node_decremental = "grm",
+	-- 	},
+	-- },
+
+	highlight = {
+		-- `false` will disable the whole extension
+		enable = true,
+		-- Setting this to true will run `:h syntax` and tree-sitter at the same time.
+		-- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
+		-- Using this option may slow down your editor, and you may see some duplicate highlights.
+		-- Instead of true it can also be a list of languages
+		additional_vim_regex_highlighting = false,
+	}
 }
 EOF
