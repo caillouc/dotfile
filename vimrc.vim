@@ -39,6 +39,7 @@ autocmd BufRead,BufNewFile *.gtm,*.dtm,*.stm setlocal tabstop=4 shiftwidth=4 exp
 
 set noshowmode
 set hlsearch
+set ignorecase
 
 command Note :edit ~/Desktop/note.md
 if has('macunix')
@@ -117,6 +118,10 @@ nnoremap <leader>n :NERDTreeToggle<CR>
 imap <silent><script><expr> <C-J> copilot#Accept("\<CR>")
 imap <C-P> <Plug>(copilot-suggest)
 let g:copilot_no_tab_map = v:true
+
+" Markdown-preview
+let g:mkdp_auto_close = 0
+let g:mkdp_theme = 'light'
 
 
 
@@ -323,7 +328,7 @@ autocmd TermOpen * startinsert
 command TermClose bufdo if stridx(bufname(), 'term://') >= 0 | bdelete! | endif
 tnoremap <ESC> <C-\><C-N>
 " nnoremap <Leader>t :TermClose<CR> <bar> :TermOpen 
-nnoremap <Leader>t :TermOpen
+nnoremap <Leader>t :TermOpen 
 nnoremap <Leader>T :TermClose<CR>
 
 
