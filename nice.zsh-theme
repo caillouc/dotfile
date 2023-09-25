@@ -28,8 +28,8 @@ vcs_info_wrapper() {
   fi
 }
 
-PROMPT="%(?:%{$fg_bold[green]%}%n :%{$fg_bold[red]%}%n )"
-PROMPT+='%{$fg_bold[blue]%}%2~ $(vcs_info_wrapper)%{$reset_color%}%(!.#.$) '
+PROMPT="%(?:%{$fg[green]%}%n :%{$fg[red]%}%n )"
+PROMPT+='%{$fg[blue]%}%2~ $(vcs_info_wrapper)%{$reset_color%}%(!.#.$) '
 
 ZSH_THEME_GIT_PROMPT_PREFIX="%{$fg[red]%}‹"
 ZSH_THEME_GIT_PROMPT_SUFFIX="› %{$reset_color%}"

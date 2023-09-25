@@ -3,13 +3,14 @@ call plug#begin(stdpath('config').'/plugged')
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install', 'for': 'markdown'}
+Plug 'itchyny/lightline.vim'
+Plug 'akinsho/bufferline.nvim', { 'tag': '*' }
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-sensible'
 Plug 'sainnhe/gruvbox-material'
 Plug 'sainnhe/everforest'
 Plug 'sainnhe/sonokai'
 Plug 'sainnhe/edge'
-Plug 'itchyny/lightline.vim'
 Plug 'github/copilot.vim'
 Plug 'preservim/nerdtree'
 call plug#end()
@@ -34,7 +35,7 @@ nnoremap <S-Tab> <<_
 xnoremap <Tab> >
 xnoremap <S-Tab> <
 autocmd FileType scala,c,xml,l3,markdown,cpp,dart  setlocal tabstop=2 shiftwidth=2 expandtab
-autocmd FileType rust,json  setlocal tabstop=4 shiftwidth=4 expandtab
+autocmd FileType rust  setlocal tabstop=4 shiftwidth=4 expandtab
 autocmd BufRead,BufNewFile *.gtm,*.dtm,*.stm setlocal tabstop=4 shiftwidth=4 expandtab
 
 set noshowmode
@@ -60,7 +61,6 @@ autocmd BufReadPost,FileReadPost * normal zR
 
 
 
-
 "   ---   Remap   ---   "
 let mapleader = " "
 nnoremap , @
@@ -72,6 +72,8 @@ nnoremap <Leader>b <C-6>
 nnoremap <Leader>g gqip
 " Show all buffers
 nnoremap <Leader>l :buffers<CR>
+" Quit and save
+nnoremap <Leader>q :wq<CR>
 
 " Use System Clipboard
 if has('macunix')
@@ -99,37 +101,7 @@ nnoremap <Leader>A m':%s/\S\zs\s$//g<CR>`'
 
 
 
-
-"   ---   Plugin options   ---   "
-let g:plug_window = 'vertical new'
-
-" NERDTree option
-" Start NERDTree when Vim is started without file arguments.
-autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * if argc() == 0 && !exists('s:std_in') | NERDTree | endif
-" Exit Vim if NERDTree is the only window remaining in the only tab.
-autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
-" If another buffer tries to replace NERDTree, put it in the other window, and bring back NERDTree.
-autocmd BufEnter * if bufname('#') =~ 'NERD_tree_\d\+' && bufname('%') !~ 'NERD_tree_\d\+' && winnr('$') > 1 |
-    \ let buf=bufnr() | buffer# | execute "normal! \<C-W>w" | execute 'buffer'.buf | endif
-nnoremap <leader>n :NERDTreeToggle<CR>
-
-" Copilot
-imap <silent><script><expr> <C-J> copilot#Accept("\<CR>")
-imap <C-P> <Plug>(copilot-suggest)
-let g:copilot_no_tab_map = v:true
-
-" Markdown-preview
-let g:mkdp_auto_close = 0
-let g:mkdp_theme = 'light'
-
-
-
-
-
 "   ---   Split option   ---   "
-nnoremap <silent> <Leader>k <C-k>
-
 " Use ctrl-[hjkl] to select the active split!
 nmap <silent> K :wincmd k<CR>
 nmap <silent> J :wincmd j<CR>
@@ -159,12 +131,10 @@ nnoremap <silent> <Leader>= <C-w>=<CR>
 
 
 
-
-
 "   ---   Colors   ---   "
 " Theme
 syntax on 
-" set termguicolors
+set termguicolors
 set background=dark
 let g:gruvbox_material_disable_italic_comment = 1
 let g:gruvbox_material_enable_italic = 0
@@ -233,10 +203,78 @@ echo my_colorschemes[index]
 execute 'colorscheme' my_colorschemes[index]
 let my_lightline_colorschemes = ['gruvbox_material', 'everforest' , 'edge', 'sonokai']
 
-" Status line
-let g:lightline = {}
-let g:lightline.colorscheme = my_lightline_colorschemes[index]
+
+
+
+
+"   ---   Plugin options   ---   "
+let g:plug_window = 'vertical new'
+
+" NERDTree option
+" Start NERDTree when Vim is started without file arguments.
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 0 && !exists('s:std_in') | NERDTree | endif
+" Exit Vim if NERDTree is the only window remaining in the only tab.
+autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
+" If another buffer tries to replace NERDTree, put it in the other window, and bring back NERDTree.
+autocmd BufEnter * if bufname('#') =~ 'NERD_tree_\d\+' && bufname('%') !~ 'NERD_tree_\d\+' && winnr('$') > 1 |
+	\ let buf=bufnr() | buffer# | execute "normal! \<C-W>w" | execute 'buffer'.buf | endif
+nnoremap <leader>n :NERDTreeToggle<CR>
+
+" Copilot
+" imap <silent><script><expr> <leader>j copilot#Accept("\<CR>")
+" let g:copilot_no_tab_map = v:true
+imap <C-P> <Plug>(copilot-suggest)
+
+" Markdown-preview
+let g:mkdp_auto_close = 0
+let g:mkdp_theme = 'light'
+
+" Lightline
 set laststatus=2
+let g:lightline = {
+	\ 'enable': { 'tabline': 0 },
+	\ 'colorscheme': my_lightline_colorschemes[index]
+	\ }
+
+" Bufferline
+lua << EOF
+require("bufferline").setup{
+	options = {
+		separator_style = "slant",
+		diagnostics = "coc",
+		show_buffer_close_icons = false,
+		modified_icon = '*',
+		numbers = function(opts)
+			return string.format('%s.%s', opts.ordinal, opts.lower(opts.id))
+		end,
+		style_preset = require('bufferline').style_preset.no_bold,
+		offsets = {{
+			filetype = "nerdtree",
+			text = "File Explorer",
+			highlight = "Directory",
+			text_align = "center",
+			separator = true
+		}},
+		hover = {
+			enable = false
+		},
+	},
+}
+EOF
+nnoremap <silent><leader>1 <Cmd>BufferLineGoToBuffer 1<CR>
+nnoremap <silent><leader>2 <Cmd>BufferLineGoToBuffer 2<CR>
+nnoremap <silent><leader>3 <Cmd>BufferLineGoToBuffer 3<CR>
+nnoremap <silent><leader>4 <Cmd>BufferLineGoToBuffer 4<CR>
+nnoremap <silent><leader>5 <Cmd>BufferLineGoToBuffer 5<CR>
+nnoremap <silent><leader>6 <Cmd>BufferLineGoToBuffer 6<CR>
+nnoremap <silent><leader>7 <Cmd>BufferLineGoToBuffer 7<CR>
+nnoremap <silent><leader>8 <Cmd>BufferLineGoToBuffer 8<CR>
+nnoremap <silent><leader>9 <Cmd>BufferLineGoToBuffer 9<CR>
+" nnoremap <silent><leader>$ <Cmd>BufferLineGoToBuffer -1<CR>
+nnoremap <silent>gt :BufferLineCycleNext<CR>
+nnoremap <silent>gT :BufferLineCycleNext<CR>
+
 
 
 
@@ -342,6 +380,8 @@ autocmd FileType scala nnoremap <Leader>E :TermClose<CR> <bar> :TermOpen ./bin/s
 autocmd FileType java nnoremap <Leader>e :TermClose<CR> <bar> :TermOpen mvn package <CR>
 autocmd FileType rust nnoremap <Leader>e :TermClose<CR> <bar> :TermOpen cargo run <CR>
 autocmd FileType python nnoremap <Leader>e :TermClose<CR> <bar> :TermOpen python3 % <CR>
+" Check if file name is vimrc.vim and map <Leader e> to :source /Users/pierrecolson/.config/nvim/init.vim
+autocmd BufRead vimrc.vim nnoremap <Leader>e :source /Users/pierrecolson/.config/nvim/init.vim<CR>
 
 
 
@@ -420,16 +460,6 @@ require'nvim-treesitter.configs'.setup {
 	indent = {
 		enable = true
 	},
-
-	-- incremental_selection = {
-	-- 	enable = true,
-	-- 	keymaps = {
-	-- 		init_selection = "gnn", -- set to `false` to disable one of the mappings
-	-- 		node_incremental = "grn",
-	-- 		scope_incremental = "grc",
-	-- 		node_decremental = "grm",
-	-- 	},
-	-- },
 
 	highlight = {
 		-- `false` will disable the whole extension
