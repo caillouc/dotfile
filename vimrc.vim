@@ -70,10 +70,10 @@ nnoremap <Leader>o o<Esc>o
 nnoremap <Leader>b <C-6>
 " Format current paragraph
 nnoremap <Leader>g gqip
-" Show all buffers
-nnoremap <Leader>l :buffers<CR>
 " Quit and save
-nnoremap <Leader>q :wq<CR>
+nnoremap <Leader>Q :wq<CR>
+" Save the file
+nnoremap <Leader>w :w<CR>
 
 " Use System Clipboard
 if has('macunix')
@@ -96,6 +96,7 @@ vnoremap // y/\V<C-R>=escape(@",'/\')<CR><CR>
 
 " Remove all single trailing space of a file
 nnoremap <Leader>A m':%s/\S\zs\s$//g<CR>`'
+nnoremap <Leader>d :b# \| bd#<CR>
 
 
 
@@ -118,12 +119,13 @@ set splitbelow " new horizontal splits are on the bottom
 nnoremap <Leader>s :vert sb 
 
 " Get back to previous split
-nnoremap <silent> <Leader>w <C-w>w<CR>
+nnoremap <silent> <Leader>j <C-w>w<CR>
 " Swap the two split
-nnoremap <silent> <Leader>W <C-w>r<CR>
+nnoremap <silent> <Leader>J <C-w>r<CR>
 " Resize option
-nnoremap <silent> <Leader>+ :exe "vertical resize " . (winwidth(0) * 3/2)<CR>
-nnoremap <silent> <Leader>- :exe "vertical resize " . (winwidth(0) * 2/3)<CR>
+nnoremap <silent> <Leader>+ :vertical resize +5<CR>
+nnoremap <silent> <Leader>- :vertical resize -5<CR>
+" nnoremap <silent> <Leader>- :exe "vertical resize " . (winwidth(0) * 2/3)<CR>
 nnoremap <silent> <Leader>= <C-w>=<CR>
 
 
@@ -214,8 +216,10 @@ let g:plug_window = 'vertical new'
 " Start NERDTree when Vim is started without file arguments.
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists('s:std_in') | NERDTree | endif
+
 " Exit Vim if NERDTree is the only window remaining in the only tab.
-autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
+" autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
+
 " If another buffer tries to replace NERDTree, put it in the other window, and bring back NERDTree.
 autocmd BufEnter * if bufname('#') =~ 'NERD_tree_\d\+' && bufname('%') !~ 'NERD_tree_\d\+' && winnr('$') > 1 |
 	\ let buf=bufnr() | buffer# | execute "normal! \<C-W>w" | execute 'buffer'.buf | endif
@@ -374,14 +378,13 @@ nnoremap <Leader>T :TermClose<CR>
 
 
 "   ---   Make for each FileType   ---   "
-autocmd FileType c,make nnoremap <Leader>e :TermClose<CR> <bar> :TermOpen make <CR>
-autocmd FileType scala nnoremap <Leader>e :TermClose<CR> <bar> :TermOpen ./bin/sbt compile <CR>
-autocmd FileType scala nnoremap <Leader>E :TermClose<CR> <bar> :TermOpen ./bin/sbt test <CR>
-autocmd FileType java nnoremap <Leader>e :TermClose<CR> <bar> :TermOpen mvn package <CR>
-autocmd FileType rust nnoremap <Leader>e :TermClose<CR> <bar> :TermOpen cargo run <CR>
-autocmd FileType python nnoremap <Leader>e :TermClose<CR> <bar> :TermOpen python3 % <CR>
-" Check if file name is vimrc.vim and map <Leader e> to :source /Users/pierrecolson/.config/nvim/init.vim
-autocmd BufRead vimrc.vim nnoremap <Leader>e :source /Users/pierrecolson/.config/nvim/init.vim<CR>
+autocmd FileType c,make nnoremap <Leader>m :TermClose<CR> <bar> :TermOpen make <CR>
+autocmd FileType scala nnoremap <Leader>m :TermClose<CR> <bar> :TermOpen ./bin/sbt compile <CR>
+autocmd FileType scala nnoremap <Leader>M :TermClose<CR> <bar> :TermOpen ./bin/sbt test <CR>
+autocmd FileType java nnoremap <Leader>m :TermClose<CR> <bar> :TermOpen mvn package <CR>
+autocmd FileType rust nnoremap <Leader>m :TermClose<CR> <bar> :TermOpen cargo run <CR>
+autocmd FileType python nnoremap <Leader>m :TermClose<CR> <bar> :TermOpen python3 % <CR>
+autocmd BufRead vimrc.vim nnoremap <Leader>m :source /Users/pierrecolson/.config/nvim/init.vim<CR>
 
 
 
@@ -424,8 +427,8 @@ inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
 inoremap <silent><expr> <c-space> coc#refresh()
 
 " Navigate between diagnostics
-nmap <silent> <leader>D <Plug>(coc-diagnostic-prev)
-nmap <silent> <leader>d <Plug>(coc-diagnostic-next)
+nmap <silent> <leader>E <Plug>(coc-diagnostic-prev)
+nmap <silent> <leader>e <Plug>(coc-diagnostic-next)
 
 " GoTo code navigation.
 nmap <silent> gd :call CocAction('jumpDefinition') <CR>
