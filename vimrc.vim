@@ -3,6 +3,8 @@ call plug#begin(stdpath('config').'/plugged')
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install', 'for': 'markdown'}
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
 Plug 'itchyny/lightline.vim'
 Plug 'akinsho/bufferline.nvim', { 'tag': '*' }
 Plug 'tpope/vim-commentary'
@@ -14,6 +16,7 @@ Plug 'sainnhe/edge'
 Plug 'github/copilot.vim'
 Plug 'preservim/nerdtree'
 call plug#end()
+let g:livepreview_previewer = 'open -a Preview'
 
 
 
@@ -34,7 +37,7 @@ nnoremap <Tab> >>_
 nnoremap <S-Tab> <<_
 xnoremap <Tab> >
 xnoremap <S-Tab> <
-autocmd FileType scala,c,xml,l3,markdown,cpp,dart  setlocal tabstop=2 shiftwidth=2 expandtab
+autocmd FileType scala,c,xml,l3,markdown,cpp,dart,html  setlocal tabstop=2 shiftwidth=2 expandtab
 autocmd FileType rust  setlocal tabstop=4 shiftwidth=4 expandtab
 autocmd BufRead,BufNewFile *.gtm,*.dtm,*.stm setlocal tabstop=4 shiftwidth=4 expandtab
 
@@ -96,7 +99,6 @@ vnoremap // y/\V<C-R>=escape(@",'/\')<CR><CR>
 
 " Remove all single trailing space of a file
 nnoremap <Leader>A m':%s/\S\zs\s$//g<CR>`'
-nnoremap <Leader>d :b# \| bd#<CR>
 
 
 
@@ -214,16 +216,20 @@ let g:plug_window = 'vertical new'
 
 " NERDTree option
 " Start NERDTree when Vim is started without file arguments.
-autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * if argc() == 0 && !exists('s:std_in') | NERDTree | endif
+" autocmd StdinReadPre * let s:std_in=1
+" autocmd VimEnter * if argc() == 0 && !exists('s:std_in') | NERDTree | endif
 
 " Exit Vim if NERDTree is the only window remaining in the only tab.
-" autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
+autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
 
 " If another buffer tries to replace NERDTree, put it in the other window, and bring back NERDTree.
 autocmd BufEnter * if bufname('#') =~ 'NERD_tree_\d\+' && bufname('%') !~ 'NERD_tree_\d\+' && winnr('$') > 1 |
 	\ let buf=bufnr() | buffer# | execute "normal! \<C-W>w" | execute 'buffer'.buf | endif
 nnoremap <leader>n :NERDTreeToggle<CR>
+let NERDTreeQuitOnOpen = 1
+let NERDTreeAutoDeleteBuffer = 1
+let NERDTreeMinimalUI = 1
+let NERDTreeDirArrows = 1
 
 " Copilot
 " imap <silent><script><expr> <leader>j copilot#Accept("\<CR>")
@@ -233,6 +239,7 @@ imap <C-P> <Plug>(copilot-suggest)
 " Markdown-preview
 let g:mkdp_auto_close = 0
 let g:mkdp_theme = 'light'
+autocmd FileType markdown nmap <Leader>p <Plug>MarkdownPreviewToggle
 
 " Lightline
 set laststatus=2
@@ -279,6 +286,9 @@ nnoremap <silent><leader>9 <Cmd>BufferLineGoToBuffer 9<CR>
 nnoremap <silent>gt :BufferLineCycleNext<CR>
 nnoremap <silent>gT :BufferLineCycleNext<CR>
 
+" FZF
+nnoremap <Leader>z :Rg <C-r><C-w><CR>
+vnoremap <Leader>z y:Rg <C-r>"<CR>
 
 
 
@@ -356,7 +366,6 @@ function! MarkdownConfig()
 	set formatoptions+=tcqn
 endfunction
 autocmd FileType markdown call MarkdownConfig()
-nmap <Leader>p <Plug>MarkdownPreviewToggle
 
 
 
@@ -378,12 +387,12 @@ nnoremap <Leader>T :TermClose<CR>
 
 
 "   ---   Make for each FileType   ---   "
-autocmd FileType c,make nnoremap <Leader>m :TermClose<CR> <bar> :TermOpen make <CR>
-autocmd FileType scala nnoremap <Leader>m :TermClose<CR> <bar> :TermOpen ./bin/sbt compile <CR>
-autocmd FileType scala nnoremap <Leader>M :TermClose<CR> <bar> :TermOpen ./bin/sbt test <CR>
-autocmd FileType java nnoremap <Leader>m :TermClose<CR> <bar> :TermOpen mvn package <CR>
-autocmd FileType rust nnoremap <Leader>m :TermClose<CR> <bar> :TermOpen cargo run <CR>
-autocmd FileType python nnoremap <Leader>m :TermClose<CR> <bar> :TermOpen python3 % <CR>
+autocmd FileType c,make nnoremap <Leader>m :TermOpen make <CR>
+autocmd FileType scala nnoremap <Leader>m :TermOpen ./bin/sbt compile <CR>
+autocmd FileType scala nnoremap <Leader>M :TermOpen ./bin/sbt test <CR>
+autocmd FileType java nnoremap <Leader>m :TermOpen mvn package <CR>
+autocmd FileType rust nnoremap <Leader>m :TermOpen cargo run <CR>
+autocmd FileType python nnoremap <Leader>m :TermOpen python3 % <CR>
 autocmd BufRead vimrc.vim nnoremap <Leader>m :source /Users/pierrecolson/.config/nvim/init.vim<CR>
 
 
@@ -427,8 +436,8 @@ inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
 inoremap <silent><expr> <c-space> coc#refresh()
 
 " Navigate between diagnostics
-nmap <silent> <leader>E <Plug>(coc-diagnostic-prev)
-nmap <silent> <leader>e <Plug>(coc-diagnostic-next)
+nmap <silent> <leader>D <Plug>(coc-diagnostic-prev)
+nmap <silent> <leader>d <Plug>(coc-diagnostic-next)
 
 " GoTo code navigation.
 nmap <silent> gd :call CocAction('jumpDefinition') <CR>
