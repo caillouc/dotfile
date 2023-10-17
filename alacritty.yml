@@ -465,6 +465,7 @@ font:
 # Offer IPC using `alacritty msg` (unix only)
 #ipc_socket: true
 
+
 #mouse:
   # Click settings
   #
@@ -769,7 +770,8 @@ font:
 #
 # If the same trigger is assigned to multiple actions, all of them are executed
 # in the order they were defined in.
-#key_bindings:
+key_bindings:
+  - { key: Escape, mods: Control, action: ToggleViMode }
   #- { key: Paste,                                       action: Paste          }
   #- { key: Copy,                                        action: Copy           }
   #- { key: L,         mods: Control,                    action: ClearLogNotice }

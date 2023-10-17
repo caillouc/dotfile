@@ -14,7 +14,6 @@ Plug 'sainnhe/everforest'
 Plug 'sainnhe/sonokai'
 Plug 'sainnhe/edge'
 Plug 'github/copilot.vim'
-Plug 'preservim/nerdtree'
 call plug#end()
 let g:livepreview_previewer = 'open -a Preview'
 
@@ -60,6 +59,8 @@ set foldexpr=nvim_treesitter#foldexpr()
 set nofoldenable
 autocmd BufReadPost,FileReadPost * normal zR
 
+" Disable mouse support
+set mouse=
 
 
 
@@ -214,23 +215,6 @@ let my_lightline_colorschemes = ['gruvbox_material', 'everforest' , 'edge', 'son
 "   ---   Plugin options   ---   "
 let g:plug_window = 'vertical new'
 
-" NERDTree option
-" Start NERDTree when Vim is started without file arguments.
-" autocmd StdinReadPre * let s:std_in=1
-" autocmd VimEnter * if argc() == 0 && !exists('s:std_in') | NERDTree | endif
-
-" Exit Vim if NERDTree is the only window remaining in the only tab.
-autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
-
-" If another buffer tries to replace NERDTree, put it in the other window, and bring back NERDTree.
-autocmd BufEnter * if bufname('#') =~ 'NERD_tree_\d\+' && bufname('%') !~ 'NERD_tree_\d\+' && winnr('$') > 1 |
-	\ let buf=bufnr() | buffer# | execute "normal! \<C-W>w" | execute 'buffer'.buf | endif
-nnoremap <leader>n :NERDTreeToggle<CR>
-let NERDTreeQuitOnOpen = 1
-let NERDTreeAutoDeleteBuffer = 1
-let NERDTreeMinimalUI = 1
-let NERDTreeDirArrows = 1
-
 " Copilot
 " imap <silent><script><expr> <leader>j copilot#Accept("\<CR>")
 " let g:copilot_no_tab_map = v:true
@@ -287,8 +271,8 @@ nnoremap <silent>gt :BufferLineCycleNext<CR>
 nnoremap <silent>gT :BufferLineCycleNext<CR>
 
 " FZF
-nnoremap <Leader>z :Rg <C-r><C-w><CR>
-vnoremap <Leader>z y:Rg <C-r>"<CR>
+nnoremap <silent><leader>z :Files<CR>
+nnoremap <Leader>Z :Rg <C-r><C-w><CR>
 
 
 
