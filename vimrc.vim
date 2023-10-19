@@ -122,9 +122,9 @@ set splitbelow " new horizontal splits are on the bottom
 nnoremap <Leader>s :vert sb 
 
 " Get back to previous split
-nnoremap <silent> <Leader>j <C-w>w<CR>
+nnoremap <silent> <Leader>j <C-w>w
 " Swap the two split
-nnoremap <silent> <Leader>J <C-w>r<CR>
+nnoremap <silent> <Leader>J <C-w>r
 " Resize option
 nnoremap <silent> <Leader>+ :vertical resize +5<CR>
 nnoremap <silent> <Leader>- :vertical resize -5<CR>
@@ -268,7 +268,7 @@ nnoremap <silent><leader>8 <Cmd>BufferLineGoToBuffer 8<CR>
 nnoremap <silent><leader>9 <Cmd>BufferLineGoToBuffer 9<CR>
 " nnoremap <silent><leader>$ <Cmd>BufferLineGoToBuffer -1<CR>
 nnoremap <silent>gt :BufferLineCycleNext<CR>
-nnoremap <silent>gT :BufferLineCycleNext<CR>
+nnoremap <silent>gT :BufferLineCyclePrev<CR>
 
 " FZF
 nnoremap <silent><leader>z :Files<CR>
@@ -358,7 +358,7 @@ autocmd FileType markdown call MarkdownConfig()
 "   ---   Terminal option   ---   "
 tnoremap : <C-w>:
 " Execute a command in term
-command -nargs=+ -complete=file TermOpen split | resize 10 | terminal <args>
+command -nargs=+ -complete=file TermOpen botright split | resize 15 | terminal <args>
 autocmd TermOpen * startinsert
 command TermClose bufdo if stridx(bufname(), 'term://') >= 0 | bdelete! | endif
 tnoremap <ESC> <C-\><C-N>
@@ -454,7 +454,7 @@ require'nvim-treesitter.configs'.setup {
 	sync_install = false,
 
 	indent = {
-		enable = true
+		enable = false
 	},
 
 	highlight = {
