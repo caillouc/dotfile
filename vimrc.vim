@@ -36,7 +36,7 @@ nnoremap <Tab> >>_
 nnoremap <S-Tab> <<_
 xnoremap <Tab> >
 xnoremap <S-Tab> <
-autocmd FileType scala,c,xml,l3,markdown,cpp,dart,html  setlocal tabstop=2 shiftwidth=2 expandtab
+autocmd FileType scala,c,xml,l3,markdown,cpp,dart,html,css,scss  setlocal tabstop=2 shiftwidth=2 expandtab
 autocmd FileType rust  setlocal tabstop=4 shiftwidth=4 expandtab
 autocmd BufRead,BufNewFile *.gtm,*.dtm,*.stm setlocal tabstop=4 shiftwidth=4 expandtab
 
@@ -65,6 +65,7 @@ set mouse=
 
 
 
+
 "   ---   Remap   ---   "
 let mapleader = " "
 nnoremap , @
@@ -73,7 +74,7 @@ nnoremap <Leader>o o<Esc>o
 " Go to previous buffer
 nnoremap <Leader>b <C-6>
 " Format current paragraph
-nnoremap <Leader>g gqip
+nnoremap <Leader>z gqip
 " Quit and save
 nnoremap <Leader>Q :wq<CR>
 " Save the file
@@ -128,7 +129,6 @@ nnoremap <silent> <Leader>J <C-w>r
 " Resize option
 nnoremap <silent> <Leader>+ :vertical resize +5<CR>
 nnoremap <silent> <Leader>- :vertical resize -5<CR>
-" nnoremap <silent> <Leader>- :exe "vertical resize " . (winwidth(0) * 2/3)<CR>
 nnoremap <silent> <Leader>= <C-w>=<CR>
 
 
@@ -216,9 +216,7 @@ let my_lightline_colorschemes = ['gruvbox_material', 'everforest' , 'edge', 'son
 let g:plug_window = 'vertical new'
 
 " Copilot
-" imap <silent><script><expr> <leader>j copilot#Accept("\<CR>")
-" let g:copilot_no_tab_map = v:true
-imap <C-P> <Plug>(copilot-suggest)
+imap <C-j> <Plug>(copilot-suggest)
 
 " Markdown-preview
 let g:mkdp_auto_close = 0
@@ -254,6 +252,10 @@ require("bufferline").setup{
 		hover = {
 			enable = false
 		},
+		custom_filter = function(buf_number, buf_numbers)
+			-- filter out Termanal buffer from the bufferline
+			return not vim.fn.bufname(buf_number):match('term://')
+		end,
 	},
 }
 EOF
@@ -266,13 +268,17 @@ nnoremap <silent><leader>6 <Cmd>BufferLineGoToBuffer 6<CR>
 nnoremap <silent><leader>7 <Cmd>BufferLineGoToBuffer 7<CR>
 nnoremap <silent><leader>8 <Cmd>BufferLineGoToBuffer 8<CR>
 nnoremap <silent><leader>9 <Cmd>BufferLineGoToBuffer 9<CR>
-" nnoremap <silent><leader>$ <Cmd>BufferLineGoToBuffer -1<CR>
 nnoremap <silent>gt :BufferLineCycleNext<CR>
 nnoremap <silent>gT :BufferLineCyclePrev<CR>
 
 " FZF
-nnoremap <silent><leader>z :Files<CR>
-nnoremap <Leader>Z :Rg <C-r><C-w><CR>
+nnoremap <silent><leader><space> :Files<CR>
+nnoremap <Leader>g :Rg<CR>
+nnoremap <Leader>G :Rg <C-r><C-w><CR>
+" Initialize configuration dictionary
+let g:fzf_vim = {}
+" Empty value to disable preview window altogether
+let g:fzf_vim.preview_window = []
 
 
 
@@ -357,13 +363,33 @@ autocmd FileType markdown call MarkdownConfig()
 
 "   ---   Terminal option   ---   "
 tnoremap : <C-w>:
+" Function to close all terminal
+fun! TermClose()
+	if stridx(bufname(), 'term://') >= 0
+		wincmd p
+	endif
+	" let currBuff=bufnr("%")
+	" execute "bufdo if stridx(bufname(), 'term://') >= 0 | bdelete! | endif"
+	" execute 'buffer ' . currBuff
+	let buffers = filter(range(1, bufnr('$')), "stridx(bufname(v:val), 'term://') >= 0")
+	if empty(buffers)
+		echo "No terminal buffer found"
+		return
+	endif
+	exe 'bd '.join(buffers, ' ')
+	if len(buffers) == 1
+		echo "1 terminal buffer has been closed"
+	else 
+		echo len(buffers)." terminal buffers have been closed"
+	endif
+endfunction
+command TermClose call TermClose()
 " Execute a command in term
-command -nargs=+ -complete=file TermOpen botright split | resize 15 | terminal <args>
+command -nargs=+ -complete=file TermOpen call TermClose() | botright split | resize 15 | terminal <args>
 autocmd TermOpen * startinsert
-command TermClose bufdo if stridx(bufname(), 'term://') >= 0 | bdelete! | endif
 tnoremap <ESC> <C-\><C-N>
-" nnoremap <Leader>t :TermClose<CR> <bar> :TermOpen 
 nnoremap <Leader>t :TermOpen 
+" nnoremap <Leader>t :TermOpen 
 nnoremap <Leader>T :TermClose<CR>
 
 
@@ -377,6 +403,7 @@ autocmd FileType scala nnoremap <Leader>M :TermOpen ./bin/sbt test <CR>
 autocmd FileType java nnoremap <Leader>m :TermOpen mvn package <CR>
 autocmd FileType rust nnoremap <Leader>m :TermOpen cargo run <CR>
 autocmd FileType python nnoremap <Leader>m :TermOpen python3 % <CR>
+autocmd FileType dart nnoremap <Leader>m :TermOpen flutter run<CR>
 autocmd BufRead vimrc.vim nnoremap <Leader>m :source /Users/pierrecolson/.config/nvim/init.vim<CR>
 
 
@@ -429,8 +456,8 @@ nmap <silent> gi :call CocAction('jumpImplementation') <CR>
 " nmap <silent> gr :call CocAction('jumpReferences') <CR>
 
 " Highlight the symbol and its references when holding the cursor.
-" autocmd CursorHold * silent call CocActionAsync('highlight')
-" nnoremap <leader>h :call CocActionAsync('highlight') <CR>
+autocmd CursorHold * silent call CocActionAsync('highlight')
+nnoremap <leader>h :call CocActionAsync('highlight') <CR>
 
 command! -nargs=0 Format :call CocAction('format')
 " Formatting selected code.
