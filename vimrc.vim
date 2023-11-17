@@ -1,19 +1,26 @@
 "   ---   Plugins   ---   "
 call plug#begin(stdpath('config').'/plugged')
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
+
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'github/copilot.vim'
+
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install', 'for': 'markdown'}
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'junegunn/fzf.vim'
+
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.4' }
+
 Plug 'itchyny/lightline.vim'
 Plug 'akinsho/bufferline.nvim', { 'tag': '*' }
+
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-sensible'
+
 Plug 'sainnhe/gruvbox-material'
 Plug 'sainnhe/everforest'
 Plug 'sainnhe/sonokai'
 Plug 'sainnhe/edge'
-Plug 'github/copilot.vim'
+
 call plug#end()
 let g:livepreview_previewer = 'open -a Preview'
 
@@ -79,6 +86,8 @@ nnoremap <Leader>z gqip
 nnoremap <Leader>Q :wq<CR>
 " Save the file
 nnoremap <Leader>w :w<CR>
+" clear highlight
+nnoremap <Leader>h :noh<CR>
 
 " Use System Clipboard
 if has('macunix')
@@ -141,72 +150,28 @@ nnoremap <silent> <Leader>= <C-w>=<CR>
 syntax on 
 set termguicolors
 set background=dark
-let g:gruvbox_material_disable_italic_comment = 1
-let g:gruvbox_material_enable_italic = 0
-let g:gruvbox_material_enable_bold = 1
-
-let g:everforest_enable_italic = 1
-let g:everforest_disable_italic_comment = 1
-let g:everforest_enable_bold = 1
-
-let g:edge_enable_italic = 1
-let g:edge_disable_italic_comment = 1
-let g:edge_enable_bold = 1
-
 let g:sonokai_enable_italic = 1
 let g:sonokai_disable_italic_comment = 1
 let g:sonokai_enable_bold = 1
+let g:sonokai_style = 'atlantis'
 
-function! s:link_highlight() abort
-	highlight! link IncSearch Visual
-	highlight! link Search Visual
-	highlight! link Substitute Visual
-endfunction
+" function! s:sonokai_custom() abort
+	" highlight! link IncSearch Visual
+	" highlight! link Search Visual
+	" highlight! link Substitute Visual
+	" let l:palette = sonokai#get_palette('atlantis', {'custom_bg_red': ['#DC6372',   '203'], 'custom_bg_green': ['#91C36E',   '22'], 'custom_yellow': ['#CAB15D', '179']})
+	" call sonokai#highlight('IncSearch', l:palette.bg0, l:palette.custom_bg_red)
+	" call sonokai#highlight('Visual', l:palette.bg0, l:palette.custom_yellow)
+	" call sonokai#highlight('Search', l:palette.bg0, l:palette.custom_bg_green)
+	" call sonokai#highlight('Substitute', l:palette.bg0, l:palette.custom_yellow)
+" endfunction
 
-function! s:everforest_custom() abort
-	call s:link_highlight()
-	let l:palette = everforest#get_palette('hard', {})
-endfunction
-    
-augroup EverforestCustom
-	autocmd!
-	autocmd ColorScheme everforest call s:everforest_custom()
-augroup END
+" augroup SonokaiCustom
+" 	autocmd!
+" 	autocmd ColorScheme sonokai call s:sonokai_custom()
+" augroup END
 
-function! s:gruvbox_material_custom() abort
-	call s:link_highlight()
-	let l:palette = gruvbox_material#get_palette('medium', 'material', {})
-endfunction
-    
-augroup GruvboxMaterialCustom autocmd!
-	autocmd ColorScheme gruvbox-material call s:gruvbox_material_custom()
-augroup END
-
-function! s:edge_custom() abort
-	call s:link_highlight()
-	let l:palette = edge#get_palette('aura', 0, {})
-endfunction
-
-augroup EdgeCustom
-	autocmd!
-	autocmd ColorScheme edge call s:edge_custom()
-augroup END
-
-function! s:sonokai_custom() abort
-	call s:link_highlight()
-	let l:palette = sonokai#get_palette('atlantis', {})
-endfunction
-
-augroup SonokaiCustom
-	autocmd!
-	autocmd ColorScheme sonokai call s:sonokai_custom()
-augroup END
-
-let my_colorschemes = ['gruvbox-material', 'everforest' , 'edge', 'sonokai']
-let index = rand() % (len(my_colorschemes))
-echo my_colorschemes[index]
-execute 'colorscheme' my_colorschemes[index]
-let my_lightline_colorschemes = ['gruvbox_material', 'everforest' , 'edge', 'sonokai']
+colorscheme sonokai
 
 
 
@@ -227,7 +192,7 @@ autocmd FileType markdown nmap <Leader>p <Plug>MarkdownPreviewToggle
 set laststatus=2
 let g:lightline = {
 	\ 'enable': { 'tabline': 0 },
-	\ 'colorscheme': my_lightline_colorschemes[index]
+	\ 'colorscheme': 'sonokai'
 	\ }
 
 " Bufferline
@@ -271,14 +236,13 @@ nnoremap <silent><leader>9 <Cmd>BufferLineGoToBuffer 9<CR>
 nnoremap <silent>gt :BufferLineCycleNext<CR>
 nnoremap <silent>gT :BufferLineCyclePrev<CR>
 
-" FZF
-nnoremap <silent><leader><space> :Files<CR>
-nnoremap <Leader>g :Rg<CR>
-nnoremap <Leader>G :Rg <C-r><C-w><CR>
-" Initialize configuration dictionary
-let g:fzf_vim = {}
-" Empty value to disable preview window altogether
-let g:fzf_vim.preview_window = []
+" Telescope
+" Find files using Telescope command-line sugar.
+nnoremap <leader><space>  <cmd>Telescope find_files<cr>
+nnoremap <leader>g <cmd>Telescope live_grep<cr>
+nnoremap <leader>G <cmd>Telescope grep_string<cr>
+" nnoremap <leader>fb <cmd>Telescope buffers<cr>
+" nnoremap <leader>fh <cmd>Telescope help_tags<cr>
 
 
 
@@ -457,7 +421,7 @@ nmap <silent> gi :call CocAction('jumpImplementation') <CR>
 
 " Highlight the symbol and its references when holding the cursor.
 autocmd CursorHold * silent call CocActionAsync('highlight')
-nnoremap <leader>h :call CocActionAsync('highlight') <CR>
+" nnoremap <leader>h :call CocActionAsync('highlight') <CR>
 
 command! -nargs=0 Format :call CocAction('format')
 " Formatting selected code.
@@ -475,7 +439,7 @@ nnoremap <leader>L :CocList extensions <CR>
 lua << EOF
 require'nvim-treesitter.configs'.setup {
 	-- A list of parser names, or "all"
-	ensure_installed = {"vim", "python" },
+	ensure_installed = {"vim", "python", "java"},
 
 	-- Install parsers synchronously (only applied to `ensure_installed`)
 	sync_install = false,
