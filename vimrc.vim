@@ -15,6 +15,7 @@ Plug 'akinsho/bufferline.nvim', { 'tag': '*' }
 
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-sensible'
+Plug 'tpope/vim-fugitive'
 
 Plug 'sainnhe/gruvbox-material'
 Plug 'sainnhe/everforest'
@@ -23,6 +24,8 @@ Plug 'sainnhe/edge'
 
 call plug#end()
 let g:livepreview_previewer = 'open -a Preview'
+
+
 
 
 
@@ -64,6 +67,8 @@ autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 set foldmethod=expr
 set foldexpr=nvim_treesitter#foldexpr()
 set nofoldenable
+nmap fc zc
+nmap fo zo
 autocmd BufReadPost,FileReadPost * normal zR
 
 " Disable mouse support
@@ -132,7 +137,7 @@ set splitbelow " new horizontal splits are on the bottom
 nnoremap <Leader>s :vert sb 
 
 " Get back to previous split
-nnoremap <silent> <Leader>j <C-w>w
+nnoremap <silent> <Leader>j <C-w>p
 " Swap the two split
 nnoremap <silent> <Leader>J <C-w>r
 " Resize option
@@ -182,6 +187,10 @@ let g:plug_window = 'vertical new'
 
 " Copilot
 imap <C-j> <Plug>(copilot-suggest)
+imap <C-J> <Plug>(copilot-dismiss)
+let g:copilot_filetypes = {
+	\ 'text': v:false,
+\ }
 
 " Markdown-preview
 let g:mkdp_auto_close = 0
@@ -192,7 +201,15 @@ autocmd FileType markdown nmap <Leader>p <Plug>MarkdownPreviewToggle
 set laststatus=2
 let g:lightline = {
 	\ 'enable': { 'tabline': 0 },
-	\ 'colorscheme': 'sonokai'
+	\ 'colorscheme': 'sonokai',
+	\ 'active': {
+	\   'left': [ [ 'mode', 'paste' ],
+	\             [ 'gitbranch' ], 
+	\             [ 'readonly', 'filename', 'modified' ] ]
+	\ },
+	\ 'component_function': {
+	\   'gitbranch': 'FugitiveHead'
+	\ },
 	\ }
 
 " Bufferline
@@ -207,13 +224,6 @@ require("bufferline").setup{
 			return string.format('%s.%s', opts.ordinal, opts.lower(opts.id))
 		end,
 		style_preset = require('bufferline').style_preset.no_bold,
-		offsets = {{
-			filetype = "nerdtree",
-			text = "File Explorer",
-			highlight = "Directory",
-			text_align = "center",
-			separator = true
-		}},
 		hover = {
 			enable = false
 		},
@@ -421,7 +431,15 @@ nmap <silent> gi :call CocAction('jumpImplementation') <CR>
 
 " Highlight the symbol and its references when holding the cursor.
 autocmd CursorHold * silent call CocActionAsync('highlight')
-" nnoremap <leader>h :call CocActionAsync('highlight') <CR>
+
+nnoremap <silent> <leader>H :call ShowDocumentation()<CR>
+" Show hover when provider exists, fallback to vim's builtin behavior.
+function! ShowDocumentation()
+if CocAction('hasProvider', 'hover')
+  call CocActionAsync('definitionHover')
+endif
+endfunction
+
 
 command! -nargs=0 Format :call CocAction('format')
 " Formatting selected code.
@@ -459,3 +477,4 @@ require'nvim-treesitter.configs'.setup {
 	}
 }
 EOF
+
