@@ -160,21 +160,21 @@ let g:sonokai_disable_italic_comment = 1
 let g:sonokai_enable_bold = 1
 let g:sonokai_style = 'atlantis'
 
-" function! s:sonokai_custom() abort
-	" highlight! link IncSearch Visual
-	" highlight! link Search Visual
-	" highlight! link Substitute Visual
-	" let l:palette = sonokai#get_palette('atlantis', {'custom_bg_red': ['#DC6372',   '203'], 'custom_bg_green': ['#91C36E',   '22'], 'custom_yellow': ['#CAB15D', '179']})
-	" call sonokai#highlight('IncSearch', l:palette.bg0, l:palette.custom_bg_red)
-	" call sonokai#highlight('Visual', l:palette.bg0, l:palette.custom_yellow)
-	" call sonokai#highlight('Search', l:palette.bg0, l:palette.custom_bg_green)
-	" call sonokai#highlight('Substitute', l:palette.bg0, l:palette.custom_yellow)
-" endfunction
+function! s:sonokai_custom() abort
+	highlight! link IncSearch Visual
+	highlight! link Search Visual
+	highlight! link Substitute Visual
+	let l:palette = sonokai#get_palette('atlantis', {})
+	call sonokai#highlight('IncSearch', l:palette.bg0, l:palette.bg_red)
+	call sonokai#highlight('Search', l:palette.none, l:palette.diff_red)
+	call sonokai#highlight('Substitute', l:palette.none, l:palette.grey_dim)
+endfunction
 
-" augroup SonokaiCustom
-" 	autocmd!
-" 	autocmd ColorScheme sonokai call s:sonokai_custom()
-" augroup END
+augroup SonokaiCustom
+	autocmd!
+	autocmd ColorScheme sonokai call s:sonokai_custom()
+augroup END
+
 
 colorscheme sonokai
 
@@ -457,7 +457,7 @@ nnoremap <leader>L :CocList extensions <CR>
 lua << EOF
 require'nvim-treesitter.configs'.setup {
 	-- A list of parser names, or "all"
-	ensure_installed = {"vim", "python", "java"},
+	ensure_installed = {"vim", "python", "java", "lua"},
 
 	-- Install parsers synchronously (only applied to `ensure_installed`)
 	sync_install = false,
