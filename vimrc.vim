@@ -55,11 +55,8 @@ set hlsearch
 set ignorecase
 
 command Note :edit ~/Desktop/note.md
-if has('macunix')
-	command Vimrc :edit ~/Documents/dotfile/vimrc.vim
-else
-	command Vimrc :edit ~/Documents/prog/dotfile/vimrc.vim
-endif
+command Vimrc :edit ~/Documents/dotfile/vimrc.vim
+
 
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 
@@ -122,14 +119,14 @@ nnoremap <Leader>A m':%s/\S\zs\s$//g<CR>`'
 
 "   ---   Split option   ---   "
 " Use ctrl-[hjkl] to select the active split!
-nmap <silent> K :wincmd k<CR>
-nmap <silent> J :wincmd j<CR>
-nmap <silent> H :wincmd h<CR>
-nmap <silent> L :wincmd l<CR>
-tmap <silent> K :wincmd k<CR>
-tmap <silent> J :wincmd j<CR>
-tmap <silent> H :wincmd h<CR>
-tmap <silent> L :wincmd l<CR>
+nnoremap <silent> K :wincmd k<CR>
+nnoremap <silent> J :wincmd j<CR>
+nnoremap <silent> H :wincmd h<CR>
+nnoremap <silent> L :wincmd l<CR>
+tnoremap <silent> K :wincmd k<CR>
+tnoremap <silent> J :wincmd j<CR>
+tnoremap <silent> H :wincmd h<CR>
+tnoremap <silent> L :wincmd l<CR>
 
 set splitright " new vertical splits are on the right
 set splitbelow " new horizontal splits are on the bottom
@@ -161,9 +158,10 @@ let g:sonokai_enable_bold = 1
 let g:sonokai_style = 'atlantis'
 
 function! s:sonokai_custom() abort
-	highlight! link IncSearch Visual
-	highlight! link Search Visual
-	highlight! link Substitute Visual
+	highlight! link TSParameter Orange
+	" highlight! link IncSearch Visual
+	" highlight! link Search Visual
+	" highlight! link Substitute Visual
 	let l:palette = sonokai#get_palette('atlantis', {})
 	call sonokai#highlight('IncSearch', l:palette.bg0, l:palette.bg_red)
 	call sonokai#highlight('Search', l:palette.none, l:palette.diff_red)
@@ -248,7 +246,8 @@ nnoremap <silent>gT :BufferLineCyclePrev<CR>
 
 " Telescope
 " Find files using Telescope command-line sugar.
-nnoremap <leader><space>  <cmd>Telescope find_files<cr>
+nnoremap <leader>f  <cmd>Telescope find_files<cr>
+nnoremap <leader>F  <cmd>Telescope find_files hidden=true
 nnoremap <leader>g <cmd>Telescope live_grep<cr>
 nnoremap <leader>G <cmd>Telescope grep_string<cr>
 " nnoremap <leader>fb <cmd>Telescope buffers<cr>
@@ -443,8 +442,8 @@ endfunction
 
 command! -nargs=0 Format :call CocAction('format')
 " Formatting selected code.
-vmap <leader>f  <Plug>(coc-format-selected)
-nmap <leader>f :Format <CR>
+vmap <leader>e  <Plug>(coc-format-selected)
+nmap <leader>e :Format <CR>
 
 " Shortcut to list and manage extensions
 nnoremap <leader>L :CocList extensions <CR>
