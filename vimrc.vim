@@ -107,8 +107,6 @@ nnoremap <Leader>; m'A;<ESC>`'
 
 " Replace inner word in the entire file 
 nnoremap <Leader>r :%s/\<<C-r><C-w>\>//g<Left><Left>
-vnoremap <Leader>r :s///g<Left><Left>
-vnoremap // y/\V<C-R>=escape(@",'/\')<CR><CR>
 
 " Remove all single trailing space of a file
 nnoremap <Leader>A m':%s/\S\zs\s$//g<CR>`'
@@ -250,6 +248,7 @@ nnoremap <leader>f  <cmd>Telescope find_files<cr>
 nnoremap <leader>F  <cmd>Telescope find_files hidden=true
 nnoremap <leader>g <cmd>Telescope live_grep<cr>
 nnoremap <leader>G <cmd>Telescope grep_string<cr>
+nnoremap <leader>n <cmd>Telescope registers<cr>
 " nnoremap <leader>fb <cmd>Telescope buffers<cr>
 " nnoremap <leader>fh <cmd>Telescope help_tags<cr>
 
