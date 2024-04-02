@@ -109,7 +109,9 @@ gpdf () {
 
 # shortcut git 
 gcp () { git add -A && git commit -m "$@" && git push; }
-alias grh='git reset --hard'
+RED='\033[0;31m'
+NC='\033[0m' # No Color
+alias grh="echo -e '${RED}Never again !!${NC}'" # Used to be alias for git reset --hard
 alias poussin='git pull --rebase'
 
 # zsh plugin 
