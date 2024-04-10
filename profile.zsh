@@ -5,6 +5,14 @@ autoload -U compinit; compinit
 ENABLE_CORRECTION="false"
 COMPLETION_WAITING_DOTS="true"   
 
+# History file for zsh
+HISTFILE=~/.zsh_history
+HISTSIZE=10000
+SAVEHIST=10000
+# Share history in every terminal session
+setopt SHARE_HISTORY
+
+
 # Theme for the terminal
 source $DOTFILE_PATH/nice.zsh-theme
 
@@ -23,10 +31,10 @@ alias aj='autojump'                             # Because autojump is too long
 alias vimrc="nvim $DOTFILE_PATH/vimrc.vim"      # Edit vimrc file
 alias profile="nvim $DOTFILE_PATH/profile.zsh"  # Edit profile.zsh file
 alias sprofile="source $HOME/.zshrc"            # Source this file
-alias jd="j drive"                              # shortcut that jump to the base directory of my drive (gitdrive)
 alias iconf="nvim $HOME/.config/i3/config"      # Quickly edit i3 config file
 
 export EDITOR="/usr/bin/nvim"
+alias pi="TERM=xterm-256color ssh pierre@192.168.1.30"  # Connect to the raspberry pi
 
 # enable nvim in terminal command
 # bindkey -v
@@ -125,14 +133,6 @@ bindkey '^[[Z' autosuggest-accept
 export PASSWORD_STORE_DIR="$DOC_PATH/.password-store"
 export PASSWORD_STORE_ENABLE_EXTENSIONS=true
 export PASSWORD_STORE_GENERATED_LENGTH=20
-
-# make search up and down work, so partially type and hit up/down to find relevant stuff
-# autoload -U up-line-or-beginning-search
-# autoload -U down-line-or-beginning-search
-# zle -N up-line-or-beginning-search
-# zle -N down-line-or-beginning-search
-# bindkey "^[OA" up-line-or-beginning-search # Up
-# bindkey "^[OB" down-line-or-beginning-search # Down
 
 # Because it's cool
 neofetch

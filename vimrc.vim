@@ -161,7 +161,7 @@ function! s:sonokai_custom() abort
 	" highlight! link Search Visual
 	" highlight! link Substitute Visual
 	let l:palette = sonokai#get_palette('atlantis', {})
-	call sonokai#highlight('IncSearch', l:palette.bg0, l:palette.bg_red)
+	call sonokai#highlight('IncSearch', l:palette.none, l:palette.bg_red)
 	call sonokai#highlight('Search', l:palette.none, l:palette.diff_red)
 	call sonokai#highlight('Substitute', l:palette.none, l:palette.grey_dim)
 endfunction
@@ -170,7 +170,6 @@ augroup SonokaiCustom
 	autocmd!
 	autocmd ColorScheme sonokai call s:sonokai_custom()
 augroup END
-
 
 colorscheme sonokai
 
@@ -186,6 +185,7 @@ imap <C-j> <Plug>(copilot-suggest)
 imap <C-J> <Plug>(copilot-dismiss)
 let g:copilot_filetypes = {
 	\ 'text': v:false,
+	\ 'markdown': v:false,
 \ }
 
 " Markdown-preview
