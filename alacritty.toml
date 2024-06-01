@@ -1,0 +1,27 @@
+import = ["/Users/pierrecolson/.config/alacritty/themes/themes/afterglow.toml"]
+
+[colors.cursor]
+cursor = "0xbc5653"
+text = "0x2c2c2c"
+
+[env]
+TERM = "alacritty"
+
+[font]
+size = 18.0
+
+[font.normal]
+family = "Hack Nerd Font"
+
+[[keyboard.bindings]]
+action = "ToggleViMode"
+key = "Escape"
+mods = "Control"
+
+[window]
+decorations = "full"
+title = "Mon Super Terminal (Alacritty)"
+
+[window.dimensions]
+columns = 90
+lines = 28

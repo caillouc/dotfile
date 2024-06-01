@@ -32,8 +32,8 @@ window:
   # least `2`, while using a value of `0` for columns and lines will fall back
   # to the window manager's recommended size
   dimensions:
-    columns: 80
-    lines: 24
+    columns: 90
+    lines: 28
 
   # Window position (changes require restart)
   #
