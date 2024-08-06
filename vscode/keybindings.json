@@ -1,0 +1,38 @@
+[
+	{
+		"key": "ctrl+;",
+		"command": "workbench.action.navigateToLastEditLocation"
+	},
+	{
+		"key": "ctrl+k ctrl+q",
+		"command": "-workbench.action.navigateToLastEditLocation"
+	},
+	{
+		"key": "ctrl+n",
+		"command": "-workbench.action.files.newUntitledFile"
+	},
+	{
+		"key": "ctrl+n",
+		"command": "quickInput.next",
+		"when": "inQuickInput && quickInputType == 'quickPick'"
+	},
+	{
+		"key": "ctrl+p",
+		"command": "quickInput.previous",
+		"when": "inQuickInput && quickInputType == 'quickPick'"
+	},
+	{
+		"key": "ctrl+p",
+		"command": "-workbench.action.quickOpen"
+	},
+	{
+		"key": "ctrl+p",
+		"command": "-workbench.action.quickOpenNavigateNextInFilePicker",
+		"when": "inFilesPicker && inQuickOpen"
+	},
+	{
+		"key": "ctrl+f",
+		"command": "-extension.vim_ctrl+f",
+		"when": "editorTextFocus && vim.active && vim.use<C-f> && !inDebugRepl && vim.mode != 'Insert'"
+	}
+]

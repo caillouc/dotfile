@@ -1,0 +1,117 @@
+{
+	"vim.vimrc.enable": true,
+	"vim.vimrc.path": "path/to/your/.vimrc",
+	"vim.leader": "<space>",
+	"vim.visualModeKeyBindingsNonRecursive": [
+		{
+			"before": [
+				"<Leader>",
+				"/"
+			],
+			"commands": [
+				"actions.find"
+			]
+		}
+	],
+	"vim.normalModeKeyBindingsNonRecursive": [
+		{
+			"before": [
+				"<Leader>",
+				"p"
+			],
+			"commands": [
+				"workbench.action.showCommands"
+			]
+		},
+		{
+			"before": [
+				"<Leader>",
+				"e"
+			],
+			"commands": [
+				"editor.action.formatDocument"
+			]
+		},
+		{
+			"before": [
+				"<Leader>",
+				"t"
+			],
+			"commands": [
+				"workbench.action.terminal.focus"
+			]
+		},
+		{
+			"before": [
+				"<Leader>",
+				"f"
+			],
+			"commands": [
+				"workbench.action.quickOpen"
+			]
+		},
+		{
+			"before": [
+				"<Leader>",
+				"/"
+			],
+			"commands": [
+				"actions.find"
+			]
+		},
+		{
+			"before": [
+				"<Leader>",
+				"s"
+			],
+			"commands": [
+				"workbench.action.splitEditor"
+			]
+		},
+		{
+			"before": [
+				"<Leader>",
+				"y"
+			],
+			"commands": [
+				"workbench.action.toggleSidebarVisibility"
+			]
+		},
+		{
+			"before": [
+				"<Leader>",
+				"d"
+			],
+			"commands": [
+				"editor.action.marker.next"
+			]
+		},
+		{
+			"before": [
+				"<Leader>",
+				"D"
+			],
+			"commands": [
+				"editor.action.marker.prev"
+			]
+		},
+		{
+			"before": [
+				"<Leader>",
+				"m"
+			],
+			"commands": [
+				"testing.runAtCursor"
+			]
+		},
+		{
+			"before": [
+				"<Leader>",
+				"M"
+			],
+			"commands": [
+				"testing.runCurrentFile"
+			]
+		}
+	]
+}
