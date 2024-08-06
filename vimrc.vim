@@ -161,9 +161,9 @@ function! s:sonokai_custom() abort
 	" highlight! link Search Visual
 	" highlight! link Substitute Visual
 	let l:palette = sonokai#get_palette('atlantis', {})
-	call sonokai#highlight('IncSearch', l:palette.none, l:palette.bg_red)
-	call sonokai#highlight('Search', l:palette.none, l:palette.diff_red)
-	call sonokai#highlight('Substitute', l:palette.none, l:palette.grey_dim)
+	" call sonokai#highlight('IncSearch', l:palette.none, l:palette.bg_red)
+	" call sonokai#highlight('Search', l:palette.none, l:palette.diff_red)
+	" call sonokai#highlight('Substitute', l:palette.none, l:palette.grey_dim)
 endfunction
 
 augroup SonokaiCustom
