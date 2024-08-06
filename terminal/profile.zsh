@@ -20,18 +20,18 @@ source $JUMP_CMD_PATH/cmds.sh
 
 # shortcut 
 alias ls='ls --color'
-alias vim='nvim'                               # Use -p option with nvim by default
-alias please='sudo'                             # Be polite with your computer
-alias py='python3'                              # Open a python shell
-alias la='ls -liah'                             # Better version of ls
-alias zshrc="nvim $HOME/.zshrc"                 # Edit .zsshrc file
-alias path='echo $PATH'                         # Display the path variable 	
-alias c='cd && clear && neofetch'               # Clear the terminal and run neofetch
-alias aj='autojump'                             # Because autojump is too long
-alias vimrc="nvim $DOTFILE_PATH/vimrc.vim"      # Edit vimrc file
-alias profile="nvim $DOTFILE_PATH/profile.zsh"  # Edit profile.zsh file
-alias sprofile="source $HOME/.zshrc"            # Source this file
-alias iconf="nvim $HOME/.config/i3/config"      # Quickly edit i3 config file
+alias vim='nvim'                           					    # Use -p option with nvim by default
+alias please='sudo'                             				# Be polite with your computer
+alias py='python3'  				                            # Open a python shell
+alias la='ls -liah'                 				            # Better version of ls
+alias zshrc="nvim $HOME/.zshrc"                 				# Edit .zsshrc file
+alias path='echo $PATH'  				                        # Display the path variable 	
+alias c='cd && clear && neofetch'        				        # Clear the terminal and run neofetch
+alias aj='autojump'                          				    # Because autojump is too long
+alias vimrc="nvim $DOTFILE_PATH/vimrc.vim"        			    # Edit vimrc file
+alias profile="nvim $DOTFILE_PATH/terminal/profile.zsh" 		# Edit profile.zsh file
+alias sprofile="source $HOME/.zshrc"                            # Source this file
+alias iconf="nvim $HOME/.config/i3/config"                      # Quickly edit i3 config file
 
 export EDITOR="/usr/bin/nvim"
 alias pi="TERM=xterm-256color ssh pierre@192.168.1.30"  # Connect to the raspberry pi
