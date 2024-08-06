@@ -14,7 +14,7 @@ setopt SHARE_HISTORY
 
 
 # Theme for the terminal
-source $DOTFILE_PATH/nice.zsh-theme
+source $DOTFILE_PATH/terminal/nice.zsh-theme
 
 source $JUMP_CMD_PATH/cmds.sh
 

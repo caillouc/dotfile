@@ -1,3 +1,4 @@
+source ./vscode/init.vim
 "   ---   Plugins   ---   "
 call plug#begin(stdpath('config').'/plugged')
 
@@ -31,28 +32,9 @@ let g:livepreview_previewer = 'open -a Preview'
 
 
 
-"   ---   General   ---   "
-set number
-" set relativenumber
-set directory=.
-nnoremap ; :
-
-" tab gestion 
-set autoindent
-set tabstop=4
-set shiftwidth=4
-set list lcs=tab:>\ 
-nnoremap <Tab> >>_
-nnoremap <S-Tab> <<_
-xnoremap <Tab> >
-xnoremap <S-Tab> <
 autocmd FileType scala,c,xml,l3,markdown,cpp,dart,html,css,scss  setlocal tabstop=2 shiftwidth=2 expandtab
 autocmd FileType rust  setlocal tabstop=4 shiftwidth=4 expandtab
 autocmd BufRead,BufNewFile *.gtm,*.dtm,*.stm setlocal tabstop=4 shiftwidth=4 expandtab
-
-set noshowmode
-set hlsearch
-set ignorecase
 
 command Note :edit ~/Desktop/note.md
 command Vimrc :edit ~/Documents/dotfile/vimrc.vim
@@ -77,19 +59,6 @@ set mouse=
 
 "   ---   Remap   ---   "
 let mapleader = " "
-nnoremap , @
-nnoremap U <C-r>
-nnoremap <Leader>o o<Esc>o
-" Go to previous buffer
-nnoremap <Leader>b <C-6>
-" Format current paragraph
-nnoremap <Leader>z gqip
-" Quit and save
-nnoremap <Leader>Q :wq<CR>
-" Save the file
-nnoremap <Leader>w :w<CR>
-" clear highlight
-nnoremap <Leader>h :noh<CR>
 
 " Use System Clipboard
 if has('macunix')
@@ -102,39 +71,16 @@ else
 	nnoremap <Leader>v "+p
 endif
 
-" Add a semicolon to the current line without moving the cursor with <Leader>;
-nnoremap <Leader>; m'A;<ESC>`'
-
-" Replace inner word in the entire file 
-nnoremap <Leader>r :%s/\<<C-r><C-w>\>//g<Left><Left>
-
-" Remove all single trailing space of a file
-nnoremap <Leader>A m':%s/\S\zs\s$//g<CR>`'
-
 
 
 
 
 "   ---   Split option   ---   "
-" Use ctrl-[hjkl] to select the active split!
-nnoremap <silent> K :wincmd k<CR>
-nnoremap <silent> J :wincmd j<CR>
-nnoremap <silent> H :wincmd h<CR>
-nnoremap <silent> L :wincmd l<CR>
-tnoremap <silent> K :wincmd k<CR>
-tnoremap <silent> J :wincmd j<CR>
-tnoremap <silent> H :wincmd h<CR>
-tnoremap <silent> L :wincmd l<CR>
-
 set splitright " new vertical splits are on the right
 set splitbelow " new horizontal splits are on the bottom
 
 nnoremap <Leader>s :vert sb 
 
-" Get back to previous split
-nnoremap <silent> <Leader>j <C-w>p
-" Swap the two split
-nnoremap <silent> <Leader>J <C-w>r
 " Resize option
 nnoremap <silent> <Leader>+ :vertical resize +5<CR>
 nnoremap <silent> <Leader>- :vertical resize -5<CR>
