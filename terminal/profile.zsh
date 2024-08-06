@@ -21,6 +21,7 @@ source $JUMP_CMD_PATH/cmds.sh
 # shortcut 
 alias ls='ls --color'
 alias vim='nvim'                           					    # Use -p option with nvim by default
+alias sudo='echo "Be polite and say please : please"'           # Add space after sudo
 alias please='sudo'                             				# Be polite with your computer
 alias py='python3'  				                            # Open a python shell
 alias la='ls -liah'                 				            # Better version of ls
