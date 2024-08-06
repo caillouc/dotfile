@@ -1,4 +1,5 @@
-source ./vscode/init.vim
+" Important to also include vscode/init.vim file
+
 "   ---   Plugins   ---   "
 call plug#begin(stdpath('config').'/plugged')
 

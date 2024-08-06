@@ -9,3 +9,4 @@
 * `mac-os-specific-profile.zsh` : some zsh command working only on mac os
 * `nice.zsh-theme` : theme for zsh
 * `rofi-style-hard-link.rasi` : config file for rofi text launcher
+* `vscode` folder : contains settings file for vscode configuration with vim
