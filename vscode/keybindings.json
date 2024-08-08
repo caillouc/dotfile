@@ -1,38 +1,49 @@
+// Place your key bindings in this file to override the defaultsauto[]
 [
-	{
-		"key": "ctrl+;",
-		"command": "workbench.action.navigateToLastEditLocation"
-	},
-	{
-		"key": "ctrl+k ctrl+q",
-		"command": "-workbench.action.navigateToLastEditLocation"
-	},
-	{
-		"key": "ctrl+n",
-		"command": "-workbench.action.files.newUntitledFile"
-	},
-	{
-		"key": "ctrl+n",
-		"command": "quickInput.next",
-		"when": "inQuickInput && quickInputType == 'quickPick'"
-	},
-	{
-		"key": "ctrl+p",
-		"command": "quickInput.previous",
-		"when": "inQuickInput && quickInputType == 'quickPick'"
-	},
-	{
-		"key": "ctrl+p",
-		"command": "-workbench.action.quickOpen"
-	},
-	{
-		"key": "ctrl+p",
-		"command": "-workbench.action.quickOpenNavigateNextInFilePicker",
-		"when": "inFilesPicker && inQuickOpen"
-	},
-	{
-		"key": "ctrl+f",
-		"command": "-extension.vim_ctrl+f",
-		"when": "editorTextFocus && vim.active && vim.use<C-f> && !inDebugRepl && vim.mode != 'Insert'"
-	}
+    {
+        "key": "ctrl+;",
+        "command": "workbench.action.navigateToLastEditLocation"
+    },
+    {
+        "key": "ctrl+k ctrl+q",
+        "command": "-workbench.action.navigateToLastEditLocation"
+    },
+    {
+        "key": "ctrl+n",
+        "command": "-workbench.action.files.newUntitledFile"
+    },
+    {
+        "key": "ctrl+n",
+        "command": "quickInput.next",
+        "when": "inQuickInput && quickInputType == 'quickPick'"
+    },
+    {
+        "key": "ctrl+p",
+        "command": "quickInput.previous",
+        "when": "inQuickInput && quickInputType == 'quickPick'"
+    },
+    {
+        "key": "ctrl+p",
+        "command": "-workbench.action.quickOpen"
+    },
+    {
+        "key": "ctrl+p",
+        "command": "-workbench.action.quickOpenNavigateNextInFilePicker",
+        "when": "inFilesPicker && inQuickOpen"
+    },
+    {
+        "key": "ctrl+f",
+        "command": "-extension.vim_ctrl+f",
+        "when": "editorTextFocus && vim.active && vim.use<C-f> && !inDebugRepl && vim.mode != 'Insert'"
+    },
+    {
+        "key": "ctrl+n",
+        "command": "selectNextSuggestion",
+        "when": "suggestWidgetMultipleSuggestions && suggestWidgetVisible && textInputFocus || suggestWidgetVisible && textInputFocus && !suggestWidgetHasFocusedSuggestion"
+    },
+    {
+        "key": "ctrl+p",
+        "command": "selectPrevSuggestion",
+        "when": "suggestWidgetMultipleSuggestions && suggestWidgetVisible && textInputFocus || suggestWidgetVisible && textInputFocus && !suggestWidgetHasFocusedSuggestion"
+    },
 ]
