@@ -1,13 +1,7 @@
 "   ---   General   ---   "
-set number
-" set relativenumber
-set directory=.
-nnoremap ; :
 
 " tab gestion 
 set autoindent
-set tabstop=4
-set shiftwidth=4
 nnoremap <Tab> >>_
 nnoremap <S-Tab> <<_
 xnoremap <Tab> >
@@ -18,17 +12,17 @@ set hlsearch
 set ignorecase
 
 "   ---   Remap   ---   "
+nnoremap ; :
 nnoremap , @
 nnoremap U <C-r>
+" Double o
 nnoremap <Leader>o o<Esc>o
 " Go to previous cursor position
 nnoremap <Leader>b <C-o>
 " Format current paragraph
 nnoremap <Leader>z gqip
-" Quit and save
-nnoremap <Leader>Q :wq<CR>
-" Save the file
-nnoremap <Leader>w :w<CR>
+" Toogle fold
+nnoremap ff za
 
 " Put the underliying word in lower/upper case
 nnoremap <Leader>u guiw
