@@ -1,4 +1,4 @@
-import = ["~/.config/alacritty/themes/themes/afterglow.toml"]
+general.import = ["~/.config/alacritty/themes/themes/afterglow.toml"]
 
 [colors.cursor]
 cursor = "0xbc5653"
