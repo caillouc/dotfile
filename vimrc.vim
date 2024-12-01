@@ -5,33 +5,25 @@ call plug#begin(stdpath('config').'/plugged')
 
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'github/copilot.vim'
-
-Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install', 'for': 'markdown'}
 
 Plug 'nvim-lua/plenary.nvim'
-Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.4' }
+Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.8' }
 
 Plug 'itchyny/lightline.vim'
-Plug 'akinsho/bufferline.nvim', { 'tag': '*' }
+Plug 'akinsho/bufferline.nvim', { 'tag': '*'}
 
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-fugitive'
 
-Plug 'sainnhe/gruvbox-material'
-Plug 'sainnhe/everforest'
 Plug 'sainnhe/sonokai'
-Plug 'sainnhe/edge'
 
 call plug#end()
-let g:livepreview_previewer = 'open -a Preview'
 
 
 
 
-
-
+set number
 
 autocmd FileType scala,c,xml,l3,markdown,cpp,dart,html,css,scss  setlocal tabstop=2 shiftwidth=2 expandtab
 autocmd FileType rust  setlocal tabstop=4 shiftwidth=4 expandtab
@@ -104,13 +96,7 @@ let g:sonokai_style = 'atlantis'
 
 function! s:sonokai_custom() abort
 	highlight! link TSParameter Orange
-	" highlight! link IncSearch Visual
-	" highlight! link Search Visual
-	" highlight! link Substitute Visual
 	let l:palette = sonokai#get_palette('atlantis', {})
-	" call sonokai#highlight('IncSearch', l:palette.none, l:palette.bg_red)
-	" call sonokai#highlight('Search', l:palette.none, l:palette.diff_red)
-	" call sonokai#highlight('Substitute', l:palette.none, l:palette.grey_dim)
 endfunction
 
 augroup SonokaiCustom
@@ -126,14 +112,6 @@ colorscheme sonokai
 
 "   ---   Plugin options   ---   "
 let g:plug_window = 'vertical new'
-
-" Copilot
-imap <C-j> <Plug>(copilot-suggest)
-imap <C-J> <Plug>(copilot-dismiss)
-let g:copilot_filetypes = {
-	\ 'text': v:false,
-	\ 'markdown': v:false,
-\ }
 
 " Markdown-preview
 let g:mkdp_auto_close = 0

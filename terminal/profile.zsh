@@ -19,20 +19,18 @@ source $DOTFILE_PATH/terminal/nice.zsh-theme
 source $JUMP_CMD_PATH/cmds.sh
 
 # shortcut 
-alias ls='ls --color'
-alias vim='nvim'                           					    # Use -p option with nvim by default
-alias sudo='echo "Be polite and say please : please"'           # Add space after sudo
-alias please='/usr/bin/sudo'                             				# Be polite with your computer
-alias py='python3'  				                            # Open a python shell
-alias la='ls -liah'                 				            # Better version of ls
-alias zshrc="nvim $HOME/.zshrc"                 				# Edit .zsshrc file
-alias path='echo $PATH'  				                        # Display the path variable 	
-alias c='cd && clear && neofetch'        				        # Clear the terminal and run neofetch
-alias aj='autojump'                          				    # Because autojump is too long
-alias vimrc="nvim $DOTFILE_PATH/vimrc.vim"        			    # Edit vimrc file
-alias profile="nvim $DOTFILE_PATH/terminal/profile.zsh" 		# Edit profile.zsh file
+alias vim='nvim'                                                # Use -p option with nvim by default
+alias please='/usr/bin/sudo'                                    # Be polite with your computer
+alias py='python3'                                              # Open a python shell
+alias la='ls -liah'                                             # Better version of ls
+alias zshrc="nvim $HOME/.zshrc"                                 # Edit .zsshrc file
+alias path='echo $PATH'                                         # Display the path variable 	
+alias aj='autojump'                                             # Because autojump is too long
+alias vimrc="nvim $DOTFILE_PATH/vimrc.vim"                      # Edit vimrc file
+alias profile="nvim $DOTFILE_PATH/terminal/profile.zsh"         # Edit profile.zsh file
 alias sprofile="source $HOME/.zshrc"                            # Source this file
-alias iconf="nvim $HOME/.config/i3/config"                      # Quickly edit i3 config file
+alias hconf="nvim $DOTFILE_PATH/linux/hyprland.conf"            # Quickly edit i3 config file
+alias n="nautilus ."                                            # Open file manager to the current location
 
 export EDITOR="/usr/bin/nvim"
 alias pi="TERM=xterm-256color ssh pierre@192.168.1.30"  # Connect to the raspberry pi
@@ -55,9 +53,6 @@ cd () {
 		*) builtin cd "$1" && ls .         	 ;;
 	esac
 }
-
-# cd shortcut 
-alias cd..='cd ../'                         # Go back 1 directory level(for fast typers)
 
 # easy ps aux with grep command
 pg (){
@@ -124,16 +119,9 @@ alias grh="echo -e '${RED}Never again !!${NC}'" # Used to be alias for git reset
 alias poussin='git pull --rebase'
 
 # zsh plugin 
-# export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#928374"
 source $ZSH_PLUGIN_PATH/please.plugin.zsh
 source $ZSH_PLUGIN_PATH/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source $ZSH_PLUGIN_PATH/zsh-autosuggestions/zsh-autosuggestions.zsh
 bindkey '^[[Z' autosuggest-accept
 
-# password manager shortcut
-export PASSWORD_STORE_DIR="$DOC_PATH/.password-store"
-export PASSWORD_STORE_ENABLE_EXTENSIONS=true
-export PASSWORD_STORE_GENERATED_LENGTH=20
-
-# Because it's cool
-neofetch
+fastfetch

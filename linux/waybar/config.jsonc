@@ -1,0 +1,75 @@
+{
+	"spacing": 4,
+	"margin-left": 0,
+	"margin-right": 0,    
+	"margin-bottom": 0,
+	"spacing": 0,
+	"modules-left": ["wlr/taskbar", "hyprland/workspaces"],
+	"modules-center": ["hyprland/window"],
+	"modules-right": ["pulseaudio", "bluetooth", "clock", "tray"],
+
+
+	// Taskbar
+	"wlr/taskbar": {
+		"format": "{icon}",
+		"icon-size": 18,
+		"tooltip-format": "{title}",
+		"on-click": "activate",
+		"on-click-middle": "close",
+		"ignore-list": [
+			"Alacritty"
+		],
+		"rewrite": {
+			"Firefox Web Browser": "Firefox"
+		}
+	},
+
+	// Workspaces
+	"hyprland/workspaces" : {
+		"on-click": "activate",
+		"active-only": false,
+		"all-outputs": true,
+		"format": "{}",
+		"format-icons": {
+			"urgent": "",
+			"active": "",
+			"default": ""
+		},
+		"persistent-workspaces": {
+			"*": 5
+		}       
+	},
+	"hyprland/window": {
+		"separate-outputs": true
+	},
+	"clock": {
+		"format": "{:%H:%M %d-%m-%Y}"
+	},
+	"tray": {
+		// "icon-size": 21,
+		"spacing": 10
+	},
+	"pulseaudio": {
+		// "scroll-step": 1, // %, can be a float
+
+		"format": "{icon} {volume}%",
+		"format-bluetooth": "{volume}%  {icon} {format_source}",
+		"format-bluetooth-muted": " {icon} {format_source}",
+		"format-muted": " {format_source}",
+		"format-source": "{volume}% ",
+		"format-source-muted": "",
+		"format-icons": {
+			"headphone": " ",
+			"default": [" ", " ", " "]
+		}
+	},
+	// Bluetooth
+	"bluetooth": {
+		"format": " ON",
+		"format-disabled": " OFF",
+		"format-off": "",
+		"interval": 30,
+		"on-click": "blueman-manager",
+		"format-no-controller": ""
+	}
+}

@@ -94,24 +94,6 @@
 			"commands": [
 				"editor.action.marker.prev"
 			]
-		},
-		{
-			"before": [
-				"<Leader>",
-				"m"
-			],
-			"commands": [
-				"testing.runAtCursor"
-			]
-		},
-		{
-			"before": [
-				"<Leader>",
-				"M"
-			],
-			"commands": [
-				"testing.runCurrentFile"
-			]
 		}
 	]
 }
