@@ -19,6 +19,7 @@ source $DOTFILE_PATH/terminal/nice.zsh-theme
 source $JUMP_CMD_PATH/cmds.sh
 
 # shortcut 
+alias ls="ls --color"                                           # Display color with ls (for ssh connction)
 alias vim='nvim'                                                # Use -p option with nvim by default
 alias please='/usr/bin/sudo'                                    # Be polite with your computer
 alias py='python3'                                              # Open a python shell
