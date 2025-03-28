@@ -29,9 +29,16 @@ nnoremap <Leader>u guiw
 nnoremap <Leader>U gUiw
 
 " Use System Clipboard
-nnoremap <Leader>c "*yy
-xnoremap <Leader>c "*y
-nnoremap <Leader>v "*p
+" Use System Clipboard
+if has('macunix')
+	nnoremap <Leader>c "*yy
+	xnoremap <Leader>c "*y
+	nnoremap <Leader>v "*p
+else 
+	nnoremap <Leader>c "+yy
+	xnoremap <Leader>c "+y
+	nnoremap <Leader>v "+p
+endif
 
 " Add a semicolon to the current line without moving the cursor with <Leader>;
 nnoremap <Leader>; m'A;<ESC>`'
