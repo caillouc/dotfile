@@ -32,6 +32,7 @@ alias profile="nvim $DOTFILE_PATH/terminal/profile.zsh"         # Edit profile.z
 alias sprofile="source $HOME/.zshrc"                            # Source this file
 alias hconf="nvim $DOTFILE_PATH/linux/hyprland.conf"            # Quickly edit i3 config file
 alias n="nautilus ."                                            # Open file manager to the current location
+alias open="xdg-open"                                           # Open file
 
 export EDITOR="/usr/bin/nvim"
 alias pi="TERM=xterm-256color ssh pierre@192.168.1.30"  # Connect to the raspberry pi

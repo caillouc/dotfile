@@ -43,7 +43,7 @@
 		"separate-outputs": true
 	},
 	"clock": {
-		"format": "{:%H:%M %d-%m-%Y}"
+		"format": "{:%d-%m-%Y %H:%M}"
 	},
 	"tray": {
 		// "icon-size": 21,
