@@ -6,7 +6,7 @@
 	"spacing": 0,
 	"modules-left": ["wlr/taskbar", "hyprland/workspaces"],
 	"modules-center": ["hyprland/window"],
-	"modules-right": ["hyprland/language", "pulseaudio", "bluetooth", "clock", "tray"],
+	"modules-right": ["pulseaudio", "bluetooth", "clock", "tray"],
 
 
 	// Taskbar
@@ -23,15 +23,6 @@
 			"Firefox Web Browser": "Firefox"
 		}
 	},
-
-	"hyprland/language": {
-		"format": "{}",
-		"format-en": "US",
-		// Temp workaround since us (intl) does not seems to be detected correctly (revealed with `waybar --log-level debug`)
-		// https://github.com/Alexays/Waybar/issues/2072
-		"format-": "US (intl)",
-		"on-click": "commands.keyboardLayoutNext"
-	}, 
 
 	// Workspaces
 	"hyprland/workspaces" : {
