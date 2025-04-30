@@ -33,6 +33,8 @@ alias sprofile="source $HOME/.zshrc"                            # Source this fi
 alias hconf="nvim $DOTFILE_PATH/linux/hyprland.conf"            # Quickly edit i3 config file
 alias n="nautilus ."                                            # Open file manager to the current location
 alias open="xdg-open"                                           # Open file
+alias copy="wl-copy"                                            # Because I cannot remember the command every time I need it
+alias paste="wl-paste"                                          # Same reason
 
 export EDITOR="/usr/bin/nvim"
 alias pi="TERM=xterm-256color ssh pierre@192.168.1.30"  # Connect to the raspberry pi
@@ -48,7 +50,7 @@ sp () {
 # quick way to take some note 
 alias note="nvim ~/Desktop/note.md"
 
-# now cd execute ls builtin when arrive in destinaion and add shortcut
+# now cd execute ls builtin when arrive in destinaion
 cd () {
 	case $1 in 
 		"") builtin cd $HOME && ls .         ;;
@@ -115,10 +117,11 @@ gpdf () {
 
 # shortcut git 
 gcp () { git add -A && git commit -m "$@" && git push; }
+
 RED='\033[0;31m'
 NC='\033[0m' # No Color
 alias grh="echo -e '${RED}Never again !!${NC}'" # Used to be alias for git reset --hard
-alias poussin='git pull --rebase'
+alias poussin='git pull'
 
 # zsh plugin 
 source $ZSH_PLUGIN_PATH/please.plugin.zsh
