@@ -39,8 +39,7 @@ alias paste="wl-paste"                                          # Same reason
 export EDITOR="/usr/bin/nvim"
 alias pi="TERM=xterm-256color ssh pierre@192.168.1.30"  # Connect to the raspberry pi
 
-# enable nvim in terminal command
-# bindkey -v
+alias gpu-driver="lspci -n -n -k | grep -A 2 -e VGA -e 3D && modinfo -F version nvidia"
 
 # Move to trash a file or a directory
 sp () {
@@ -123,10 +122,30 @@ NC='\033[0m' # No Color
 alias grh="echo -e '${RED}Never again !!${NC}'" # Used to be alias for git reset --hard
 alias poussin='git pull'
 
+
+
 # zsh plugin 
+ZVM_ESCAPE_KEYTIMEOUT=0
 source $ZSH_PLUGIN_PATH/please.plugin.zsh
-source $ZSH_PLUGIN_PATH/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source $ZSH_PLUGIN_PATH/zsh-vi-mode/zsh-vi-mode.plugin.zsh
 source $ZSH_PLUGIN_PATH/zsh-autosuggestions/zsh-autosuggestions.zsh
-bindkey '^[[Z' autosuggest-accept
+source $ZSH_PLUGIN_PATH/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+# Remove all existing keybindings starting with esc
+bindkey -rp "^["
+
+# Define a function to set the keybinding after everything loads
+setup_autosuggest_bindings() {
+  # Only bind if the widget is available
+  if zle -l | grep -q autosuggest-accept; then
+    bindkey '^[[Z' autosuggest-accept
+    # Remove the hook after binding to prevent repeated execution
+    unset -f setup_autosuggest_bindings
+  fi
+}
+
+# Attach to precmd hook (runs just before each prompt display)
+autoload -Uz add-zsh-hook
+add-zsh-hook precmd setup_autosuggest_bindings
 
 fastfetch

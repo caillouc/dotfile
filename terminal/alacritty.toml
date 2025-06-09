@@ -18,7 +18,7 @@ family = "DroidSansMNerdFont"
 
 [[keyboard.bindings]]
 action = "ToggleViMode"
-key = "Escape"
+key = "Space"
 mods = "Control"
 
 [window]
