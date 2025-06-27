@@ -148,152 +148,14 @@ window#waybar.empty #window {
  * Custom Quicklinks
  * ----------------------------------------------------- */
 
-#custom-brave,
-#custom-browser,
-#custom-keybindings,
-#custom-outlook,
-#custom-filemanager,
-#custom-teams,
-#custom-chatgpt,
-#custom-calculator,
-#custom-windowsvm,
-#custom-cliphist,
-#custom-settings,
-#custom-wallpaper,
-#custom-system,
-#custom-hyprshade,
-#custom-hypridle,
-#custom-quicklink1,
-#custom-quicklink2,
-#custom-quicklink3,
-#custom-quicklink4,
-#custom-quicklink5,
-#custom-quicklink6,
-#custom-quicklink7,
-#custom-quicklink8,
-#custom-quicklink9,
-#custom-quicklink10,
-#custom-waybarthemes {
-    margin-right: 23px;
-    font-size: 20px;
-    font-weight: bold;
-    color: @iconcolor;
-}
-
-#custom-hyprshade {
-    margin-right:12px;
-}
-
-#custom-hypridle {
-    margin-right:16px;
-}
-
-#custom-hypridle.active {
-    color: @iconcolor;
-}
-
-#custom-hypridle.notactive {
-    color: #dc2f2f;
-}
-
-#custom-waybarthemes,#custom-system {
-     margin-right:15px;
-}
-
-#custom-ml4w-welcome {
-    margin-right: 12px;
-    background-image: url("../assets/ml4w-icon.svg");
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: contain;
-    padding-right: 24px;
-}
-
-/* -----------------------------------------------------
- * Idle Inhibator
- * ----------------------------------------------------- */
-
- #idle_inhibitor {
+#custom-cpu-temp,
+#custom-gpu-temp {
     margin-right: 15px;
-    font-size: 22px;
-    font-weight: bold;
-    opacity: 0.8;
+    font-size: 18px;
+    /* font-weight: bold; */
     color: @iconcolor;
 }
 
-#idle_inhibitor.activated {
-    margin-right: 15px;
-    font-size: 20px;
-    font-weight: bold;
-    opacity: 0.8;
-    color: #dc2f2f;
-}
-
-/* -----------------------------------------------------
- * Custom Modules
- * ----------------------------------------------------- */
-
-#custom-appmenu {
-    background-color: @backgrounddark;
-    font-size: 16px;
-    color: @textcolor1;
-    border-radius: 15px;
-    padding: 2px 10px 0px 10px;
-    margin: 10px 15px 10px 10px;
-}
-
-/* -----------------------------------------------------
- * Custom Exit
- * ----------------------------------------------------- */
-
-#custom-exit {
-    margin: 0px 20px 0px 0px;
-    padding:0px;
-    font-size:20px;
-    color: @iconcolor;
-}
-
-/* -----------------------------------------------------
- * Custom Updates
- * ----------------------------------------------------- */
-
-#custom-updates {
-    background-color: @backgroundlight;
-    font-size: 16px;
-    color: @textcolor2;
-    border-radius: 15px;
-    padding: 2px 10px 0px 10px;
-    margin: 10px 15px 10px 0px;
-}
-
-#custom-updates.green {
-    background-color: @backgroundlight;
-}
-
-#custom-updates.yellow {
-    background-color: #ff9a3c;
-    color: #FFFFFF;
-}
-
-#custom-updates.red {
-    background-color: #dc2f2f;
-    color: #FFFFFF;
-}
-
-/* -----------------------------------------------------
- * Hardware Group
- * ----------------------------------------------------- */
-
- #disk,#memory,#cpu,#language {
-    margin:0px;
-    padding:0px;
-    font-size:16px;
-    color:@iconcolor;
-}
-
-#language {
-    margin-right:10px;
-}
 
 /* -----------------------------------------------------
  * Clock
@@ -303,19 +165,6 @@ window#waybar.empty #window {
     background-color: @backgrounddark;
     font-size: 16px;
     color: @textcolor1;
-    border-radius: 15px;
-    padding: 2px 10px 0px 10px;
-    margin: 10px 15px 10px 0px;
-}
-
-/* -----------------------------------------------------
- * Backlight
- * ----------------------------------------------------- */
-
- #backlight {
-    background-color: @backgroundlight;
-    font-size: 16px;
-    color: @textcolor2;
     border-radius: 15px;
     padding: 2px 10px 0px 10px;
     margin: 10px 15px 10px 0px;
@@ -340,29 +189,6 @@ window#waybar.empty #window {
 }
 
 /* -----------------------------------------------------
- * Network
- * ----------------------------------------------------- */
-
-#network {
-    background-color: @backgroundlight;
-    font-size: 16px;
-    color: @textcolor2;
-    border-radius: 15px;
-    padding: 2px 10px 0px 10px;
-    margin: 10px 15px 10px 0px;
-}
-
-#network.ethernet {
-    background-color: @backgroundlight;
-    color: @textcolor2;
-}
-
-#network.wifi {
-    background-color: @backgroundlight;
-    color: @textcolor2;
-}
-
-/* -----------------------------------------------------
  * Bluetooth
  * ----------------------------------------------------- */
 
@@ -379,41 +205,6 @@ window#waybar.empty #window {
     background-color: transparent;
     padding: 0px;
     margin: 0px;
-}
-
-/* -----------------------------------------------------
- * Battery
- * ----------------------------------------------------- */
-
-#battery {
-    background-color: @backgroundlight;
-    font-size: 16px;
-    color: @textcolor2;
-    border-radius: 15px;
-    padding: 2px 15px 0px 10px;
-    margin: 10px 15px 10px 0px;
-}
-
-#battery.charging, #battery.plugged {
-    color: @textcolor2;
-    background-color: @backgroundlight;
-}
-
-@keyframes blink {
-    to {
-        background-color: @backgroundlight;
-        color: @textcolor2;
-    }
-}
-
-#battery.critical:not(.charging) {
-    background-color: #f53c3c;
-    color: @textcolor3;
-    animation-name: blink;
-    animation-duration: 0.5s;
-    animation-timing-function: linear;
-    animation-iteration-count: infinite;
-    animation-direction: alternate;
 }
 
 /* -----------------------------------------------------
@@ -439,17 +230,5 @@ window#waybar.empty #window {
 
 label:focus {
     background-color: #000000;
-}
-
-#backlight {
-    background-color: #90b1b1;
-}
-
-#network {
-    background-color: #2980b9;
-}
-
-#network.disconnected {
-    background-color: #f53c3c;
 }
 
