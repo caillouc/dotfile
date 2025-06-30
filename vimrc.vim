@@ -282,7 +282,7 @@ fun! TermClose()
 endfunction
 command TermClose call TermClose()
 " Execute a command in term
-command -nargs=+ -complete=file TermOpen call TermClose() | botright split | resize 15 | terminal <args>
+command -nargs=+ -complete=file TermOpen call TermClose() | botright split | resize 20 | terminal <args>
 autocmd TermOpen * startinsert
 tnoremap <ESC> <C-\><C-N>
 nnoremap <Leader>t :TermOpen 
