@@ -43,7 +43,7 @@ alias gpu-driver="lspci -n -n -k | grep -A 2 -e VGA -e 3D && modinfo -F version 
 
 # Move to trash a file or a directory
 sp () {
-	mv --backup=numbered -f "$@" ~/.Trash 
+	mv --backup=numbered -f "$@" ~/.local/share/Trash/files
 }
 
 # quick way to take some note 
@@ -115,7 +115,7 @@ gpdf () {
 }
 
 # shortcut git 
-gcp () { git add -A && git commit -m "$@" && git push; }
+gcp () { git add -u && gitmoji -c --title="$@" && git push; }
 
 RED='\033[0;31m'
 NC='\033[0m' # No Color
