@@ -37,7 +37,7 @@ alias copy="wl-copy"                                            # Because I cann
 alias paste="wl-paste"                                          # Same reason
 
 export EDITOR="/usr/bin/nvim"
-alias magenta="TERM=xterm-256color ssh pierre@192.168.1.175"    # Connect to the magenta
+alias magenta="TERM=xterm-256color ssh pierre@magenta.clsn.fr"  # Connect to the magenta
 
 alias gpu-driver="lspci -n -n -k | grep -A 2 -e VGA -e 3D && modinfo -F version nvidia"
 
