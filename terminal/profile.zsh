@@ -116,11 +116,24 @@ gpdf () {
 
 # shortcut git 
 gcp () { git add -u && gitmoji -c --title="$@" && git push; }
+alias amend="git add . && git commit --amend --no-edit && git push --force"
 
 RED='\033[0;31m'
 NC='\033[0m' # No Color
 alias grh="echo -e '${RED}Never again !!${NC}'" # Used to be alias for git reset --hard
 alias poussin='git pull'
+
+activate () {
+	# Find the .venv folder name
+	venv_folder=$(find . -type d -name ".venv*" -print -quit)
+
+	if [ -n "$venv_folder" ]; then
+		# Activate the virtual environment
+		source "$venv_folder/Scripts/activate"
+	else
+		echo "No .venv folder found"
+	fi
+}
 
 
 

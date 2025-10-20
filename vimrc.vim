@@ -231,7 +231,7 @@ function! MathHighlight()
 endfunction
 function! MarkdownConfig()
 	call MathHighlight()
-	setlocal textwidth=80
+	setlocal textwidth=120
 	setlocal comments=             " to avoid some conflict while formating a list 
 	syntax clear markdownCodeBlock " fix a conflict between codeBlock and list element
 
