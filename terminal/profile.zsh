@@ -1,5 +1,6 @@
 autoload -U colors && colors
 autoload -U compinit; compinit
+bindkey -e
 
 # zsh constant
 ENABLE_CORRECTION="false"
@@ -116,7 +117,7 @@ gpdf () {
 
 # shortcut git 
 gcp () { git add -u && gitmoji -c --title="$@" && git push; }
-alias amend="git add . && git commit --amend --no-edit && git push --force"
+alias amend="git add -u && git commit --amend --no-edit && git push --force"
 
 RED='\033[0;31m'
 NC='\033[0m' # No Color
