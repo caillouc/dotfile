@@ -11,6 +11,15 @@
 			"commands": [
 				"actions.find"
 			]
+		},
+		{
+			"before": [
+				"<Leader>",
+				"e"
+			],
+			"commands": [
+				"editor.action.formatSelection"
+			]
 		}
 	],
 	"vim.normalModeKeyBindingsNonRecursive": [
