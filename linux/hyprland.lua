@@ -11,6 +11,8 @@ hl.monitor({
     mode     = "preferred",
     position = "auto",
     scale    = "auto",
+    -- Disable vrr, to avoid mouse lag (due not not compatible nvidia driver yet)
+    vrr      = 0,
 })
 
 ---------------------
@@ -27,15 +29,22 @@ local menu        = "fuzzel"
 -------------------
 
 hl.on("hyprland.start", function()
-    hl.exec_cmd(terminal .. " --class fullscreen-term")
+
+    -- Import environment and activate the graphical session target
+    hl.exec_cmd("dbus-update-activation-environment --systemd --all")
+    hl.exec_cmd("systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP XDG_SESSION_DESKTOP XDG_SESSION_TYPE")
+    hl.exec_cmd("systemd-run --user --unit=graphical-session-bootstrap --property=Type=oneshot --property=RemainAfterExit=yes --property=Wants=graphical-session.target /usr/bin/true")
+    hl.exec_cmd("systemctl --user restart xdg-desktop-portal-hyprland.service xdg-desktop-portal.service")
+
+    -- Then start applications
     hl.exec_cmd("hyprpaper &")
     hl.exec_cmd("waybar &")
     hl.exec_cmd("hypridle &")
     hl.exec_cmd("lxpolkit &")
-    -- Ensure Flatpak apps use the GTK theme (idempotent)
-    hl.exec_cmd("flatpak override --user --env=GTK_THEME=Adwaita:dark || true")
-end)
 
+    -- Terminal last
+    hl.exec_cmd(terminal .. " --class fullscreen-term")
+end)
 
 -------------------------------
 ---- ENVIRONMENT VARIABLES ----
@@ -44,6 +53,7 @@ end)
 hl.env("GDK_BACKEND", "wayland,x11")
 hl.env("XCURSOR_SIZE", "24")
 hl.env("HYPRCURSOR_SIZE", "24")
+hl.env("HYPRCURSOR_THEME", "default")
 hl.env("LIBVA_DRIVER_NAME", "nvidia")
 hl.env("__GLX_VENDOR_LIBRARY_NAME", "nvidia")
 
@@ -51,7 +61,8 @@ hl.env("__GLX_VENDOR_LIBRARY_NAME", "nvidia")
 hl.env("GTK_THEME", "Adwaita:dark")
 hl.env("QT_QPA_PLATFORMTHEME", "qt5ct")
 hl.env("XDG_CURRENT_DESKTOP", "Hyprland")
-
+hl.env("XDG_SESSION_DESKTOP", "Hyprland")
+hl.env("XDG_SESSION_TYPE", "wayland")
 
 -----------------------
 ---- LOOK AND FEEL ----
@@ -95,6 +106,11 @@ hl.config({
 
     animations = {
         enabled = true,
+    },
+
+    -- To fix a ghost cursor bug
+    cursor = {
+        no_hardware_cursors = false,
     },
 })
 
