@@ -144,18 +144,12 @@ source $ZSH_PLUGIN_PATH/please.plugin.zsh
 source $ZSH_PLUGIN_PATH/zsh-autosuggestions/zsh-autosuggestions.zsh
 source $ZSH_PLUGIN_PATH/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
-# Define a function to set the keybinding after everything loads
-setup_autosuggest_bindings() {
-  # Only bind if the widget is available
-  if zle -l | grep -q autosuggest-accept; then
-    bindkey '^[[Z' autosuggest-accept
-    # Remove the hook after binding to prevent repeated execution
-    unset -f setup_autosuggest_bindings
-  fi
-}
+bindkey '^[[Z' autosuggest-accept
 
-# Attach to precmd hook (runs just before each prompt display)
-autoload -Uz add-zsh-hook
-add-zsh-hook precmd setup_autosuggest_bindings
+autoload -U up-line-or-beginning-search down-line-or-beginning-search
+zle -N up-line-or-beginning-search
+zle -N down-line-or-beginning-search
+bindkey '^P' up-line-or-beginning-search
+bindkey '^N' down-line-or-beginning-search
 
 fastfetch

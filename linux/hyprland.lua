@@ -31,6 +31,8 @@ local menu        = "fuzzel"
 hl.on("hyprland.start", function()
 
     -- Import environment and activate the graphical session target
+    -- `systemctl --user status xdg-desktop-portal-hyprland` fix
+
     hl.exec_cmd("dbus-update-activation-environment --systemd --all")
     hl.exec_cmd("systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP XDG_SESSION_DESKTOP XDG_SESSION_TYPE")
     hl.exec_cmd("systemd-run --user --unit=graphical-session-bootstrap --property=Type=oneshot --property=RemainAfterExit=yes --property=Wants=graphical-session.target /usr/bin/true")
@@ -110,7 +112,7 @@ hl.config({
 
     -- To fix a ghost cursor bug
     cursor = {
-        no_hardware_cursors = false,
+        no_hardware_cursors = true,
     },
 })
 
