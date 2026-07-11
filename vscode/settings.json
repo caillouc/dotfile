@@ -1,6 +1,6 @@
 {
 	"vim.vimrc.enable": true,
-	"vim.vimrc.path": "path/to/your/.vimrc",
+	"vim.vimrc.path": "~/.vimrc",
 	"vim.leader": "<space>",
 	"vim.visualModeKeyBindingsNonRecursive": [
 		{
@@ -104,5 +104,7 @@
 				"editor.action.marker.prev"
 			]
 		}
-	]
+	],
+	"workbench.colorTheme": "One Monokai",
+	"editor.minimap.enabled": false
 }

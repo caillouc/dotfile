@@ -21,23 +21,23 @@ source $JUMP_CMD_PATH/cmds.sh
 
 # shortcut 
 alias ls="ls --color"                                           # Display color with ls (for ssh connction)
-alias vim='nvim'                                                # Use -p option with nvim by default
+alias vim='vim'                                                 # Use -p option with vim by default
 alias please='/usr/bin/sudo'                                    # Be polite with your computer
 alias py='python3'                                              # Open a python shell
 alias la='ls -liah'                                             # Better version of ls
-alias zshrc="nvim $HOME/.zshrc"                                 # Edit .zsshrc file
+alias zshrc="vim $HOME/.zshrc"                                  # Edit .zsshrc file
 alias path='echo $PATH'                                         # Display the path variable 	
 alias aj='autojump'                                             # Because autojump is too long
-alias vimrc="nvim $DOTFILE_PATH/vimrc.vim"                      # Edit vimrc file
-alias profile="nvim $DOTFILE_PATH/terminal/profile.zsh"         # Edit profile.zsh file
+alias vimrc="vim $DOTFILE_PATH/init.vim"                        # Edit vimrc file
+alias profile="vim $DOTFILE_PATH/terminal/profile.zsh"          # Edit profile.zsh file
 alias sprofile="source $HOME/.zshrc"                            # Source this file
-alias hconf="nvim $DOTFILE_PATH/linux/hyprland.lua"             # Quickly edit hyprland config file
+alias hconf="vim $DOTFILE_PATH/linux/hyprland.lua"              # Quickly edit hyprland config file
 alias n="nautilus ."                                            # Open file manager to the current location
 alias open="xdg-open"                                           # Open file
 alias copy="wl-copy"                                            # Because I cannot remember the command every time I need it
 alias paste="wl-paste"                                          # Same reason
 
-export EDITOR="/usr/bin/nvim"
+export EDITOR="/usr/bin/vim"
 alias magenta="TERM=xterm-256color ssh pierre@magenta.tail.net" # Connect to the magenta
 
 alias gpu-driver="lspci -n -n -k | grep -A 2 -e VGA -e 3D && modinfo -F version nvidia"
@@ -48,7 +48,7 @@ sp () {
 }
 
 # quick way to take some note 
-alias note="nvim ~/Desktop/note.md"
+alias note="vim ~/Desktop/note.md"
 
 # now cd execute ls builtin when arrive in destinaion
 cd () {
@@ -107,7 +107,7 @@ mkd () {
 	touch "$1.md"
 	DATE="`date "+%A %d %B %Y"`"
 	echo "---\ntitle: $1\nauthor: Pierre Colson\ndate: $DATE\n---" > "$1.md"
-	nvim "$1.md"
+	vim "$1.md"
 }
 
 # generate pdf from markwon

@@ -1,4 +1,17 @@
 "   ---   General   ---   "
+let mapleader = " "
+set number
+
+" System clipboard
+if has('macunix')
+	nnoremap <Leader>c "*yy
+	xnoremap <Leader>c "*y
+	nnoremap <Leader>v "*p
+else 
+	nnoremap <Leader>c "+yy
+	xnoremap <Leader>c "+y
+	nnoremap <Leader>v "+p
+endif
 
 " tab gestion 
 set autoindent
@@ -27,10 +40,6 @@ nnoremap ff za
 " Put the underliying word in lower/upper case
 nnoremap <Leader>u guiw
 nnoremap <Leader>U gUiw
-
-nnoremap <Leader>c "+yy
-xnoremap <Leader>c "+y
-nnoremap <Leader>v "+p
 
 " Add a semicolon to the current line without moving the cursor with <Leader>;
 nnoremap <Leader>; m'A;<ESC>`'
