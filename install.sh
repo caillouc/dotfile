@@ -43,6 +43,8 @@ main() {
 	link_file "$repo_root/init.vim" "$home_dir/.config/nvim/init.vim"
 	link_file "$repo_root/vscode/settings.json" "$home_dir/.config/Code/User/settings.json"
 	link_file "$repo_root/vscode/keybindings.json" "$home_dir/.config/Code/User/keybindings.json"
+	link_file "$repo_root/zed/settings.json" "$home_dir/.config/zed/settings.json"
+	link_file "$repo_root/zed/keymap.json" "$home_dir/.config/zed/keymap.json"
 	write_zshrc
 
 	# if [[ "$(uname -s)" == "Linux" ]] && command -v dconf >/dev/null 2>&1; then

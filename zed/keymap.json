@@ -1,0 +1,58 @@
+// Zed keymap — translated from ~/Documents/dotfile/init.vim
+[
+  {
+    "context": "vim_mode == normal && !menu",
+    "bindings": {
+      // --- Tab handling ---
+      // nnoremap <Tab> >>_  /  nnoremap <S-Tab> <<_
+      "tab": ["workspace::SendKeystrokes", "> > ^"],
+      "shift-tab": ["workspace::SendKeystrokes", "< < ^"],
+
+      // --- Remap ---
+      ";": "command_palette::Toggle", // nnoremap ; :
+      "space f": "file_finder::Toggle", // same menu as cmd-p
+
+      "space s": "workspace::Save",
+      "shift-u": "vim::Redo", // nnoremap U <C-r>
+      "space b": "pane::GoBack", // <C-o>
+
+      // Append a semicolon without moving the cursor (m' A; <Esc> `')
+      "space ;": ["workspace::SendKeystrokes", "m z shift-a ; escape ` z"],
+
+      // --- Faster motion ---
+      "shift-j": ["workspace::SendKeystrokes", "5 j"],
+      "shift-k": ["workspace::SendKeystrokes", "5 k"],
+
+      // --- Move between splits ---
+      "space h": "workspace::ActivatePaneLeft",
+      "space j": "workspace::ActivatePaneDown",
+      "space k": "workspace::ActivatePaneUp",
+      "space l": "workspace::ActivatePaneRight",
+
+      // Replace the word under the cursor across the file.
+      // Opens Zed's find & replace, seeded from the cursor word
+      // (see "seed_search_query_from_cursor" in settings.json).
+      "space r": "buffer_search::DeployReplace"
+    }
+  },
+  {
+    "context": "vim_mode == visual && !menu",
+    "bindings": {
+      // xnoremap <Tab> >  /  xnoremap <S-Tab> <
+      "tab": "vim::Indent",
+      "shift-tab": "vim::Outdent",
+
+      "shift-j": ["workspace::SendKeystrokes", "5 j"],
+      "shift-k": ["workspace::SendKeystrokes", "5 k"],
+
+      // xnoremap <Leader>r :s//g  — replace the selected text
+      "space r": "buffer_search::DeployReplace"
+    }
+  },
+  {
+    "context": "Terminal",
+    "bindings": {
+      "ctrl-k": "workspace::FocusCenterPane"
+    }
+  }
+]
