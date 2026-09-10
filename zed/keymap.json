@@ -10,6 +10,7 @@
 
       // --- Remap ---
       ";": "command_palette::Toggle", // nnoremap ; :
+      "space p": "command_palette::Toggle", // nnoremap ; :
       "space f": "file_finder::Toggle", // same menu as cmd-p
 
       "space s": "workspace::Save",

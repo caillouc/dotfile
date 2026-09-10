@@ -7,7 +7,11 @@
 // custom settings, run `zed: open default settings` from the
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
+  "collaboration_panel": {
+    "button": false
+  },
   "agent": {
+    "single_file_review": true,
     "favorite_models": [],
     "model_parameters": [],
     "expand_terminal_card": false
@@ -34,7 +38,7 @@
       "default_config_options": {
         "fast": false,
         "effort": "high",
-        "mode": "bypassPermissions",
+        "mode": "auto",
         "model": "opus[1m]"
       },
       "type": "registry"
