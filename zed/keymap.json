@@ -51,6 +51,15 @@
     }
   },
   {
+    // --- Completion menu: Tab cycles instead of accepting ---
+    // Use enter (or ctrl-y) to accept the highlighted completion.
+    "context": "Editor && showing_completions",
+    "bindings": {
+      "tab": "editor::ContextMenuNext",
+      "shift-tab": "editor::ContextMenuPrevious"
+    }
+  },
+  {
     "context": "Terminal",
     "bindings": {
       "ctrl-k": "workspace::FocusCenterPane"

@@ -7,9 +7,6 @@ text = "0x2c2c2c"
 [colors.primary]
 background = "#2B2A33"  # Same as firefox
 
-[env]
-TERM = "alacritty"
-
 [font]
 size = 15.0
 
@@ -23,8 +20,8 @@ decorations = "full"
 title = "Mon Super Terminal (Alacritty)"
 
 [window.dimensions]
-columns = 90
-lines = 28
+columns = 100
+lines = 30
 
 [selection]
 save_to_clipboard = true
