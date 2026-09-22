@@ -17,6 +17,11 @@
       "shift-u": "vim::Redo", // nnoremap U <C-r>
       "space b": "pane::GoBack", // <C-o>
 
+      // --- System clipboard (nnoremap <Leader>c "*yy / <Leader>v "*p) ---
+      // On macOS "+ and "* are both the OS clipboard.
+      "space c": ["workspace::SendKeystrokes", "\" + y y"],
+      "space v": ["workspace::SendKeystrokes", "\" + p"],
+
       // Append a semicolon without moving the cursor (m' A; <Esc> `')
       "space ;": ["workspace::SendKeystrokes", "m z shift-a ; escape ` z"],
 
@@ -46,6 +51,9 @@
       "shift-j": ["workspace::SendKeystrokes", "5 j"],
       "shift-k": ["workspace::SendKeystrokes", "5 k"],
 
+      // xnoremap <Leader>c "*y
+      "space c": ["workspace::SendKeystrokes", "\" + y"],
+
       // xnoremap <Leader>r :s//g  — replace the selected text
       "space r": "buffer_search::DeployReplace"
     }
@@ -57,6 +65,16 @@
     "bindings": {
       "tab": "editor::ContextMenuNext",
       "shift-tab": "editor::ContextMenuPrevious"
+    }
+  },
+  {
+    // --- Pickers (file finder, command palette, ...): Tab cycles ---
+    // Zed's default binds tab to "picker::ConfirmCompletion", which accepts
+    // the highlighted entry. Use enter to accept instead.
+    "context": "Picker > Editor",
+    "bindings": {
+      "tab": "menu::SelectNext",
+      "shift-tab": "menu::SelectPrevious"
     }
   },
   {
