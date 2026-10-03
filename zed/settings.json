@@ -7,6 +7,15 @@
 // custom settings, run `zed: open default settings` from the
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
+  "ssh_connections": [
+    {
+      "host": "192.168.1.175",
+      "projects": [{ "paths": ["~/homelab"] }],
+      "port": 22, // defaults to 22
+      "username": "pierre",
+      "nickname": "magenta-zed"
+    }
+  ],
   "cli_default_open_behavior": "existing_window",
 
   // Keep git worktrees (Claude Code + Zed) out of the file finder,

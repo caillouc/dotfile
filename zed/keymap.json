@@ -80,7 +80,12 @@
   {
     "context": "Terminal",
     "bindings": {
-      "ctrl-k": "workspace::FocusCenterPane"
+      "ctrl-k": "workspace::FocusCenterPane",
+
+      // Send ctrl-p / ctrl-n to the shell (history prev/next) instead of
+      // Zed's workspace defaults (file finder / new file).
+      "ctrl-p": ["terminal::SendKeystroke", "ctrl-p"],
+      "ctrl-n": ["terminal::SendKeystroke", "ctrl-n"]
     }
   }
 ]
